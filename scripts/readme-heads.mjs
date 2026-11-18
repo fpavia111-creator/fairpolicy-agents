@@ -7,7 +7,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const PK = join(dirname(fileURLToPath(import.meta.url)), '..', 'packages');
-const UP = { ar: 'A/R', dme: 'DME', kpis: 'KPIs', edi: 'EDI' };
+const UP = { eo: 'E&O' };
 export const titleOf = (n) => n.split('-').map((w, i) => UP[w] || (i === 1 ? 'of' : w[0].toUpperCase() + w.slice(1))).join(' ');
 
 for (const n of readdirSync(PK).filter((x) => /-of-/.test(x)).sort()) {
@@ -19,19 +19,19 @@ for (const n of readdirSync(PK).filter((x) => /-of-/.test(x)).sort()) {
 
 ${m.description}${never}
 
-MIT · Node 20 or newer · local files only · patient identifiers masked before results reach the model · built on [\`fresnel-core\`](../fresnel-core)
+MIT · Node 20 or newer · local files only · client identifiers masked before results reach the model · built on [\`fresnel-core\`](../fresnel-core)
 
 \`\`\`bash
 npx -y ${n} demo
-npx -y ${n} mcp --root ./billing-files
+npx -y ${n} mcp --root ./agency-exports
 \`\`\`
 
 ## Limits
 
-- It checks only what is in the files and config you load. Code tables, fee schedules, payer rules and limits are as current as what you give it; the built-in tables and example rules are starting points, not any payer's policy.
-- It is not coding, legal, compliance or medical advice. A person reviews every result before a claim, appeal, refund or message goes anywhere; the agent sends nothing.
+- It checks only what is in the files and settings you load. Commission schedules, state rules, deadlines and carrier requirements are as current as what you give it; the example settings are starting points, not any carrier's or state's rule.
+- It is not legal, tax, accounting or coverage advice. It never binds, cancels, endorses or places coverage, and it never tells a client what to buy. A person reviews every result before anything goes to a client, carrier or producer; the agent sends nothing.
 - Export layouts named in "Columns it reads" were written from knowledge of each system and not tested against a live account; \`inspect\` shows how a file was read.
-- Patient masking keeps identifiers away from the model; it does not replace your HIPAA program (business associate agreements, access control, retention).
+- Client-data masking keeps identifiers away from the model; it does not replace your agency's privacy and information-security program (state insurance data security rules, access control, retention).
 `;
   writeFileSync(f, txt); console.log(`${n}: README head written`);
 }

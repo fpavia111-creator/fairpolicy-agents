@@ -31,12 +31,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fpavia111-creator/fresnel-agents.git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
     "directory": "packages/fresnel-core"
   },
-  "homepage": "https://github.com/fpavia111-creator/fresnel-agents/tree/main/packages/fresnel-core#readme",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fresnel-core#readme",
   "bugs": {
-    "url": "https://github.com/fpavia111-creator/fresnel-agents/issues"
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
   },
   "keywords": [
     "mcp",

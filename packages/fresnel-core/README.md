@@ -271,7 +271,7 @@ The manifest declares which host model a pack's prompts and evals target. An MCP
 
 ## Packs built on this core
 
-All 30 Fresnel domain agents in the monorepo, from `olympus-of-migration` to `solon-of-clauses`. Source: <https://github.com/fpavia111-creator/fresnel-agents>.
+All 30 Fresnel domain agents in the monorepo, from `olympus-of-migration` to `solon-of-clauses`. Source: <https://github.com/fpavia111-creator/fairpolicy-agents>.
 
 ## License
 

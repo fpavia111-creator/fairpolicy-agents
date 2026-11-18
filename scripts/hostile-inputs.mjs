@@ -13,7 +13,7 @@
 //   - no file outside the root, and none that climbed out of its output folder
 //   - no crash or stack trace in an error
 //   - a warning on results that quote the planted instructions
-//   - no fictional patient identifier (fixtures/phi-canaries.json) in any result the model sees
+//   - no fictional client identifier (fixtures/phi-canaries.json) in any result the model sees
 // Argument pass: calls every tool with one argument at a time replaced by null,
 // numbers, arrays, a 200,000-character string, "../" and absolute paths, and checks
 // that nothing is read or written outside the root, nothing hangs and errors stay short.

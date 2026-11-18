@@ -88,7 +88,7 @@ for (const n of agents) {
       cpSync(base, root, { recursive: true, filter: (s) => !/node_modules|\.fresnel|fresnel-out|\/\.git(\/|$)/.test(s) });
       let rowsIn = 0; let seed = 7;
       for (const [, rel] of tables) {
-        // Published files (CMS GPCI, RVU) start with title lines before the header: keep them as they are.
+        // Published files that start with title lines before the header are kept as they are.
         const f = join(root, rel); const text = readFileSync(f, 'utf8'); const lines = text.split(/\r?\n/);
         const cells = (l) => (l.match(/[,;\t|]/g) || []).length;
         let skip = 0; while (skip < Math.min(10, lines.length - 1) && cells(lines[skip]) < 2) skip++; if (skip >= Math.min(10, lines.length - 1)) skip = 0;

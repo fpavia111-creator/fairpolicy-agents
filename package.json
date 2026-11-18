@@ -1,7 +1,7 @@
 {
-  "name": "fresnel-agents",
+  "name": "fairpolicy-agents",
   "private": true,
-  "description": "Fresnel medical billing agents monorepo.",
+  "description": "Fairpolicy: insurance agency and brokerage back-office agents (fresnel-core plus 31 agents named after lighthouses).",
   "license": "MIT",
   "workspaces": [
     "packages/fresnel-core",

@@ -16,9 +16,9 @@ for (const n of pkgs) {
   const desc = ((s) => s[0].toUpperCase() + s.slice(1))(p.description.replace(/^[A-Z]\w+ of [A-Z]\w+:\s*/, ''));
   want.set(join('packages', n, '.claude-plugin', 'plugin.json'), { name: n, version: p.version, description: desc, author: { name: p.author }, license: p.license, homepage: p.homepage, keywords: p.keywords });
   want.set(join('packages', n, '.mcp.json'), { mcpServers: { [n]: { command: 'npx', args: ['-y', `${n}@${p.version}`, 'mcp'] } } });
-  plugins.push({ name: n, source: `./packages/${n}`, description: desc, version: p.version, category: 'medical-billing', keywords: [...new Set(p.keywords.filter((k) => !['mcp', 'mcp-server', 'fresnel'].includes(k)))] });
+  plugins.push({ name: n, source: `./packages/${n}`, description: desc, version: p.version, category: 'insurance-agency', keywords: [...new Set(p.keywords.filter((k) => !['mcp', 'mcp-server', 'fresnel'].includes(k)))] });
 }
-want.set(join('.claude-plugin', 'marketplace.json'), { name: 'fresnel-medical-billing', owner: { name: 'Fresnel' }, metadata: { description: 'Thirty medical billing agents. Each reads your exported files (835, 837, 999, 277CA, 271, 278 or spreadsheets), masks patient identifiers before results reach the model, writes worklists locally and waits for a named person before anything is sent, refunded or paid.' }, plugins });
+want.set(join('.claude-plugin', 'marketplace.json'), { name: 'fairpolicy-insurance-agency', owner: { name: 'Mythos Machines' }, metadata: { description: 'Fairpolicy: thirty-one insurance agency back-office agents. Each reads files your agency system or carriers already export (policy lists, commission statements, receivables, licences), masks client identifiers before results reach the model, writes worklists locally and waits for a named person before anything is sent. None binds, cancels, endorses or advises on coverage.' }, plugins });
 let stale = 0;
 for (const [rel, obj] of want) {
   const f = join(root, rel); const text = JSON.stringify(obj, null, 2) + '\n';

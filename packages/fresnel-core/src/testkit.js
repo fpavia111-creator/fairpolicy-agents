@@ -2,8 +2,10 @@
 // eval cases (import from 'fresnel-core/testkit'). They check how the agent is wired:
 // each tool that runs has an eval case, bad arguments come back as readable errors,
 // files outside --root are refused, Review mode and the kill switch hold, drafts are
-// tied to their sha256, results are repeatable and the agent's own column layout is
-// read as it is. Domain behaviour is tested in each agent's own test files.
+// tied to their sha256, results are repeatable, the agent's own column layout is read
+// as it is, and the same data written differently (column order, an extra column, BOM
+// and CRLF, padded values, row order, no rows at all) gives the same answer (ported from
+// the Lodestar core on 18 Nov 2026). Domain behaviour is tested in each agent's own test files.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync, mkdtempSync, cpSync } from 'node:fs';
@@ -13,6 +15,7 @@ import { AgentRuntime } from './runtime.js';
 import { adaptRecords } from './sources.js';
 import { ONE_CLICK_CATEGORIES } from './manifest.js';
 import { createHash } from 'node:crypto';
+import { parseCsvRows } from './csv.js';
 
 // A fixed pseudonym key, so two runs give the same pseudonyms (with audit off the runtime
 // would otherwise make a new key for each run).
@@ -31,6 +34,12 @@ function strip(v) {
 function sample(type, i) {
   return { date: '2026-11-02', datetime: '2026-11-02T08:00:00', money: String(100 + i), number: String(1 + i), bool: 'yes', email: 'ops@example.test' }[type] || `X${i}`;
 }
+
+const canon = (v) => {
+  if (Array.isArray(v)) return v.map(canon).map((x) => JSON.stringify(x)).sort();
+  if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).filter(([k]) => !/^(row|rows|line|sources|file|files)$/.test(k)).sort(([x], [y]) => (x < y ? -1 : 1)).map(([k, x]) => [k, canon(x)]));
+  return v;
+};
 
 /**
  * Registers the contract tests. `casesFile` is the agent's evals/cases.json.
@@ -161,6 +170,97 @@ export function agentContract({ manifest, casesFile }) {
     }
     assert.ok(checked > 0, 'at least one read tool has an eval case');
   });
+
+
+  // ---- The same data written differently gives the same answer ----
+  const csvQ = (v) => (/[",\r\n]/.test(v) || /^\s|\s$/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : v);
+  const write = (file, rows, { eol = '\n', bom = false } = {}) => writeFileSync(file, (bom ? '﻿' : '') + rows.map((r) => r.map(csvQ).join(',')).join(eol) + eol);
+  const csvArgs = (c) => Object.values(c.args || {}).flatMap((v) => (Array.isArray(v) ? v : [v])).filter((v) => typeof v === 'string' && /\.csv$/i.test(v));
+  const readCases = cases.filter((c) => { const t = manifest.tools.find((x) => x.name === c.tool); return t && t.kind === 'read' && decision(t) === 'allow' && (!c.mode || c.mode === 'assist') && (!c.expect || !c.expect.status || c.expect.status === 'executed') && csvArgs(c).length; });
+  const totals = (r) => Object.fromEntries(Object.entries(r || {}).filter(([k, v]) => typeof v === 'number' && !VOLATILE.test(k)));
+  const VARIANTS = {
+    'columns in reverse order': (rows) => rows.map((r) => [...r].reverse()),
+    'an extra column the agent does not know': (rows) => rows.map((r, i) => [...r, i ? `note ${i}` : 'Internal Remark Zz']),
+    'a byte-order mark and Windows line endings': (rows) => rows,
+    'spaces around every value': (rows) => rows.map((r, i) => (i ? r.map((v) => (v === '' ? v : ` ${v} `)) : r)),
+    'blank lines at the end': (rows) => [...rows, [''], ['']],
+  };
+  async function rerun(c, change, opts) {
+    const root = sandbox();
+    for (const f of new Set(csvArgs(c))) { const file = resolve(root, f); const rows = parseCsvRows(readFileSync(file, 'utf8')); write(file, change(rows), opts); }
+    return rtIn(root).call(c.tool, c.args);
+  }
+  if (readCases.length) {
+    test(`${manifest.name} contract: the same data with columns reordered, an extra column, a BOM and CRLF, padded values or trailing blank lines gives the same result`, async () => {
+      for (const c of readCases) {
+        const base = await rtIn(sandbox()).call(c.tool, c.args);
+        assert.equal(base.status, 'executed', `${c.id}: ${base.reason}`);
+        for (const [name, change] of Object.entries(VARIANTS)) {
+          const r = await rerun(c, change, name.startsWith('a byte-order') ? { eol: '\r\n', bom: true } : {});
+          assert.equal(r.status, 'executed', `${c.id} with ${name}: ${r.reason}`);
+          const { sources: _a, ...got } = strip(r.result); const { sources: _b, ...want } = strip(base.result);
+          assert.deepEqual(got, want, `${c.id} with ${name}`);
+        }
+      }
+    });
+
+    test(`${manifest.name} contract: the result does not depend on the order of the rows`, async () => {
+      for (const c of readCases) {
+        const base = await rtIn(sandbox()).call(c.tool, c.args);
+        for (const [name, change] of [['rows reversed', (rows) => [rows[0], ...rows.slice(1).reverse()]], ['rows rotated', (rows) => { const b = rows.slice(1); const k = Math.floor(b.length / 2); return [rows[0], ...b.slice(k), ...b.slice(0, k)]; }]]) {
+          const r = await rerun(c, change);
+          assert.equal(r.status, 'executed', `${c.id} with ${name}: ${r.reason}`);
+          assert.deepEqual(totals(r.result), totals(base.result), `${c.id} with ${name}`);
+          // Everything else too: the same findings, wording and amounts, whichever row came first. Lists are compared as sets and row numbers are left out.
+          assert.deepEqual(canon(r.result), canon(base.result), `${c.id} with ${name}`);
+        }
+      }
+    });
+
+    test(`${manifest.name} contract: a file with a header and no rows is answered, not crashed on`, async () => {
+      for (const c of readCases) {
+        for (const f of new Set(csvArgs(c))) {
+          const root = sandbox(); const file = resolve(root, f);
+          write(file, [parseCsvRows(readFileSync(file, 'utf8'))[0]]);
+          const r = await rtIn(root).call(c.tool, c.args);
+          assert.ok(['executed', 'error'].includes(r.status), `${c.id} with ${f} empty: ${r.status}`);
+          const text = JSON.stringify(r);
+          assert.doesNotMatch(text, /Cannot read prop|is not a function|is not iterable|undefined is not|\bNaN\b|Infinity|\[object Object\]/, `${c.id} with ${f} empty: ${text.slice(0, 300)}`);
+        }
+      }
+    });
+  }
+
+  // Report pages follow --lang; the CSV a script reads does not.
+  const reportCases = cases.filter((c) => { const t = manifest.tools.find((x) => x.name === c.tool); return t && t.kind === 'report' && decision(t) === 'allow' && (!c.mode || c.mode === 'assist') && (!c.expect || !c.expect.status || c.expect.status === 'executed'); });
+  if (reportCases.length) {
+    test(`${manifest.name} contract: the report page is written in the report language and the CSV stays the same`, async () => {
+      const heads = (html) => [...html.matchAll(/<h[12]>(.*?)<\/h[12]>/g)].map((m) => m[1]);
+      for (const c of reportCases) {
+        const pages = {};
+        for (const lang of ['en', 'de', 'ja']) {
+          const root = sandbox(); const r = await rtIn(root, { lang }).call(c.tool, c.args);
+          assert.equal(r.status, 'executed', `${c.id} in ${lang}: ${r.reason}`);
+          const files = (r.result.files || []).map((f) => resolve(root, f));
+          pages[lang] = { html: files.filter((f) => /\.html$/.test(f)).map((f) => readFileSync(f, 'utf8')), csv: files.filter((f) => /\.csv$/.test(f)).map((f) => readFileSync(f, 'utf8')) };
+        }
+        if (!pages.en.html.length) continue;
+        for (const lang of ['de', 'ja']) {
+          assert.deepEqual(pages[lang].csv, pages.en.csv, `${c.id}: the CSV changed with --lang ${lang}`);
+          pages[lang].html.forEach((html, i) => {
+            assert.match(html, new RegExp(`<html lang="${lang}"`), `${c.id}: page language`);
+            const en = heads(pages.en.html[i]), tr = heads(html);
+            assert.equal(tr.length, en.length, `${c.id}: same headings in ${lang}`);
+            // Every heading is translated: none is left as the English one.
+            en.forEach((h, k) => assert.notEqual(tr[k], h, `${c.id}: heading "${h}" has no ${lang} text in fresnel-core/src/report-text.js`));
+            // The numbers on the page are the same numbers.
+            const cells = (x) => [...x.matchAll(/<td>(.*?)<\/td>/g)].map((m) => m[1]);
+            assert.deepEqual(cells(html), cells(pages.en.html[i]), `${c.id}: table cells changed with --lang ${lang}`);
+          });
+        }
+      }
+    });
+  }
 
   const kinds = Object.entries(manifest.sources || {});
   if (kinds.length) {

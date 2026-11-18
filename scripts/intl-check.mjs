@@ -10,8 +10,8 @@
 // semicolons, and the usual legacy text
 // encoding (Windows-1252, Shift_JIS, GBK, EUC-KR). Values are not translated.
 // Every case that passes in English must pass the same way. Sources marked
-// `published` (CMS NCCI, PFS and price-transparency files) keep their English layout,
-// as CMS publishes them; the practice's own files around them are localised.
+// `published` (files a third party publishes in English everywhere) keep their English
+// layout; the agency's own files around them are localised.
 //
 // A column with no word in the dictionary keeps its English name, and the report
 // counts how many columns were translated, so coverage is visible. Exit code 1
@@ -55,7 +55,7 @@ for (const n of agents) {
       for (const [arg, file] of argFiles(c.args)) {
         if (done.has(file)) continue;
         const kind = kinds.get(arg); const def = kind && manifest.sources[kind];
-        const src = join(PK, n, file); if (!def || def.published || !existsSync(src)) { done.set(file, null); continue; } // a published layout (CMS files) arrives in English everywhere
+        const src = join(PK, n, file); if (!def || def.published || !existsSync(src)) { done.set(file, null); continue; } // a published layout arrives in English everywhere
         const out = localise(readFileSync(src, 'utf8'), def, lang, lang === 'de' ? missing : null); if (!out) { done.set(file, null); continue; }
         let buf; let enc = MARKETS[lang].enc;
         try { buf = encodeText(out.text, enc); } catch { enc = 'utf-8'; buf = encodeText(out.text, enc); }

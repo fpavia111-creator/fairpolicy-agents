@@ -1,7 +1,7 @@
 // Rewrite an English fixture the way an export from another market writes it
 // (shared by intl-check.mjs and make-intl-fixtures.mjs).
 import { parseCsv, normHeader, namesFor, conceptOf } from '../../packages/fresnel-core/src/index.js';
-const DEFAULT_UNITS = {}; // billing files carry no weights or distances
+const DEFAULT_UNITS = {}; // agency files carry no weights or distances
 
 // How each market writes a file. Dates: d = day-first with the separator, y = year-first.
 export const MARKETS = {
