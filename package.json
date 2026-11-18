@@ -1,0 +1,28 @@
+{
+  "name": "fresnel-agents",
+  "private": true,
+  "description": "Fresnel medical billing agents monorepo.",
+  "license": "MIT",
+  "workspaces": [
+    "packages/fresnel-core",
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "npm test --workspaces",
+    "hostile": "node scripts/hostile-inputs.mjs",
+    "hostile:args": "node scripts/hostile-inputs.mjs --args",
+    "release:check": "node scripts/release-check.mjs",
+    "release:check:offline": "node scripts/release-check.mjs --offline",
+    "bench": "node scripts/bench.mjs",
+    "plugin": "node scripts/plugin-files.mjs",
+    "plugin:check": "node scripts/plugin-files.mjs --check",
+    "fixtures": "node scripts/make-fixtures.mjs",
+    "mcp:check": "node scripts/mcp-conformance.mjs",
+    "intl": "node scripts/intl-check.mjs",
+    "readme": "node scripts/readme-heads.mjs && node scripts/readme-sections.mjs",
+    "readme:check": "node scripts/readme-sections.mjs --check"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

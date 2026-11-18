@@ -1,0 +1,50 @@
+name: test
+on:
+  push: { branches: [main] }
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '${{ matrix.node }}' }
+      - run: npm ci
+      - run: npm test
+      - name: Evals (every agent)
+        shell: bash
+        run: |
+          for p in packages/*/; do n=$(basename "$p"); [ "$n" = fresnel-core ] && continue
+            (cd "$p" && node "bin/$n.js" eval) || exit 1; done
+      - name: Plugin files match the packages
+        run: npm run plugin:check
+      - name: Hostile inputs (planted formulas, HTML, path tricks and AI-directed text in every agent's data)
+        run: npm run hostile
+      - name: Pack contents stay clean
+        shell: bash
+        run: |
+          for p in packages/*/; do (cd "$p" && npm pack --dry-run --json > /tmp/pack.json && node -e "
+            const f=require('/tmp/pack.json')[0].files.map(x=>x.path);
+            const bad=f.filter(x=>/(^|\/)(node_modules|\.fresnel|fresnel-out)\/|\.npmrc$|\.tgz$/.test(x));
+            if(bad.length){console.error('$p', bad);process.exit(1)}") || exit 1; done
+      - name: Agent READMEs match the manifests
+        run: npm run readme:check
+      - name: Local-language exports (every spreadsheet case in 8 languages)
+        if: matrix.os == 'ubuntu-latest' && matrix.node == 22
+        run: npm run intl
+  mcp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - run: npm ci
+      - name: Official MCP SDK client against every agent
+        run: npm i --no-save @modelcontextprotocol/sdk ajv ajv-formats && npm run mcp:check
