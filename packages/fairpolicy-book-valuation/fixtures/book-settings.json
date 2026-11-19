@@ -1,0 +1,1 @@
+{ "top_carrier_limit_pct": 40, "largest_client_limit_pct": 10, "top_10_limit_pct": 25, "missing_commission_limit_pct": 5, "revenue_multiple_low": 1.5, "revenue_multiple_high": 2.5 }

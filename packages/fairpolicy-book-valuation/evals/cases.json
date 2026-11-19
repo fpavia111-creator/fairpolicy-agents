@@ -1,0 +1,252 @@
+{
+  "suite": "fairpolicy-book-valuation",
+  "root": "..",
+  "data_note": "Fictional book and settings in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "book_check",
+      "args": {
+        "policies": "fixtures/book.csv",
+        "settings": "fixtures/book-settings.json"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.revenue": 8860,
+          "result.premium": 75100,
+          "result.policies": 13,
+          "result.accounts": 7,
+          "result.watch": 4
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "book_check",
+      "args": {
+        "policies": "fixtures/book.csv",
+        "settings": "fixtures/book-settings.json"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.watch": 4,
+          "result.by_status.info": 2,
+          "result.by_status.ok": 7
+        }
+      }
+    },
+    {
+      "id": "carrier-concentration",
+      "tool": "book_explain",
+      "args": {
+        "policies": "fixtures/book.csv",
+        "settings": "fixtures/book-settings.json",
+        "metric": "top_carrier_share_pct"
+      },
+      "expect": {
+        "equals": {
+          "result.figure.status": "watch",
+          "result.figure.value": 56.49
+        },
+        "contains": [
+          "Sample Casualty"
+        ]
+      }
+    },
+    {
+      "id": "largest-client",
+      "tool": "book_explain",
+      "args": {
+        "policies": "fixtures/book.csv",
+        "settings": "fixtures/book-settings.json",
+        "metric": "largest_client_share_pct"
+      },
+      "expect": {
+        "equals": {
+          "result.figure.value": 34.42
+        }
+      }
+    },
+    {
+      "id": "range-only-from-your-multiples",
+      "tool": "book_explain",
+      "args": {
+        "policies": "fixtures/book.csv",
+        "settings": "fixtures/book-settings.json",
+        "metric": "indicative_value_high"
+      },
+      "expect": {
+        "equals": {
+          "result.figure.value": 22150
+        },
+        "contains": [
+          "Not an appraisal"
+        ]
+      }
+    },
+    {
+      "id": "no-range-without-settings",
+      "tool": "book_check",
+      "args": {
+        "policies": "fixtures/book.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "indicative_value"
+        ]
+      }
+    },
+    {
+      "id": "by-line-and-carrier",
+      "tool": "book_check",
+      "args": {
+        "policies": "fixtures/book.csv"
+      },
+      "expect": {
+        "equals": {
+          "result.by_carrier.0.carrier": "Sample Casualty",
+          "result.by_carrier.0.revenue": 5005,
+          "result.by_line.0.line": "cauto",
+          "result.by_line.0.revenue": 2520
+        }
+      }
+    },
+    {
+      "id": "personal-mix",
+      "tool": "book_explain",
+      "args": {
+        "policies": "fixtures/book.csv",
+        "metric": "personal_lines_share_pct"
+      },
+      "expect": {
+        "equals": {
+          "result.figure.value": 15.41
+        }
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "book_write_report",
+      "args": {
+        "policies": "fixtures/book.csv",
+        "settings": "fixtures/book-settings.json"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "book-valuation.csv",
+          "book-valuation.html"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "book_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "book_check",
+      "args": {
+        "policies": "../../outside.csv",
+        "settings": "fixtures/book-settings.json"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "book_check",
+      "mode": "review",
+      "args": {
+        "policies": "fixtures/book.csv",
+        "settings": "fixtures/book-settings.json"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.revenue": 8860,
+          "result.premium": 75100,
+          "result.policies": 13,
+          "result.accounts": 7,
+          "result.watch": 4
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "book_check",
+      "args": {
+        "settings": "fixtures/book-settings.json"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "policies"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "book_check",
+      "args": {
+        "policies": "fixtures/book.csv",
+        "settings": "fixtures/book-settings.json",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-refused-book_transfer",
+      "tool": "book_transfer",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-data_room_upload",
+      "tool": "data_room_upload",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "book_check",
+      "args": {
+        "policies": "fixtures/book.csv",
+        "settings": "fixtures/book-settings.json"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Halvard Greaves",
+          "Juniper Oakhurst",
+          "Lorcan Deverill",
+          "Greaves Plumbing",
+          "Oakhurst Dental",
+          "Deverill Courier",
+          "Fenwick Arbor"
+        ]
+      }
+    }
+  ]
+}

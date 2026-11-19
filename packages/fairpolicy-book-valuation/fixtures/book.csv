@@ -1,0 +1,15 @@
+Client Name,Policy Number,Line of Business,Carrier,Effective Date,Expiration Date,Premium,Commission Rate,Commission,Producer,Policy Status
+Halvard Greaves,PA-1601,Personal Auto,Example Mutual,03/01/2026,09/01/2026,1500.00,15,225.00,Jordan Lee,Active
+Halvard Greaves,HO-1602,Homeowners,Example Mutual,03/01/2026,03/01/2027,2000.00,15,300.00,Jordan Lee,Active
+Juniper Oakhurst,PA-1603,Personal Auto,Example Mutual,05/01/2026,11/01/2026,1200.00,15,180.00,Jordan Lee,Active
+Juniper Oakhurst,HO-1604,Homeowners,Example Mutual,05/01/2026,05/01/2027,2600.00,15,390.00,Jordan Lee,Active
+Lorcan Deverill,HO-1605,Homeowners,Example Mutual,07/01/2026,07/01/2027,1800.00,15,,Jordan Lee,Active
+Greaves Plumbing LLC,BOP-1606,Business Owners,Sample Casualty,02/01/2026,02/01/2027,6000.00,17.5,1050.00,Sam Ortiz,Active
+Greaves Plumbing LLC,WC-1607,Workers Compensation,Sample Casualty,02/01/2026,02/01/2027,20000.00,10,2000.00,Sam Ortiz,Active
+Oakhurst Dental Group,BOP-1608,Business Owners,Sample Casualty,04/01/2026,04/01/2027,5000.00,17.5,875.00,Sam Ortiz,Active
+Oakhurst Dental Group,CA-1609,Commercial Auto,Sample Casualty,04/01/2026,04/01/2027,9000.00,12,1080.00,Sam Ortiz,Active
+Deverill Courier Inc,CA-1610,Commercial Auto,Test Fire & Marine,06/01/2026,06/01/2027,12000.00,12,1440.00,Sam Ortiz,Active
+Deverill Courier Inc,CGL-1611,General Liability,Demo Indemnity,06/01/2026,06/01/2027,4000.00,15,600.00,Sam Ortiz,Active
+Fenwick Arbor Care LLC,CGL-1612,General Liability,Demo Indemnity,08/01/2026,08/01/2027,3000.00,15,450.00,Sam Ortiz,Active
+Fenwick Arbor Care LLC,WC-1613,Workers Compensation,Demo Indemnity,08/01/2026,08/01/2027,7000.00,,,Sam Ortiz,Active
+Fenwick Arbor Care LLC,CA-1614,Commercial Auto,Demo Indemnity,08/01/2025,08/01/2026,5000.00,12,600.00,Sam Ortiz,Expired
