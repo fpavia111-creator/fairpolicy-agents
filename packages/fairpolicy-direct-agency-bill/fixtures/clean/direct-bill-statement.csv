@@ -1,0 +1,5 @@
+Carrier,Policy Number,Insured Name,Transaction Type,Premium,Commission Rate,Commission Amount
+Example Mutual,PA-8001,Ludovica Brennagh,NEW,1500.00,15,225.00
+Sample Casualty,BOP-8003,Brennagh Saddlery LLC,NEW,4400.00,17.5,770.00
+Example Mutual,UMB-8006,Ignatius Pell-Rourke,NEW,420.00,15,63.00
+Example Mutual,PA-8008,Ludovica Brennagh,RWL,1300.00,12,156.00

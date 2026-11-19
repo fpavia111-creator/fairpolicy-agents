@@ -1,0 +1,12 @@
+Statement #,Carrier,Policy Number,Insured Name,Transaction Type,Effective Date,Premium,Commission Rate,Commission Amount
+S-1027,Example Mutual,PA-5521800,Rowan Pellwick,NEW,10/01/2026,1840.00,15.0,276.00
+S-1027,Example Mutual,HO-7730141,Marisol Quenby,RWL,10/05/2026,2210.00,15.0,331.50
+S-1027,EXM,PA-5521911,Tobias Ardenne,RWL,09/20/2026,1260.00,12.0,151.20
+S-1027,Example Mutual,HO-7730288,Ingrid Vashti,PCH,10/14/2026,240.00,15.0,36.00
+S-1027,Example Mutual,UMB-9002,Cedric Holloway-Nunn,RWL,10/03/2026,410.00,15.0,61.50
+S-2210,Sample Casualty,BOP104455,Pellwick Joinery LLC,REN,10/10/2026,4800.00,17.5,840.00
+S-2210,Sample Casualty,WC-88120,Quenby Ceramics Inc,NEW,10/15/2026,12600.00,10.0,1260.00
+S-2210,Sample Casualty,WC-88120,Quenby Ceramics Inc,AUDIT,10/15/2026,960.00,10.0,96.00
+S-3005,Demo Indemnity,CGL-330017,Ardenne Dental Lab,NEW,10/01/2026,3900.00,15.0,585.00
+S-3005,Demo Indemnity,CGL-330017,Ardenne Dental Lab,XLC,11/01/2026,-3250.00,15.0,-487.50
+S-4100,Test Fire & Marine,CA-20441,Lantern Row Cafe LLC,NEW,10/12/2026,6400.00,12.0,768.00

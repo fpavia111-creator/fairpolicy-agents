@@ -1,0 +1,9 @@
+Lookup Code,Account Name,Item Number,Transaction Code,Policy Number,Carrier,Due Date,Amount,Balance,Producer,Account Manager,Remitted To Carrier
+HAVEFAR-01,Haverleigh Farms LLC,INV-7001,AB,CGL-7001,Demo Indemnity,08/01/2026,2400.00,0.00,Sam Ortiz,Drew Kim,Yes
+OKONBRI-01,Brisa Okonkwo-Hale,INV-7002,AB,HO-7002,Example Mutual,08/10/2026,1800.00,0.00,Jordan Lee,Casey Park,No
+HAVEFAR-01,Haverleigh Farms LLC,INV-7003,AB,CA-7003,Sample Casualty,09/15/2026,6400.00,0.00,Sam Ortiz,Drew Kim,No
+QUILPRI-01,Quillmark Printing Inc,INV-7004,AB,WC-7004,Sample Casualty,10/10/2026,3000.00,0.00,Sam Ortiz,Drew Kim,No
+OKONBRI-01,Brisa Okonkwo-Hale,INV-7005,AB,PA-7005,Example Mutual,11/05/2026,650.00,650.00,Jordan Lee,Casey Park,No
+VASQTEO-01,Teodor Vasquez-Lind,INV-7006,AB,HO-7006,Example Mutual,12/01/2026,1200.00,1200.00,Jordan Lee,Casey Park,No
+VASQTEO-01,Teodor Vasquez-Lind,INV-7007,RP,PA-7007,Example Mutual,10/01/2026,-220.00,0.00,Jordan Lee,Casey Park,No
+QUILPRI-01,Quillmark Printing Inc,INV-7008,AB,BOP-7008,Sample Casualty,07/01/2026,4100.00,0.00,Sam Ortiz,Drew Kim,Yes

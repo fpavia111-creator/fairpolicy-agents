@@ -1,0 +1,11 @@
+Insured,Policy Number,Line of Business,Carrier,Policy Year,Date of Loss,Claim Number,Claim Status,Paid,Reserve
+Wexford Plating LLC,WC-2201,Workers Compensation,Sample Casualty,2024,05/14/2024,LR-1001,Closed,20000.00,0
+Wexford Plating LLC,CGL-2202,General Liability,Demo Indemnity,2025,08/19/2025,LR-1003,Closed,15000.00,0
+Wexford Plating LLC,WC-2201,Workers Compensation,Sample Casualty,2026,02/10/2026,LR-1004,Open,5000.00,2000.00
+Wexford Plating LLC,CA-2203,Commercial Auto,Test Fire & Marine,2026,06/01/2026,LR-1005,Closed,10000.00,0
+Calder Lane Daycare Inc,CGL-2204,General Liability,Demo Indemnity,2025,10/10/2025,LR-1006,Closed,3000.00,0
+Calder Lane Daycare Inc,CGL-2204,General Liability,Demo Indemnity,2026,04/04/2026,LR-1007,Open,1000.00,4000.00
+Ruskin Mill Apartments LLC,CPP-2205,Commercial Package,Sample Casualty,2026,01/12/2026,LR-1008,Closed,6000.00,0
+Ruskin Mill Apartments LLC,CPP-2205,Commercial Package,Sample Casualty,2026,03/20/2026,LR-1009,Closed,5000.00,0
+Penrose Florist LLC,BOP-2206,Business Owners,Sample Casualty,2025,12/01/2025,LR-1012,Open,8000.00,2000.00
+Penrose Florist LLC,BOP-2206,Business Owners,Sample Casualty,2020,02/02/2020,LR-0901,Closed,50000.00,0

@@ -1,0 +1,7 @@
+Statement #,Carrier,Policy Number,Insured Name,Transaction Type,Effective Date,Premium,Commission Rate,Commission Amount
+S-0715,Example Mutual,PA-3001,Delphine Arkwright,XLC,07/02/2026,-601.64,15,-90.25
+S-0915,Example Mutual,HO-3002,Delphine Arkwright,XLC,09/01/2026,-1190.14,15,-178.52
+S-0815,Example Mutual,PA-3004,Wilhelmina Craddock,CAN,08/01/2026,-450.00,12,-54.00
+S-0815,Example Mutual,UMB-3005,Wilhelmina Craddock,Flat Cancel,08/15/2026,-400.00,15,-60.00
+S-1015,Example Mutual,PA-3006,Thaddeus Pomfret,PCH,09/01/2026,120.00,15,18.00
+S-1015,Sample Casualty,BOP-3003,Somerby Tile Works LLC,CAN,10/15/2026,-1493.15,17.5,-261.30

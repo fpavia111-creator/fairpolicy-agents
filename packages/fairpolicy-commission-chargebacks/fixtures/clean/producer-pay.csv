@@ -1,0 +1,7 @@
+Producer,Policy Number,Amount,Type
+Jordan Lee,PA-3001,45.00,Commission
+Jordan Lee,PA-3001,-45.13,Chargeback
+Jordan Lee,PA-3004,27.00,Commission
+Jordan Lee,HO-3002,90.00,Commission
+Jordan Lee,HO-3002,-44.63,Chargeback
+Jordan Lee,PA-3004,-27.00,Chargeback

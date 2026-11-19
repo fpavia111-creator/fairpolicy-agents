@@ -1,0 +1,31 @@
+{
+  "note": "Example values for the fictional agency in the fixtures. They are not checked against any state's rules; your agency confirms each state before using this file.",
+  "states": {
+    "TX": {
+      "ce_hours": 24,
+      "ethics_hours": 3,
+      "period_months": 24,
+      "confirmed_by": "Example Agency office manager (fictional)",
+      "confirmed_on": "2026-11-01"
+    },
+    "FL": {
+      "ce_hours": 24,
+      "ethics_hours": 5,
+      "period_months": 24,
+      "confirmed_by": "Example Agency office manager (fictional)",
+      "confirmed_on": "2026-11-01"
+    },
+    "OK": {
+      "ce_hours": 24,
+      "ethics_hours": 3,
+      "period_months": 24
+    },
+    "LA": {
+      "ce_hours": 24,
+      "ethics_hours": 3,
+      "period_months": 24,
+      "confirmed_by": "Example Agency office manager (fictional)",
+      "confirmed_on": "2026-11-01"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+Applicant,Policy Number,Line of Business,Carrier,Policy Status,Effective Date,Expiration Date,Premium,Producer,CSR
+Rowena Castellane,PA-1401,Personal Auto,Example Mutual,Active,03/01/2026,03/01/2027,1650.00,Jordan Lee,Casey Park
+Desmond Achterberg,HO-1402,Homeowners,Example Mutual,Active,01/15/2026,01/15/2027,2300.00,Jordan Lee,Casey Park
+Desmond Achterberg,PA-1403,Personal Auto,Example Mutual,Active,07/15/2026,01/15/2027,1900.00,Jordan Lee,Casey Park
+Desmond Achterberg,BOAT-1404,Boat,Example Mutual,Cancelled,05/01/2025,05/01/2026,300.00,Jordan Lee,Casey Park
+Aurelio Vantongeren,HO-1405,Homeowners,Example Mutual,Active,04/01/2026,04/01/2027,2600.00,Jordan Lee,Casey Park
+Aurelio Vantongeren,PA-1406,Personal Auto,Example Mutual,Active,04/01/2026,10/01/2026,2100.00,Jordan Lee,Casey Park
+Aurelio Vantongeren,UMB-1407,Personal Umbrella,Example Mutual,Active,04/01/2026,04/01/2027,480.00,Jordan Lee,Casey Park
+Castellane Ceramics LLC,BOP-1408,Business Owners,Sample Casualty,Active,06/01/2026,06/01/2027,3900.00,Sam Ortiz,Drew Kim
+Vantongeren Freight Inc,CA-1409,Commercial Auto,Test Fire & Marine,Active,02/01/2026,02/01/2027,14800.00,Sam Ortiz,Drew Kim
+Vantongeren Freight Inc,CGL-1410,General Liability,Demo Indemnity,Active,02/01/2026,02/01/2027,5200.00,Sam Ortiz,Drew Kim
+Vantongeren Freight Inc,WC-1411,Workers Compensation,Sample Casualty,Active,02/01/2026,02/01/2027,22000.00,Sam Ortiz,Drew Kim
+Achterberg Bakery LLC,BOP-1412,Business Owners,Sample Casualty,Active,09/01/2026,09/01/2027,4100.00,Sam Ortiz,Drew Kim
+Achterberg Bakery LLC,WC-1413,Workers Compensation,Sample Casualty,Active,09/01/2026,09/01/2027,6300.00,Sam Ortiz,Drew Kim
+Achterberg Bakery LLC,XS-1414,Commercial Umbrella,Demo Indemnity,Active,09/01/2026,09/01/2027,1200.00,Sam Ortiz,Drew Kim
+Imelda Fawkner,HO-1415,Condo,Example Mutual,Active,12/01/2025,12/01/2026,780.00,Jordan Lee,Casey Park
+Rowena Castellane,HO-1416,Homeowners,Example Mutual,Active,03/01/2026,03/01/2027,2400.00,Jordan Lee,Casey Park
+Rowena Castellane,UMB-1417,Personal Umbrella,Example Mutual,Active,03/01/2026,03/01/2027,450.00,Jordan Lee,Casey Park
+Imelda Fawkner,PA-1418,Personal Auto,Example Mutual,Active,03/01/2026,03/01/2027,1500.00,Jordan Lee,Casey Park
+Imelda Fawkner,UMB-1419,Personal Umbrella,Example Mutual,Active,03/01/2026,03/01/2027,420.00,Jordan Lee,Casey Park
+Desmond Achterberg,UMB-1422,Personal Umbrella,Example Mutual,Active,03/01/2026,03/01/2027,460.00,Jordan Lee,Casey Park
+Castellane Ceramics LLC,WC-1420,Workers Compensation,Sample Casualty,Active,06/01/2026,06/01/2027,5200.00,Sam Ortiz,Drew Kim
+Castellane Ceramics LLC,XS-1421,Commercial Umbrella,Demo Indemnity,Active,06/01/2026,06/01/2027,1100.00,Sam Ortiz,Drew Kim
+Vantongeren Freight Inc,XS-1423,Commercial Umbrella,Demo Indemnity,Active,06/01/2026,06/01/2027,3900.00,Sam Ortiz,Drew Kim

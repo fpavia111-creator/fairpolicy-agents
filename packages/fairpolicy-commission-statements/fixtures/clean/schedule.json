@@ -1,0 +1,58 @@
+{
+  "tolerance": 1,
+  "rates": [
+    {
+      "carrier": "Example Mutual",
+      "line": "Personal Auto",
+      "kind": "new",
+      "rate": 15
+    },
+    {
+      "carrier": "Example Mutual",
+      "line": "Personal Auto",
+      "kind": "renewal",
+      "rate": 12
+    },
+    {
+      "carrier": "Example Mutual",
+      "line": "Homeowners",
+      "kind": "any",
+      "rate": 15
+    },
+    {
+      "carrier": "Example Mutual",
+      "line": "Personal Umbrella",
+      "rate": 15
+    },
+    {
+      "carrier": "Sample Casualty",
+      "line": "BOP",
+      "kind": "any",
+      "rate": 17.5
+    },
+    {
+      "carrier": "Sample Casualty",
+      "line": "Workers Compensation",
+      "kind": "new",
+      "rate": 10
+    },
+    {
+      "carrier": "Sample Casualty",
+      "line": "Workers Compensation",
+      "kind": "renewal",
+      "rate": 8
+    },
+    {
+      "carrier": "Demo Indemnity",
+      "rate": 15,
+      "note": "All lines, new and renewal"
+    },
+    {
+      "carrier": "Test Fire & Marine",
+      "rate": 12
+    }
+  ],
+  "carrier_aliases": {
+    "EXM": "Example Mutual"
+  }
+}

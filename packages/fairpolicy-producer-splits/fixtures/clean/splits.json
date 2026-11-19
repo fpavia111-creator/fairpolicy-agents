@@ -1,0 +1,43 @@
+{
+  "tolerance": 1,
+  "producers": [
+    {
+      "name": "Jordan Lee",
+      "new_pct": 40,
+      "renewal_pct": 25
+    },
+    {
+      "name": "Sam Ortiz",
+      "new_pct": 50,
+      "renewal_pct": 30
+    },
+    {
+      "name": "Riley Chen",
+      "new_pct": 45,
+      "renewal_pct": 25
+    },
+    {
+      "name": "Avery Stone",
+      "new_pct": 40,
+      "renewal_pct": 25
+    }
+  ],
+  "house_producers": [
+    "House"
+  ],
+  "shared": [
+    {
+      "policy_number": "WC-4004",
+      "producers": [
+        {
+          "name": "Sam Ortiz",
+          "share": 0.6
+        },
+        {
+          "name": "Riley Chen",
+          "share": 0.4
+        }
+      ]
+    }
+  ]
+}

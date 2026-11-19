@@ -1,0 +1,12 @@
+Client Number,Client Name,Policy Number,Line of Business,Carrier,Effective Date,Expiration Date,Premium,Producer,CSR,Policy Status,Cancel Date,Cancel Reason
+1301,Wendeline Strachan,PA-1301,Personal Auto,Example Mutual,08/01/2026,02/01/2027,1500.00,Jordan Lee,Casey Park,Active,,
+1302,Wendeline Strachan,HO-1302,Homeowners,Example Mutual,03/01/2026,03/01/2027,2200.00,Jordan Lee,Casey Park,Active,,
+1303,Barnaby Iredale,PA-1303,Personal Auto,Example Mutual,04/01/2026,10/01/2026,1300.00,Jordan Lee,Casey Park,Cancelled,10/01/2026,Insured request
+1303,Barnaby Iredale,PA-1309,Personal Auto,Sample Casualty,10/01/2026,04/01/2027,1180.00,Jordan Lee,Casey Park,Active,,
+1304,Iredale Joinery LLC,BOP-1304,Business Owners,Sample Casualty,10/15/2025,10/15/2026,4700.00,Sam Ortiz,Drew Kim,Lapsed,,
+1305,Strachan Logistics Inc,WC-1305,Workers Compensation,Sample Casualty,10/31/2025,10/31/2026,8800.00,Sam Ortiz,Drew Kim,Active,,
+1306,Iredale Joinery LLC,CGL-1306,General Liability,Demo Indemnity,09/30/2025,09/30/2026,3100.00,Sam Ortiz,Drew Kim,Active,,
+1306,Iredale Joinery LLC,CGL-1306,General Liability,Demo Indemnity,09/30/2026,09/30/2027,3250.00,Sam Ortiz,Drew Kim,Active,,
+1307,Barnaby Iredale,HO-1307,Homeowners,Example Mutual,05/01/2025,05/01/2026,1900.00,Jordan Lee,Casey Park,Cancelled,05/01/2026,Sold home
+1304,Iredale Joinery LLC,BOP-1304,Business Owners,Sample Casualty,10/15/2026,10/15/2027,4850.00,Sam Ortiz,Drew Kim,Active,,
+1305,Strachan Logistics Inc,WC-1305,Workers Compensation,Sample Casualty,10/31/2026,10/31/2027,9100.00,Sam Ortiz,Drew Kim,Active,,

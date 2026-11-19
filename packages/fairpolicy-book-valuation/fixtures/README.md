@@ -8,6 +8,7 @@ Everything here is fictional: agency, carriers, clients and amounts.
 Planted:
 - Sample Casualty pays 5,005 of 8,860 commission (56.49%), over the 40% limit.
 - Greaves Plumbing LLC is 3,050 (34.42%), over the 10% limit for one client.
+- With 7 accounts the top 10 clients are the whole book (100%), over the 25% limit.
 - WC-1613 has no commission and no rate: 1 of 13 policies (7.69%), over the 5% limit.
 - HO-1605 has no commission but a 15% rate: 270 is used.
 
