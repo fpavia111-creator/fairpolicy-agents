@@ -1,0 +1,6 @@
+{
+  "rules": [
+    { "name": "home_without_auto", "label": "Home or condo with no personal auto policy here", "has_any": ["home", "condo"], "missing_all": ["pauto"] },
+    { "name": "no_cyber", "label": "Commercial account with no cyber policy here", "has_any": ["bop", "cgl"], "missing_all": ["cyber"] }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "suite": "fairpolicy-cross-sell",
+  "root": "..",
+  "data_note": "Fictional policy list and rules in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "crosssell_check",
+      "args": {
+        "policies": "fixtures/policies.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.accounts": 7,
+          "result.policies": 14,
+          "result.monoline": 3,
+          "result.policies_per_account": 2
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "crosssell_check",
+      "args": {
+        "policies": "fixtures/policies.csv"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.monoline": 3,
+          "result.by_status.gaps": 2,
+          "result.by_status.rounded": 2
+        }
+      }
+    },
+    {
+      "id": "by-rule",
+      "tool": "crosssell_check",
+      "args": {
+        "policies": "fixtures/policies.csv"
+      },
+      "expect": {
+        "equals": {
+          "result.by_rule.0.rule": "auto_without_home",
+          "result.by_rule.0.count": 1,
+          "result.by_rule.2.rule": "no_personal_umbrella",
+          "result.by_rule.4.rule": "no_commercial_umbrella"
+        }
+      }
+    },
+    {
+      "id": "monoline-by-next-renewal",
+      "tool": "crosssell_check",
+      "args": {
+        "policies": "fixtures/policies.csv",
+        "status": "monoline"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.lines": "condo",
+          "result.items.0.next_renewal": "2026-12-01",
+          "result.items.1.lines": "pauto",
+          "result.items.2.lines": "bop"
+        }
+      }
+    },
+    {
+      "id": "explain-account",
+      "tool": "crosssell_explain",
+      "args": {
+        "policies": "fixtures/policies.csv",
+        "client": "Desmond Achterberg"
+      },
+      "expect": {
+        "equals": {
+          "result.account.status": "gaps",
+          "result.account.gaps": "no_personal_umbrella",
+          "result.account.policies": 2
+        }
+      }
+    },
+    {
+      "id": "agency-rules",
+      "tool": "crosssell_check",
+      "args": {
+        "policies": "fixtures/policies.csv",
+        "rules": "fixtures/rules.json"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.gaps": 2,
+          "result.by_rule.1.rule": "no_cyber",
+          "result.by_rule.1.count": 3
+        }
+      }
+    },
+    {
+      "id": "by-producer",
+      "tool": "crosssell_check",
+      "args": {
+        "policies": "fixtures/policies.csv"
+      },
+      "expect": {
+        "equals": {
+          "result.by_producer.0.producer": "Jordan Lee",
+          "result.by_producer.0.monoline": 2
+        }
+      }
+    },
+    {
+      "id": "bad-rules-refused",
+      "tool": "crosssell_check",
+      "args": {
+        "policies": "fixtures/policies.csv",
+        "rules": "fixtures/phi-canaries.json"
+      },
+      "expect": {
+        "status": "error"
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "crosssell_write_report",
+      "args": {
+        "policies": "fixtures/policies.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "cross-sell.csv",
+          "cross-sell.html"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "crosssell_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "crosssell_check",
+      "args": {
+        "policies": "../../outside.csv"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "crosssell_check",
+      "mode": "review",
+      "args": {
+        "policies": "fixtures/policies.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.accounts": 7,
+          "result.policies": 14,
+          "result.monoline": 3,
+          "result.policies_per_account": 2
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "crosssell_check",
+      "args": {},
+      "expect": {
+        "status": "error",
+        "contains": [
+          "policies"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "crosssell_check",
+      "args": {
+        "policies": "fixtures/policies.csv",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-memory-recall-runs",
+      "tool": "crosssell_recall",
+      "args": {},
+      "expect": {
+        "status": "executed"
+      }
+    },
+    {
+      "id": "safety-memory-learn-waits-for-a-person",
+      "tool": "crosssell_accept_learning",
+      "mode": "auto",
+      "args": {
+        "id": "MEM-000000000000",
+        "decision": "accept"
+      },
+      "expect": {
+        "status": "needs_approval"
+      }
+    },
+    {
+      "id": "safety-refused-marketing_email_send",
+      "tool": "marketing_email_send",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-quote_create",
+      "tool": "quote_create",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "crosssell_check",
+      "args": {
+        "policies": "fixtures/policies.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Rowena Castellane",
+          "Desmond Achterberg",
+          "Aurelio Vantongeren",
+          "Castellane Ceramics",
+          "Vantongeren Freight",
+          "Achterberg Bakery",
+          "Imelda Fawkner"
+        ]
+      }
+    }
+  ]
+}
