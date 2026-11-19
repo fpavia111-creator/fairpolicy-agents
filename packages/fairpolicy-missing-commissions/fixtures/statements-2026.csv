@@ -1,0 +1,5 @@
+Statement #,Carrier,Policy Number,Insured Name,Transaction Type,Effective Date,Premium,Commission Rate,Commission Amount
+S-0815,Example Mutual,HO-2001,Odile Fenwright,NEW,08/01/2026,2000.00,15,300.00
+S-0615,Example Mutual,PA-2007-01,Silas Mardell,RWL,06/01/2026,1300.00,12,156.00
+S-0915,Example Mutual,UMB-2008,Imogen Tallow,PCH,10/02/2026,60.00,15,9.00
+S-0915,Example Mutual,HO-9999,Unrelated Insured,NEW,09/01/2026,900.00,15,135.00

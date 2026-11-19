@@ -1,0 +1,29 @@
+{
+  "suite": "fairpolicy-missing-commissions",
+  "root": "..",
+  "data_note": "Fictional policy list and statements in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "missing_check", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements-2026.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "equals": { "result.policies": 9, "result.outside_window": 1, "result.missing": 3, "result.partial": 1, "result.expected_missing": 1202.5, "result.no_estimate": 1 } } },
+    { "id": "every-status", "tool": "missing_check", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements-2026.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_status.missing": 3, "result.by_status.partial": 1, "result.by_status.not_yet_due": 1, "result.by_status.agency_bill": 1, "result.by_status.cancelled_flat": 1, "result.by_status.received": 2 } } },
+    { "id": "missing-in-policy-order", "tool": "missing_check", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements-2026.csv", "as_of": "2026-11-18", "status": "missing" },
+      "expect": { "equals": { "result.items.0.policy_number": "BOP-2003", "result.items.0.expected": 910, "result.items.1.policy_number": "HO-2010", "result.items.1.expected": null, "result.items.2.policy_number": "PA-2002" } } },
+    { "id": "by-carrier", "tool": "missing_check", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements-2026.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_carrier.0.carrier": "Sample Casualty", "result.by_carrier.0.expected": 910, "result.by_carrier.1.carrier": "Example Mutual", "result.by_carrier.1.count": 3 } } },
+    { "id": "term-suffix-counts-as-received", "tool": "missing_explain", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements-2026.csv", "as_of": "2026-11-18", "policy_number": "PA-2007" },
+      "expect": { "equals": { "result.policy.status": "received", "result.policy.received": 156 } } },
+    { "id": "endorsement-only-is-partial", "tool": "missing_explain", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements-2026.csv", "as_of": "2026-11-18", "policy_number": "UMB-2008" },
+      "expect": { "equals": { "result.policy.status": "partial", "result.policy.expected": 67.5 } } },
+    { "id": "shorter-wait-flags-the-new-policy", "tool": "missing_check", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements-2026.csv", "as_of": "2026-11-18", "grace_days": 10 },
+      "expect": { "equals": { "result.missing": 4, "result.by_status.missing": 4 } } },
+    { "id": "bad-as-of-refused", "tool": "missing_check", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements-2026.csv", "as_of": "next week" },
+      "expect": { "status": "error", "contains": ["not a date"] } },
+    { "id": "report-written", "tool": "missing_write_report", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements-2026.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "contains": ["missing-commissions.csv", "missing-commissions.html"] } },
+    { "id": "draft-request", "tool": "missing_draft_request", "approve": "Casey Park", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements-2026.csv", "as_of": "2026-11-18", "carrier": "Example Mutual" },
+      "expect": { "status": "executed", "equals": { "result.amount": 292.5, "result.policies": 3 } } },
+    { "id": "no-request-for-a-paid-carrier", "tool": "missing_draft_request", "mode": "auto", "auto_actions": ["missing_draft_request"], "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements-2026.csv", "as_of": "2026-11-18", "carrier": "Demo Indemnity" },
+      "expect": { "status": "error", "contains": ["no missing commissions"] } }
+  ]
+}

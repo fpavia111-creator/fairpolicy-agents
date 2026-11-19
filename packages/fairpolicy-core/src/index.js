@@ -34,4 +34,4 @@ export { PhiMasker, PHI_MODES, PHI_KEY_FILE, phiKindOf, loadPhiKey } from './phi
 export { REPORT_TEXT, COLUMN_LABELS, CATEGORY_LABELS, SECTION_TITLES, sectionTitle, reportText } from './report-text.js';
 export { str, num, round2 as round2m, sum, pct, groupBy, isoDate, daysBetween, addDays, addMonths, today, asOf, AS_OF_ARG, bucketOf, yearsBetween, carrierKey, sameCarrier, findCarrier, policyKey, policyBase, samePolicy, policyIndex, LINES, lineOf, isPersonal, transactionOf, billTypeOf, statusOf, termDays, unearnedPremium, commissionAt, asPercent, clientKey, ALIASES_SCHEMA } from './insurance.js';
 export { POLICY_FIELDS, POLICY_PROFILES, COMMISSION_FIELDS, COMMISSION_PROFILES, normPolicy, normStatementLine } from './insurance-sources.js';
-export { fairpolicyAgent, countBy, byPriority } from './family.js';
+export { fairpolicyAgent, countBy, byPriority, familyDemo } from './family.js';

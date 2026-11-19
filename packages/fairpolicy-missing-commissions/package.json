@@ -1,0 +1,56 @@
+{
+  "name": "fairpolicy-missing-commissions",
+  "version": "0.1.0",
+  "description": "Finds policies you wrote or renewed that never showed up on a carrier commission statement, and the ones paid only on endorsements, with the commission you expected on each. Drafts a request to the carrier; never posts or sends.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-missing-commissions": "bin/fairpolicy-missing-commissions.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-missing-commissions.js demo",
+    "eval": "node bin/fairpolicy-missing-commissions.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-missing-commissions"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-missing-commissions#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "missing-commissions",
+    "commission-statements",
+    "direct-bill"
+  ]
+}

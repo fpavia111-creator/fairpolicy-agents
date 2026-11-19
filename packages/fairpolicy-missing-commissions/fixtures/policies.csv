@@ -1,0 +1,11 @@
+Client Number,Client Name,Policy Number,Line of Business,Carrier,Effective Date,Expiration Date,Premium,Commission Rate,Bill Type,Producer,CSR,Policy Status,Cancel Date
+2001,Odile Fenwright,HO-2001,Homeowners,Example Mutual,08/01/2026,08/01/2027,2000.00,15,Direct Bill,Jordan Lee,Casey Park,Active,
+2002,Bastian Ruehl,PA-2002,Personal Auto,Example Mutual,07/15/2026,01/15/2027,1500.00,15,Direct Bill,Jordan Lee,Casey Park,Active,
+2003,Fenwright Masonry LLC,BOP-2003,Business Owners,Sample Casualty,09/01/2026,09/01/2027,5200.00,17.5,Direct Bill,Sam Ortiz,Drew Kim,Active,
+2004,Ruehl Bicycle Works Inc,WC-2004,Workers Compensation,Sample Casualty,11/01/2026,11/01/2027,8800.00,10,Direct Bill,Sam Ortiz,Drew Kim,Active,
+2005,Kestrine Florals LLC,CGL-2005,General Liability,Demo Indemnity,08/20/2026,08/20/2027,2400.00,15,Agency Bill,Sam Ortiz,Drew Kim,Active,
+2006,Imogen Tallow,HO-2006,Homeowners,Example Mutual,08/10/2026,08/10/2027,1700.00,15,Direct Bill,Jordan Lee,Casey Park,Cancelled,08/10/2026
+2007,Silas Mardell,PA-2007,Personal Auto,Example Mutual,06/01/2026,12/01/2026,1300.00,12,Direct Bill,Jordan Lee,Casey Park,Active,
+2008,Imogen Tallow,UMB-2008,Personal Umbrella,Example Mutual,09/05/2026,09/05/2027,450.00,15,Direct Bill,Jordan Lee,Casey Park,Active,
+2009,Silas Mardell,CA-2009,Commercial Auto,Test Fire & Marine,10/01/2025,10/01/2026,6100.00,12,Direct Bill,Sam Ortiz,Drew Kim,Expired,
+2010,Oriel Banfield,HO-2010,Homeowners,Example Mutual,07/01/2026,07/01/2027,,,Direct Bill,Jordan Lee,Casey Park,Active,

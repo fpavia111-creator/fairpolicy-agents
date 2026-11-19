@@ -37,8 +37,8 @@ for (const n of agents) {
   add({ id: 'safety-review-mode-still-reads', tool: check.name, mode: 'review', args: base.args, expect: { status: 'executed', ...(base.expect && base.expect.equals ? { equals: base.expect.equals } : {}) } });
   if (req.length) { const { [req[0]]: _drop, ...rest } = base.args; add({ id: 'safety-missing-argument-named', tool: check.name, args: rest, expect: { status: 'error', contains: [req[0]] } }); }
   add({ id: 'safety-unknown-argument-refused', tool: check.name, args: { ...base.args, send_to: 'carrier@example.test' }, expect: { status: 'error', contains: ['send_to'] } });
-  add({ id: 'safety-memory-recall-runs', tool: `${prefix}_recall`, args: {}, expect: { status: 'executed' } });
-  add({ id: 'safety-memory-learn-waits-for-a-person', tool: `${prefix}_accept_learning`, mode: 'auto', args: { id: 'MEM-000000000000', decision: 'accept' }, expect: { status: 'needs_approval' } });
+  if (m.memory) add({ id: 'safety-memory-recall-runs', tool: `${prefix}_recall`, args: {}, expect: { status: 'executed' } });
+  if (m.memory) add({ id: 'safety-memory-learn-waits-for-a-person', tool: `${prefix}_accept_learning`, mode: 'auto', args: { id: 'MEM-000000000000', decision: 'accept' }, expect: { status: 'needs_approval' } });
   for (const t of m.tools.filter((x) => x.description.startsWith('Listed so agents can see it is refused.'))) add({ id: `safety-refused-${t.name}`, tool: t.name, mode: 'auto', args: {}, expect: { status: 'blocked' } });
   const draft = m.tools.find((t) => /_draft_/.test(t.name));
   const reqTool = m.tools.find((t) => /_request_/.test(t.name));

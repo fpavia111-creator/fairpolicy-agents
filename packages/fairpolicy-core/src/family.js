@@ -101,10 +101,61 @@ export function fairpolicyAgent(spec) {
     ...(spec.configSchemas ? { configSchemas: spec.configSchemas } : {}),
     sources: spec.sources || {},
     argDocs: spec.argDocs || {},
-    prompts: spec.prompts || [],
+    prompts: spec.prompts || [defaultPrompt(spec, required, tools)],
     tools,
     policy: { rules },
   });
+}
+
+/** The walkthrough prompt an agent ships when it does not write its own. */
+function defaultPrompt(spec, required, tools) {
+  const { prefix } = spec;
+  const never = (spec.refused || []).map((r) => r.description).join(' ');
+  const draft = tools.find((t) => /_draft_/.test(t.name)); const req = tools.find((t) => /_request_/.test(t.name));
+  return {
+    name: `${prefix}_walkthrough`, title: spec.check.title,
+    description: `Walks the host model through ${spec.name}: check, explain, write the worklist${draft ? ', and a draft only when asked' : ''}.`,
+    arguments: required.map((k) => ({ name: k, description: (spec.files[k] && spec.files[k].description ? spec.files[k].description.split(' (')[0] : k).slice(0, 120), required: true })),
+    text: `You are helping ${spec.role || 'an insurance agency\'s staff'} with ${spec.name}. ${required.map((k) => `${k}: {{${k}}}`).join('. ')}.
+
+Rules: ${never} Client names are pseudonyms: never ask for real names in chat. Rates, deadlines and state rules come from the agency's own files and settings, not from you; say so when a result depends on them. Never advise a client on coverage.
+
+1. Call ${prefix}_check. Report the summary, then the rows that need a person, by status.
+2. For any row the person asks about, call ${prefix}_explain.
+3. Call ${prefix}_write_report so staff have the worklist with real names on their own computer.${draft ? `\n4. Only when the person asks, call ${draft.name}; then ${req.name} after they have read it. A named person clicks; you never send.` : ''}`,
+  };
+}
+
+/**
+ * A demo on the agent's fixtures in a temporary folder: check (one line per row),
+ * explain one row, write the report, optionally draft and the one-click approval,
+ * then an attempt at a refused tool. d: { title, args, columns: [field...], explain: { key: value },
+ * draft: { args, as } }
+ */
+export async function familyDemo(manifest, fixturesDir, d) {
+  const { demoRuntime, printStep } = await import('./demo.js');
+  const tools = manifest.tools.map((t) => t.name);
+  const prefix = tools[0].split('_')[0];
+  const draftTool = tools.find((t) => /_draft_/.test(t)); const reqTool = tools.find((t) => /_request_/.test(t));
+  const rt = demoRuntime(manifest, fixturesDir, { mode: 'auto', autoActions: draftTool ? [draftTool] : [] });
+  process.stdout.write(`${d.title} demo (fictional agency, carriers and clients) in ${rt.root}\n`);
+  const c = await rt.call(`${prefix}_check`, d.args);
+  printStep(d.checkLabel || 'Check every row', c);
+  if (c.status === 'executed') for (const i of c.result.items || []) process.stdout.write(`    ${(d.columns || []).map((k, n) => String(i[k] ?? '-').slice(0, 22).padEnd(n === 0 ? 16 : 12)).join(' ')} ${i.status}\n`);
+  if (d.explain) printStep(d.explainLabel || 'Explain one row', await rt.call(`${prefix}_explain`, { ...d.args, ...d.explain }));
+  printStep('Write the worklist (CSV and HTML, real names stay on this computer)', await rt.call(`${prefix}_write_report`, d.args));
+  if (draftTool && d.draft) {
+    const dr = await rt.call(draftTool, { ...d.args, ...d.draft.args });
+    printStep(d.draft.label || 'Write a DRAFT for a person to review', dr);
+    if (dr.status === 'executed') {
+      const args = { draft: dr.result.draft, draft_sha256: dr.result.draft_sha256, accept_open_issues: true, note: 'Checked by the account manager' };
+      const p = await rt.call(reqTool, args);
+      printStep('Approve it: waits for a named person even in Auto', p);
+      if (p.approval_id) { rt.approvals.approve(p.approval_id, d.draft.as || 'Casey Park (fictional)'); printStep('Same call after the click (recorded; a person sends it)', await rt.call(reqTool, args)); }
+    }
+  }
+  const refused = manifest.tools.find((t) => t.description.startsWith('Listed so agents can see it is refused.'));
+  if (refused) printStep(`The agent tries ${refused.name} itself`, await rt.call(refused.name, {}));
 }
 
 /** Count rows by status into { status: n }, in the order of `order`, leaving out zeros. */
