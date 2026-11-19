@@ -20,13 +20,13 @@ Every agent is read-and-report. None binds, cancels, endorses, places or recomme
 ## Checks run, and results (Windows 10, Node 24.20.0)
 | Check | Result |
 |---|---|
-| `npm test` (all workspaces) | 791 tests, 791 pass (130 in fairpolicy-core; 21 to 25 per agent) |
+| `npm test` (all workspaces) | 792 tests, 792 pass (131 in fairpolicy-core; 21 to 25 per agent) |
 | `npm run evals` | 530 eval cases across 30 agents, all pass (16 to 27 per agent) |
 | `npm run hostile` (formulas, HTML, `../` ids, AI-aimed text planted in every fixture, every eval case) | 2,650 calls, 681 planted values, 0 findings |
-| `npm run hostile:args` (null, numbers, arrays, a 200,000-character string, `../` and absolute paths in every argument of every tool) | HOSTILE_ARGS |
+| `npm run hostile:args` (null, numbers, arrays, a 200,000-character string, `../` and absolute paths in every argument of every tool) | 12,088 calls over all 30 agents (data and argument passes, run in six batches of five agents), 0 findings |
 | `npm run intl` (every spreadsheet eval case rewritten as a German, French, Spanish, Brazilian, Italian, Japanese, Chinese and Korean export: local column names, `1.234,56`, day-first dates, semicolons, legacy encodings) | 417 cases x 8 languages, every case that passes in English passes in every language; 338 of 448 column names translated (German count) |
 | `npm run bench` (1,000 and 10,000 rows per input file, every read and report tool with an eval case) | 90 tool runs at 10,000 rows, 0 need attention after two fixes (below); median 1.2 s, slowest 5.5 s, peak memory under 340 MB |
-| `npm run release:check:offline` | RELEASE |
+| `npm run release:check:offline` | ready to publish (dry run): 31 packages, metadata, honest copy (94 files), secret scan (834 files), one-click categories and policy, no paid tier, tests, evals, hostile data pass and `npm pack` (516 KB) all pass; npm names skipped offline (checked by hand, see above) |
 | Masking canaries | every agent lists at least 3 fictional client identifiers; a test runs every eval case and none reaches a result |
 | MCP stdio smoke test | every agent: initialize, list tools, refuse an unknown tool, write the audit log |
 | `plugin:check`, MCP Registry step | 61 plugin files current; `add-mcp-registry.cjs` added `mcpName` and `server.json` to all 30 agents (page fairpolicy.html) |
@@ -44,6 +44,7 @@ Every agent is read-and-report. None binds, cancels, endorses, places or recomme
 - **Fixtures** are fictional throughout: carriers are named Example Mutual, Sample Casualty, Demo Indemnity, Test Fire & Marine and similar; clients have invented names; VINs start with 0 (no manufacturer uses it) and carry a valid check digit.
 
 ## Found and fixed during the build
+- **Long paths (shared core):** the first full argument pass ran past 25 minutes. A 200,000-character `out_dir` makes a recursive mkdir loop on Windows; the Fairtable session had found the same. `safePath` now refuses paths over 1,024 characters (test added).
 - **Speed, renewal-remarket:** 52 s at 10,000 rows. Every policy re-read every activity of its client and normalised the text again for each review word. Each activity is now read once and only the latest review, remarket and activity dates are kept per client: 2.7 s.
 - **Speed, lapsed-policies:** 9.3 s at 10,000 rows. The replacement search worked out a date and filtered the whole client-and-line group for every policy. Active policies are now grouped and sorted once: 2.2 s.
 - **Policy numbers:** the term-suffix rule first treated `PA-1` and `PA-2` as the same policy (both "PA" without the suffix). Base matching now needs five characters or more.
