@@ -1,0 +1,9 @@
+Customer #,Customer Name,Policy #,Line of Business,Writing Company,Eff Date,Exp Date,Full Term Premium,Exec,Rep,Bill Method,Policy Status
+C801,Ludovica Brennagh,PA-8001,Personal Auto,Example Mutual,10/01/2026,04/01/2027,1500.00,Jordan Lee,Casey Park,Direct Bill,Active
+C801,Ludovica Brennagh,HO-8002,Homeowners,Example Mutual,10/01/2026,10/01/2027,2100.00,Jordan Lee,Casey Park,Agency Bill,Active
+C802,Brennagh Saddlery LLC,BOP-8003,Business Owners,Sample Casualty,09/15/2026,09/15/2027,4400.00,Sam Ortiz,Drew Kim,Agency Bill,Active
+C803,Morrow Fieldhouse Inc,WC-8004,Workers Compensation,Sample Casualty,10/01/2026,10/01/2027,9600.00,Sam Ortiz,Drew Kim,Direct Bill,Active
+C804,Ignatius Pell-Rourke,CGL-8005,General Liability,Demo Indemnity,10/10/2026,10/10/2027,2800.00,Sam Ortiz,Drew Kim,Agency Bill,Active
+C804,Ignatius Pell-Rourke,UMB-8006,Personal Umbrella,Example Mutual,10/12/2026,10/12/2027,420.00,Jordan Lee,Casey Park,,Active
+C805,Morrow Fieldhouse Inc,CA-8007,Commercial Auto,Test Fire & Marine,10/20/2026,10/20/2027,7200.00,Sam Ortiz,Drew Kim,Direct Bill,Active
+C806,Ludovica Brennagh,PA-8008,Personal Auto,Example Mutual,01/01/2026,07/01/2026,1300.00,Jordan Lee,Casey Park,Agency Bill,Expired

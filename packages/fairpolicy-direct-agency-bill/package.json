@@ -1,0 +1,57 @@
+{
+  "name": "fairpolicy-direct-agency-bill",
+  "version": "0.1.0",
+  "description": "Compares how each policy is coded (agency bill or direct bill) with how it is really billed, and flags clients who may be billed twice. Never changes a policy or an invoice.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-direct-agency-bill": "bin/fairpolicy-direct-agency-bill.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-direct-agency-bill.js demo",
+    "eval": "node bin/fairpolicy-direct-agency-bill.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-direct-agency-bill"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-direct-agency-bill#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "direct-bill",
+    "agency-bill",
+    "billing",
+    "reconciliation"
+  ]
+}
