@@ -11,7 +11,7 @@
 | Agency bill, trust and premium money (6) | trust-account, receivables-aging, direct-agency-bill, premium-finance, carrier-payables, return-premiums |
 | Renewals, retention and the book (6) | renewal-remarket, commercial-renewals, lapsed-policies, cross-sell, producer-retention, book-valuation |
 | Service (6) | certificate-limits, additional-insureds, pending-endorsements, policy-checking, open-claims, loss-runs |
-| Compliance and data (7) | license-renewals, carrier-appointments, signed-declinations, workers-comp-audits, data-quality, duplicate-clients, download-errors |
+| Licensing, E&O files and data (7) | license-renewals, carrier-appointments, signed-declinations, workers-comp-audits, data-quality, duplicate-clients, download-errors |
 
 Every package name is `fairpolicy-<what it does>` (bin = package name, `mcpName` = `io.github.fpavia111-creator/<name>`), with a one-word tool prefix (`commissions_check`, `trust_check`, `crosssell_check` ...). All 31 names were free on npm on 18 Nov (`docs/npm-names-2026-11-18.md`).
 

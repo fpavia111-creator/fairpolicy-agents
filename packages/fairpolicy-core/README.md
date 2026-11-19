@@ -1,6 +1,6 @@
 # fairpolicy-core
 
-The shared core for the **Fairpolicy** insurance agency agents (Fair Agents by Mythos Machines): small MCP agents that each own one back-office job and cannot act outside it. It follows the Lodestar and Remedy core pattern, with client-data masking and insurance helpers added.
+The shared core for the **Fairpolicy** insurance agency agents (Fair Agents by Mythos Machines): small MCP agents that each own one back-office job and cannot act outside it. It is the same core design as the other Fair Agents families, with client-data masking and insurance helpers added.
 
 - **Pack manifest** — name, version, a declared model pin, the tool allowlist and the policy. `defineManifest()` fails closed: an unpinned model (`latest`), a tool without a rule, a write marked `allow`, or a one-click action marked `allow` are rejected at load time.
 - **Talos-style policy** — every tool call gets `allow`, `ask` or `block`. Unknown tools are blocked. The default is block.
@@ -252,7 +252,7 @@ The core reads exports the way systems in Germany, France, Spain, Brazil, Italy,
 { "files": { "exports/仕訳.csv": { "encoding": "shift_jis", "decimal": "." } } }
 ```
 
-**Output language.** `--lang de|fr|es|pt|it|ja|zh|ko` (or `FAIRPOLICY_LANG`) sets the language of the pages and reports people read: the approvals page (which also has a language switcher), the Olympus readiness report, and the Ladon recertification summary and evidence page; a tool argument `language` overrides it per call where offered. Tool results, codes, CSV columns and JSON stay in English, so scripts and later runs read them the same. Any string not yet translated falls back to English. Use `makeText(catalog, lang)` and `coreText(lang)` for a pack's own pages.
+**Output language.** `--lang de|fr|es|pt|it|ja|zh|ko` (or `FAIRPOLICY_LANG`) sets the language of the pages and reports people read: the approvals page (which also has a language switcher) and the HTML reports the agents write; a tool argument `language` overrides it per call where offered. Tool results, codes, CSV columns and JSON stay in English, so scripts and later runs read them the same. Any string not yet translated falls back to English. Use `makeText(catalog, lang)` and `coreText(lang)` for a pack's own pages.
 
 **Limits.** The translations were written by Claude and have not been reviewed by native speakers; every translated page says so. The encoding guess can be wrong on very short files; set `encoding` when names look garbled. The column dictionaries cover common names, not every system's labels. The agents make no claim about any country's laws, tax rules or filing formats.
 

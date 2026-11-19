@@ -68,7 +68,7 @@ const GROUPS = [
     ['policy-checking', T('Police gegen Deckungszusage', 'police contre note de couverture', 'póliza frente a la cobertura vinculada', 'apólice contra a cobertura contratada', 'polizza rispetto al vincolato', '証券と引受内容の照合', '保单与承保内容核对', '증권과 인수 내용 대조')],
     ['open-claims', T('offene Schäden', 'sinistres ouverts', 'siniestros abiertos', 'sinistros abertos', 'sinistri aperti', '未決事故', '未结赔案', '미결 사고')],
     ['loss-runs', T('Schadenverlauf je Kunde', 'sinistralité par client', 'siniestralidad por cliente', 'histórico de sinistros por cliente', 'andamento sinistri per cliente', '顧客別損害履歴', '按客户赔付记录', '고객별 손해 이력')]]],
-  [T('Regelkonformität und Daten', 'Conformité et données', 'Cumplimiento y datos', 'Conformidade e dados', 'Conformità e dati', 'コンプライアンスとデータ', '合规与数据', '준법과 데이터'), [
+  [T('Lizenzen, E&O-Unterlagen und Daten', 'Agréments, dossiers E&O et données', 'Licencias, expedientes E&O y datos', 'Licenças, arquivos de E&O e dados', 'Abilitazioni, fascicoli E&O e dati', '資格・E&O書類・データ', '执照、E&O 档案与数据', '자격·E&O 서류·데이터'), [
     ['license-renewals', T('Zulassungen und Weiterbildung', 'agréments et formation continue', 'licencias y formación continua', 'licenças e educação continuada', 'abilitazioni e formazione', '資格と継続教育', '执照与继续教育', '자격과 보수 교육')],
     ['carrier-appointments', T('Bestellungen bei Versicherern', 'mandats d’assureurs', 'nombramientos de aseguradoras', 'nomeações de seguradoras', 'mandati delle compagnie', '保険会社の委託', '保险公司委任', '보험사 위촉')],
     ['signed-declinations', T('unterschriebene Formulare und Verzichte', 'formulaires signés et refus', 'formularios firmados y renuncias', 'formulários assinados e recusas', 'moduli firmati e rinunce', '署名書類と辞退書', '签署表格与拒保声明', '서명 서류와 거절서')],

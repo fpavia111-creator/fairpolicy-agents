@@ -25,7 +25,7 @@ Jeder Agent hat eine `demo` mit fiktiven Dateien, ein `eval` mit eigenen Testfä
 
 **Service (6):** `fairpolicy-certificate-limits` (Versicherungsbestätigungen gegen Verträge), `fairpolicy-additional-insureds` (Mitversicherte und Regressverzicht), `fairpolicy-pending-endorsements` (offene Vertragsänderungen), `fairpolicy-policy-checking` (Police gegen Deckungszusage), `fairpolicy-open-claims` (offene Schäden), `fairpolicy-loss-runs` (Schadenverlauf je Kunde).
 
-**Regelkonformität und Daten (7):** `fairpolicy-license-renewals` (Zulassungen und Weiterbildung), `fairpolicy-carrier-appointments` (Bestellungen bei Versicherern), `fairpolicy-signed-declinations` (unterschriebene Formulare und Verzichte), `fairpolicy-workers-comp-audits` (Beitragsrevisionen), `fairpolicy-data-quality` (Datenqualität der Verträge), `fairpolicy-duplicate-clients` (doppelte Kunden), `fairpolicy-download-errors` (Fehler beim Datenabruf).
+**Lizenzen, E&O-Unterlagen und Daten (7):** `fairpolicy-license-renewals` (Zulassungen und Weiterbildung), `fairpolicy-carrier-appointments` (Bestellungen bei Versicherern), `fairpolicy-signed-declinations` (unterschriebene Formulare und Verzichte), `fairpolicy-workers-comp-audits` (Beitragsrevisionen), `fairpolicy-data-quality` (Datenqualität der Verträge), `fairpolicy-duplicate-clients` (doppelte Kunden), `fairpolicy-download-errors` (Fehler beim Datenabruf).
 
 ## Wie sie sicher bleiben
 

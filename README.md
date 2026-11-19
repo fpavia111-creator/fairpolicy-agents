@@ -25,7 +25,7 @@ Every agent has a `demo` on fictional files, an `eval` with its own test cases a
 
 **Service (6):** `fairpolicy-certificate-limits` (certificates against the policies behind them), `fairpolicy-additional-insureds` (additional insured, waiver and primary/non-contributory requests), `fairpolicy-pending-endorsements` (changes not sent, not confirmed or not billed), `fairpolicy-policy-checking` (issued policies against binders), `fairpolicy-open-claims` (open claims with no update or near renewal), `fairpolicy-loss-runs` (loss runs by account and year).
 
-**Compliance and data (7):** `fairpolicy-license-renewals` (licences and continuing education by state, against settings your agency confirms), `fairpolicy-carrier-appointments` (business written without an active appointment), `fairpolicy-signed-declinations` (signed applications, UM/UIM rejections, flood offers and declinations on file), `fairpolicy-workers-comp-audits` (premium audits), `fairpolicy-data-quality` (dates, VINs, contacts and staff fields), `fairpolicy-duplicate-clients` (duplicate client records), `fairpolicy-download-errors` (failed and unmatched carrier downloads).
+**Licensing, E&O files and data (7):** `fairpolicy-license-renewals` (licences and continuing education by state, against settings your agency confirms), `fairpolicy-carrier-appointments` (business written without an active appointment), `fairpolicy-signed-declinations` (signed applications, UM/UIM rejections, flood offers and declinations on file), `fairpolicy-workers-comp-audits` (premium audits), `fairpolicy-data-quality` (dates, VINs, contacts and staff fields), `fairpolicy-duplicate-clients` (duplicate client records), `fairpolicy-download-errors` (failed and unmatched carrier downloads).
 
 ## How they stay safe
 

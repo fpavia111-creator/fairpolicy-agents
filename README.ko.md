@@ -25,7 +25,7 @@ npx -y fairpolicy-trust-account demo
 
 **서비스 (6):** `fairpolicy-certificate-limits` (증명서와 계약 대조), `fairpolicy-additional-insureds` (추가 피보험자와 대위 포기), `fairpolicy-pending-endorsements` (처리 중인 배서), `fairpolicy-policy-checking` (증권과 인수 내용 대조), `fairpolicy-open-claims` (미결 사고), `fairpolicy-loss-runs` (고객별 손해 이력).
 
-**준법과 데이터 (7):** `fairpolicy-license-renewals` (자격과 보수 교육), `fairpolicy-carrier-appointments` (보험사 위촉), `fairpolicy-signed-declinations` (서명 서류와 거절서), `fairpolicy-workers-comp-audits` (보험료 정산 감사), `fairpolicy-data-quality` (계약 데이터 품질), `fairpolicy-duplicate-clients` (중복 고객), `fairpolicy-download-errors` (다운로드 오류).
+**자격·E&O 서류·데이터 (7):** `fairpolicy-license-renewals` (자격과 보수 교육), `fairpolicy-carrier-appointments` (보험사 위촉), `fairpolicy-signed-declinations` (서명 서류와 거절서), `fairpolicy-workers-comp-audits` (보험료 정산 감사), `fairpolicy-data-quality` (계약 데이터 품질), `fairpolicy-duplicate-clients` (중복 고객), `fairpolicy-download-errors` (다운로드 오류).
 
 ## 안전 장치
 

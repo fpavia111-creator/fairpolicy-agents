@@ -1,7 +1,7 @@
 {
   "name": "fairpolicy-agents",
   "private": true,
-  "description": "Fairpolicy: insurance agency and brokerage back-office agents (fairpolicy-core plus 31 agents named after lighthouses).",
+  "description": "Fairpolicy: insurance agency and brokerage back-office agents (fairpolicy-core plus 30 agents, one back-office job each).",
   "license": "MIT",
   "workspaces": [
     "packages/fairpolicy-core",

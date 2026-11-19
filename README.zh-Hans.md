@@ -25,7 +25,7 @@ npx -y fairpolicy-trust-account demo
 
 **服务 (6):** `fairpolicy-certificate-limits` (凭证与保单核对), `fairpolicy-additional-insureds` (附加被保险人与放弃代位), `fairpolicy-pending-endorsements` (待处理批改), `fairpolicy-policy-checking` (保单与承保内容核对), `fairpolicy-open-claims` (未结赔案), `fairpolicy-loss-runs` (按客户赔付记录).
 
-**合规与数据 (7):** `fairpolicy-license-renewals` (执照与继续教育), `fairpolicy-carrier-appointments` (保险公司委任), `fairpolicy-signed-declinations` (签署表格与拒保声明), `fairpolicy-workers-comp-audits` (保费审计), `fairpolicy-data-quality` (保单数据质量), `fairpolicy-duplicate-clients` (重复客户), `fairpolicy-download-errors` (下载错误).
+**执照、E&O 档案与数据 (7):** `fairpolicy-license-renewals` (执照与继续教育), `fairpolicy-carrier-appointments` (保险公司委任), `fairpolicy-signed-declinations` (签署表格与拒保声明), `fairpolicy-workers-comp-audits` (保费审计), `fairpolicy-data-quality` (保单数据质量), `fairpolicy-duplicate-clients` (重复客户), `fairpolicy-download-errors` (下载错误).
 
 ## 如何保持安全
 

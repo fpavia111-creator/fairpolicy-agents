@@ -14,7 +14,7 @@
     ["$1,500 · One agency", "Data clean-up", "Policy data quality, duplicate clients and carrier download errors"],
     ["$1,000 · One agency", "Book summary", "Book of business figures for a valuation or perpetuation conversation"],
     ["$9,500 · One agency", "Whole agency", "All 30 agents set up on your exports, with one training session for the team"],
-    ["$15,000 · Partner rollout", "For agency networks and clusters", "All 30 agents for up to 10 member agencies, with export mapping per agency system and a runbook"]
+    ["$15,000 · Partner rollout", "Agency network rollout", "For agency networks and clusters: all 30 agents for up to 10 member agencies, with export mapping per agency system and a runbook"]
   ],
   "support": "Support after setup: $250 a month per package, $750 a month for the whole agency, $2,000 a month for a partner rollout; covers new export layouts, setting changes and a review call.",
   "notes": [
@@ -24,7 +24,7 @@
     "A finding is a lead for a licensed person to check, not a conclusion about coverage, a client or an employee.",
     "Book valuation figures are a summary of your files, not an appraisal or a price."
   ],
-  "warn": "Your exports, reports and drafts stay on your computer; client names, birth dates, licence numbers and addresses are masked before anything reaches an AI model. No agent binds, cancels, endorses or recommends coverage, pays a carrier or producer, moves trust money, issues a certificate or sends a message.",
+  "warn": "Your exports, reports and drafts stay on your computer; client names and numbers, birth dates, driver's licence numbers, addresses, phones and e-mails are masked in what an AI model sees (notes people type are sent as typed). No agent binds, cancels, endorses or recommends coverage, pays a carrier or producer, moves trust money, issues a certificate or sends a message.",
   "groups": [
     ["Commissions", [
       ["Commission statements", "Every statement line against the commission your schedule expects, by carrier"],
@@ -57,7 +57,7 @@
       ["Open claims", "Claims with no update, open long, or near renewal"],
       ["Loss runs", "Claims, incurred and loss ratio by account and year"]
     ]],
-    ["Compliance and data", [
+    ["Licensing, E&O files and data", [
       ["License renewals", "Licences and continuing education by state, from your settings"],
       ["Carrier appointments", "Business written without an active appointment"],
       ["Signed declinations", "Signed applications, UM/UIM rejections, flood offers and declinations on file"],

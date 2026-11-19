@@ -121,7 +121,7 @@ export const COLUMN_WORDS = {
   consent_source: W(['Quelle der Einwilligung'], ['Source du consentement'], ['Origen del consentimiento'], ['Origem do consentimento'], ['Fonte del consenso'], ['同意取得元', '同意経路'], ['同意来源'], ['동의 경로', '동의 출처']),
   unsubscribed: W(['Abgemeldet', 'Abmeldung'], ['Désabonné', 'Désinscrit'], ['Dado de baja', 'Baja'], ['Descadastrado'], ['Disiscritto'], ['配信停止', '配信解除'], ['已退订', '退订'], ['수신거부', '구독취소']),
   bounce: W(['Unzustellbar'], ['Rebond'], ['Rebote'], ['Rejeição'], ['Rimbalzo'], ['不達', 'バウンス'], ['退信', '退回'], ['반송', '반송여부']),
-  // ---- Ledgers and migrations (used by Olympus) ----
+  // ---- Ledgers and migrations (shared core vocabulary) ----
   external_id: W(['Externe ID', 'Alt-ID', 'Altsystem-ID'], ['ID externe', 'Ancien ID'], ['ID externo', 'ID heredado'], ['ID externo', 'ID legado'], ['ID esterno', 'ID legacy'], ['外部ID', '旧システムID'], ['外部编号', '外部ID', '旧系统编号'], ['외부ID', '기존 시스템 ID']),
   document_number: W(['Belegnummer', 'Beleg-Nr.', 'Dokumentnummer'], ['N° de pièce', 'Numéro de pièce', 'N° de document'], ['N.º de documento', 'Número de documento', 'Asiento'], ['Nº do documento', 'Número do documento', 'Lançamento'], ['Numero documento', 'N. documento', 'Numero registrazione'], ['伝票番号', '仕訳番号', '文書番号'], ['凭证号', '单据编号', '凭证编号'], ['전표번호', '문서번호']),
   account: W(['Konto', 'Kontonummer', 'Sachkonto'], ['Compte', 'N° de compte', 'Numéro de compte'], ['Cuenta', 'Número de cuenta', 'Cuenta contable'], ['Conta', 'Número da conta', 'Conta contábil'], ['Conto', 'Numero conto', 'Codice conto'], ['勘定科目', '勘定科目コード', '科目コード'], ['科目代码', '会计科目', '科目编码', '科目'], ['계정과목', '계정코드', '계정']),

@@ -11,3 +11,5 @@ First version, for the Fairpolicy insurance agency agents. Built from the Remedy
 - The Fairmake fix for headers that match a field only by letter case.
 - The family builder (fairpolicyAgent, familyDemo, countBy, byPriority).
 - Medical-billing modules (X12, code tables, billing sources, denials) removed.
+- Final pass (19 Nov 2026): carrier keys keep Assurance, Underwriters, Group, Corp and Inc. On the Texas Department of Insurance list of 1,417 insurers these words were the only difference between 8 pairs of different companies; "Example Inc" still finds "Example Insurance Company" through the loose match when no other carrier fits.
+- Final pass: `safePath` refuses paths over 1,024 characters (a 200,000-character path made a recursive mkdir loop on Windows); a short GBK header that is also valid UTF-8 is read as GBK.

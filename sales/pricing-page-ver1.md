@@ -22,7 +22,7 @@ The packages bought one by one come to $15,500; the whole agency is $9,500.
 
 | Package | What it covers | Setup |
 |---|---|---|
-| Partner rollout | All 30 agents for up to 10 member agencies, export mapping per agency system, a runbook for your operations staff | $15,000 |
+| Agency network rollout (partner rollout) | All 30 agents for up to 10 member agencies, export mapping per agency system, a runbook for your operations staff | $15,000 |
 
 ## Support after setup
 
