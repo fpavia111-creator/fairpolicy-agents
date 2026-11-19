@@ -1,0 +1,240 @@
+{
+  "suite": "fairpolicy-loss-runs",
+  "root": "..",
+  "data_note": "Fictional loss runs and premiums in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "losses_check",
+      "args": {
+        "loss_runs": "fixtures/loss-runs.csv",
+        "premiums": "fixtures/premiums.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.years": "2022-2026",
+          "result.accounts": 5,
+          "result.claims": 12,
+          "result.incurred": 280000,
+          "result.premium": 564000,
+          "result.loss_ratio": 49.65
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "losses_check",
+      "args": {
+        "loss_runs": "fixtures/loss-runs.csv",
+        "premiums": "fixtures/premiums.csv"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.high_loss_ratio": 1,
+          "result.by_status.large_loss": 1,
+          "result.by_status.frequency": 1,
+          "result.by_status.normal": 1,
+          "result.by_status.clean": 1
+        }
+      }
+    },
+    {
+      "id": "worst-account",
+      "tool": "losses_explain",
+      "args": {
+        "loss_runs": "fixtures/loss-runs.csv",
+        "premiums": "fixtures/premiums.csv",
+        "client": "Wexford Plating LLC"
+      },
+      "expect": {
+        "equals": {
+          "result.account.status": "high_loss_ratio",
+          "result.account.loss_ratio": 87.5,
+          "result.account.largest_loss": 120000,
+          "result.account.open_claims": 1,
+          "result.account.by_year": "2024: 1/20000; 2025: 2/135000; 2026: 2/55000"
+        }
+      }
+    },
+    {
+      "id": "old-claim-outside-window",
+      "tool": "losses_explain",
+      "args": {
+        "loss_runs": "fixtures/loss-runs.csv",
+        "premiums": "fixtures/premiums.csv",
+        "client": "Penrose Florist LLC"
+      },
+      "expect": {
+        "equals": {
+          "result.account.claims": 1,
+          "result.account.status": "large_loss"
+        }
+      }
+    },
+    {
+      "id": "frequency",
+      "tool": "losses_check",
+      "args": {
+        "loss_runs": "fixtures/loss-runs.csv",
+        "premiums": "fixtures/premiums.csv",
+        "status": "frequency"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.most_claims_in_a_year": 4,
+          "result.items.0.incurred": 22000
+        }
+      }
+    },
+    {
+      "id": "longer-window-takes-2020",
+      "tool": "losses_check",
+      "args": {
+        "loss_runs": "fixtures/loss-runs.csv",
+        "premiums": "fixtures/premiums.csv",
+        "years": 7
+      },
+      "expect": {
+        "equals": {
+          "result.claims": 13
+        }
+      }
+    },
+    {
+      "id": "lower-large-loss",
+      "tool": "losses_check",
+      "args": {
+        "loss_runs": "fixtures/loss-runs.csv",
+        "premiums": "fixtures/premiums.csv",
+        "large_loss": 8000
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.large_loss": 2
+        }
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "losses_write_report",
+      "args": {
+        "loss_runs": "fixtures/loss-runs.csv",
+        "premiums": "fixtures/premiums.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "loss-runs.csv",
+          "loss-runs.html"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "losses_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "losses_check",
+      "args": {
+        "loss_runs": "../../outside.csv",
+        "premiums": "fixtures/premiums.csv"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "losses_check",
+      "mode": "review",
+      "args": {
+        "loss_runs": "fixtures/loss-runs.csv",
+        "premiums": "fixtures/premiums.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.years": "2022-2026",
+          "result.accounts": 5,
+          "result.claims": 12,
+          "result.incurred": 280000,
+          "result.premium": 564000,
+          "result.loss_ratio": 49.65
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "losses_check",
+      "args": {
+        "premiums": "fixtures/premiums.csv"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "loss_runs"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "losses_check",
+      "args": {
+        "loss_runs": "fixtures/loss-runs.csv",
+        "premiums": "fixtures/premiums.csv",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-refused-loss_run_request_send",
+      "tool": "loss_run_request_send",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-submission_send",
+      "tool": "submission_send",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "losses_check",
+      "args": {
+        "loss_runs": "fixtures/loss-runs.csv",
+        "premiums": "fixtures/premiums.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Wexford Plating",
+          "Calder Lane Daycare",
+          "Ruskin Mill Apartments",
+          "Penrose Florist",
+          "Tamsin Ebury"
+        ]
+      }
+    }
+  ]
+}
