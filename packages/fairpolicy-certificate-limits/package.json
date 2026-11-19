@@ -1,0 +1,57 @@
+{
+  "name": "fairpolicy-certificate-limits",
+  "version": "0.1.0",
+  "description": "Checks every certificate of insurance you issued against the policy behind it: not in force, limits overstated, additional insured or waiver shown without the endorsement, wrong dates, unknown policy. Never issues or sends a certificate.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-certificate-limits": "bin/fairpolicy-certificate-limits.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-certificate-limits.js demo",
+    "eval": "node bin/fairpolicy-certificate-limits.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-certificate-limits"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-certificate-limits#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "certificates-of-insurance",
+    "coi",
+    "additional-insured",
+    "waiver-of-subrogation"
+  ]
+}

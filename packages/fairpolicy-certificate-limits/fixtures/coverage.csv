@@ -1,0 +1,6 @@
+Policy Number,Insured,Line of Business,Each Occurrence,Aggregate,Effective Date,Expiration Date,Status,Cancel Date,AI Endorsement,Waiver Endorsement
+CGL-1801,Pellegrine Masonry LLC,General Liability,1000000,2000000,03/01/2026,03/01/2027,Active,,Blanket,Yes
+WC-1802,Pellegrine Masonry LLC,Workers Compensation,1000000,,03/01/2026,03/01/2027,Active,,No,No
+CA-1803,Pellegrine Masonry LLC,Commercial Auto,1000000,,03/01/2026,03/01/2027,Active,,No,No
+CGL-1804,Tullamore Roofing Inc,General Liability,1000000,2000000,01/01/2026,01/01/2027,Cancelled,09/30/2026,Blanket,Yes
+XS-1805,Pellegrine Masonry LLC,Commercial Umbrella,2000000,2000000,04/01/2026,04/01/2027,Active,,No,No

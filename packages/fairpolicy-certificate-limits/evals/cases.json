@@ -1,0 +1,247 @@
+{
+  "suite": "fairpolicy-certificate-limits",
+  "root": "..",
+  "data_note": "Fictional certificate log and coverage schedule in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "certificates_check",
+      "args": {
+        "certificates": "fixtures/certificates.csv",
+        "coverage": "fixtures/coverage.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.certificates": 6,
+          "result.lines_checked": 7,
+          "result.with_issues": 6
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "certificates_check",
+      "args": {
+        "certificates": "fixtures/certificates.csv",
+        "coverage": "fixtures/coverage.csv"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.policy_not_in_force": 1,
+          "result.by_status.limit_overstated": 1,
+          "result.by_status.ai_not_on_policy": 1,
+          "result.by_status.waiver_not_on_policy": 1,
+          "result.by_status.dates_wrong": 1,
+          "result.by_status.policy_unknown": 1,
+          "result.by_status.ok": 1
+        }
+      }
+    },
+    {
+      "id": "not-in-force-first",
+      "tool": "certificates_check",
+      "args": {
+        "certificates": "fixtures/certificates.csv",
+        "coverage": "fixtures/coverage.csv"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.ref": "C-9004/CGL-1804",
+          "result.items.0.status": "policy_not_in_force"
+        }
+      }
+    },
+    {
+      "id": "limit-overstated",
+      "tool": "certificates_explain",
+      "args": {
+        "certificates": "fixtures/certificates.csv",
+        "coverage": "fixtures/coverage.csv",
+        "ref": "C-9002/CGL-1801"
+      },
+      "expect": {
+        "equals": {
+          "result.line.status": "limit_overstated"
+        },
+        "contains": [
+          "shows 2000000"
+        ]
+      }
+    },
+    {
+      "id": "waiver-on-one-line-of-a-certificate",
+      "tool": "certificates_check",
+      "args": {
+        "certificates": "fixtures/certificates.csv",
+        "coverage": "fixtures/coverage.csv",
+        "status": "waiver_not_on_policy"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.ref": "C-9001/WC-1802"
+        }
+      }
+    },
+    {
+      "id": "blanket-ai-counts",
+      "tool": "certificates_explain",
+      "args": {
+        "certificates": "fixtures/certificates.csv",
+        "coverage": "fixtures/coverage.csv",
+        "ref": "C-9001/CGL-1801"
+      },
+      "expect": {
+        "equals": {
+          "result.line.status": "ok",
+          "result.line.issues": ""
+        }
+      }
+    },
+    {
+      "id": "wrong-dates",
+      "tool": "certificates_check",
+      "args": {
+        "certificates": "fixtures/certificates.csv",
+        "coverage": "fixtures/coverage.csv",
+        "status": "dates_wrong"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.policy_number": "XS-1805"
+        }
+      }
+    },
+    {
+      "id": "unknown-ref",
+      "tool": "certificates_explain",
+      "args": {
+        "certificates": "fixtures/certificates.csv",
+        "coverage": "fixtures/coverage.csv",
+        "ref": "C-1/NONE"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "not found"
+        ]
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "certificates_write_report",
+      "args": {
+        "certificates": "fixtures/certificates.csv",
+        "coverage": "fixtures/coverage.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "certificate-limits.csv",
+          "certificate-limits.html"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "certificates_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "certificates_check",
+      "args": {
+        "certificates": "../../outside.csv",
+        "coverage": "fixtures/coverage.csv"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "certificates_check",
+      "mode": "review",
+      "args": {
+        "certificates": "fixtures/certificates.csv",
+        "coverage": "fixtures/coverage.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.certificates": 6,
+          "result.lines_checked": 7,
+          "result.with_issues": 6
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "certificates_check",
+      "args": {
+        "coverage": "fixtures/coverage.csv"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "certificates"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "certificates_check",
+      "args": {
+        "certificates": "fixtures/certificates.csv",
+        "coverage": "fixtures/coverage.csv",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-refused-certificate_issue",
+      "tool": "certificate_issue",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-certificate_send",
+      "tool": "certificate_send",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "certificates_check",
+      "args": {
+        "certificates": "fixtures/certificates.csv",
+        "coverage": "fixtures/coverage.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Pellegrine Masonry",
+          "Tullamore Roofing",
+          "Brannock Fence"
+        ]
+      }
+    }
+  ]
+}
