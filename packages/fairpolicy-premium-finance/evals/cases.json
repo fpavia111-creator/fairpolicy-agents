@@ -1,0 +1,239 @@
+{
+  "suite": "fairpolicy-premium-finance",
+  "root": "..",
+  "data_note": "Fictional finance agreements in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "finance_check",
+      "args": {
+        "agreements": "fixtures/finance-agreements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.agreements": 7,
+          "result.notices": 1,
+          "result.not_funded_amount": 3800,
+          "result.funded_not_remitted_amount": 5100,
+          "result.past_due_installments": 742
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "finance_check",
+      "args": {
+        "agreements": "fixtures/finance-agreements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.notice_of_intent": 1,
+          "result.by_status.past_due": 1,
+          "result.by_status.not_funded": 1,
+          "result.by_status.funded_not_remitted": 1,
+          "result.by_status.due_soon": 1,
+          "result.by_status.current": 1,
+          "result.by_status.paid_off": 1
+        }
+      }
+    },
+    {
+      "id": "notice-first-with-days",
+      "tool": "finance_check",
+      "args": {
+        "agreements": "fixtures/finance-agreements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.agreement": "PF-9002",
+          "result.items.0.cancel_date": "2026-11-27"
+        },
+        "contains": [
+          "9 days"
+        ]
+      }
+    },
+    {
+      "id": "past-due-days",
+      "tool": "finance_explain",
+      "args": {
+        "agreements": "fixtures/finance-agreements.csv",
+        "as_of": "2026-11-18",
+        "agreement": "PF-9003"
+      },
+      "expect": {
+        "equals": {
+          "result.agreement.status": "past_due",
+          "result.agreement.days_past_due": 13
+        }
+      }
+    },
+    {
+      "id": "funded-not-remitted",
+      "tool": "finance_explain",
+      "args": {
+        "agreements": "fixtures/finance-agreements.csv",
+        "as_of": "2026-11-18",
+        "agreement": "PF-9005"
+      },
+      "expect": {
+        "equals": {
+          "result.agreement.status": "funded_not_remitted",
+          "result.agreement.funded_amount": 5100
+        }
+      }
+    },
+    {
+      "id": "after-the-cancel-date-no-notice",
+      "tool": "finance_check",
+      "args": {
+        "agreements": "fixtures/finance-agreements.csv",
+        "as_of": "2026-11-30"
+      },
+      "expect": {
+        "equals": {
+          "result.notices": 0
+        }
+      }
+    },
+    {
+      "id": "longer-fund-wait",
+      "tool": "finance_check",
+      "args": {
+        "agreements": "fixtures/finance-agreements.csv",
+        "as_of": "2026-11-18",
+        "fund_days": 30
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.current": 2
+        }
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "finance_write_report",
+      "args": {
+        "agreements": "fixtures/finance-agreements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "premium-finance.csv",
+          "premium-finance.html"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "finance_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "finance_check",
+      "args": {
+        "agreements": "../../outside.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "finance_check",
+      "mode": "review",
+      "args": {
+        "agreements": "fixtures/finance-agreements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.agreements": 7,
+          "result.notices": 1,
+          "result.not_funded_amount": 3800,
+          "result.funded_not_remitted_amount": 5100,
+          "result.past_due_installments": 742
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "finance_check",
+      "args": {
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "agreements"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "finance_check",
+      "args": {
+        "agreements": "fixtures/finance-agreements.csv",
+        "as_of": "2026-11-18",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-refused-finance_payment_make",
+      "tool": "finance_payment_make",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-reinstatement_request",
+      "tool": "reinstatement_request",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "finance_check",
+      "args": {
+        "agreements": "fixtures/finance-agreements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Rosalind Tarrant-Hay",
+          "Tarrant Hauling",
+          "Emrys Calloway",
+          "Calloway Bindery",
+          "Ottilie Marchbank",
+          "Marchbank Movers"
+        ]
+      }
+    }
+  ]
+}
