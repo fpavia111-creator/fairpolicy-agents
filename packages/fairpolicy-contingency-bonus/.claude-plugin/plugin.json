@@ -1,0 +1,22 @@
+{
+  "name": "fairpolicy-contingency-bonus",
+  "version": "0.1.0",
+  "description": "Reads carrier experience reports against each carrier's contingency or profit-sharing grid: tier met, estimated bonus, premium needed for the next tier, loss headroom, and bonuses received below the estimate. Never moves business.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-contingency-bonus#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "contingency",
+    "profit-sharing",
+    "carrier-bonus",
+    "loss-ratio"
+  ]
+}

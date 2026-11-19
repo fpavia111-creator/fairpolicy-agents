@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signed forms and declinations on file</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1c1a;--mut:#6b6760;--line:#e4e0d8;--ok:#1f7a4d;--bad:#b42318;--warn:#a15c07;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#161514;--fg:#ecebe8;--mut:#a29d94;--line:#34312d;--ok:#4ade80;--bad:#f87171;--warn:#fbbf24;--card:#1f1e1c}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,Segoe UI,"Hiragino Sans","Yu Gothic UI","Microsoft YaHei","PingFang SC","Malgun Gothic","Apple SD Gothic Neo","Noto Sans CJK",sans-serif}
+main{max-width:1040px;margin:0 auto;padding:24px 16px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}
+.mut{color:var(--mut)}.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+table{border-collapse:collapse;width:100%;background:var(--card);font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{font-weight:600}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tiles{display:flex;gap:12px;flex-wrap:wrap}.tile{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:120px}
+.tile b{display:block;font-size:22px}code{font-size:13px;overflow-wrap:anywhere}pre{overflow-x:auto}
+.wrap{overflow-x:auto;max-width:100%}svg,img{max-width:100%;height:auto}figure{margin:16px 0}p,li,h1,h2,h3{overflow-wrap:break-word}
+</style></head><body><main>
+<h1>Signed forms and declinations on file</h1>
+<p class="mut">6 active policy(ies) checked: 3 with a required document not on file, 1 with a document not signed, 2 complete. The required documents are your agency&#39;s own list.</p>
+
+<h2>By status</h2><div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">Count</th></tr></thead><tbody>
+<tr><td>missing</td><td>3</td></tr>
+<tr><td>unsigned</td><td>1</td></tr>
+<tr><td>complete</td><td>2</td></tr>
+</tbody></table></div>
+<h2>By document</h2><div class="wrap"><table><thead><tr><th scope="col">Document</th><th scope="col">Count</th></tr></thead><tbody>
+<tr><td>declination</td><td>1</td></tr>
+<tr><td>flood_offer</td><td>1</td></tr>
+<tr><td>signed_application</td><td>1</td></tr>
+<tr><td>um_rejection</td><td>1</td></tr>
+</tbody></table></div>
+<h2>All rows (6)</h2>
+<div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">Policy</th><th scope="col">Line</th><th scope="col">Effective</th><th scope="col">Missing</th><th scope="col">unsigned</th><th scope="col">um selection</th><th scope="col">declined coverages</th></tr></thead><tbody>
+<tr><td>missing</td><td>CGL-2405</td><td>cgl</td><td>2026-07-01</td><td>declination</td><td></td><td></td><td>Cyber; EPLI</td></tr>
+<tr><td>missing</td><td>WC-2406</td><td>wc</td><td>2026-07-01</td><td>signed_application</td><td></td><td></td><td></td></tr>
+<tr><td>missing</td><td>PA-2401</td><td>pauto</td><td>2026-09-01</td><td>um_rejection</td><td></td><td>Rejected</td><td></td></tr>
+<tr><td>unsigned</td><td>HO-2403</td><td>home</td><td>2026-09-01</td><td></td><td>flood_offer</td><td></td><td></td></tr>
+<tr><td>complete</td><td>HO-2404</td><td>home</td><td>2026-08-01</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>complete</td><td>PA-2402</td><td>pauto</td><td>2026-08-01</td><td></td><td></td><td>Accepted</td><td></td></tr>
+</tbody></table></div>
+<h2>Limits</h2><ul><li>Reads only the files you give it. It does not log in to your agency system, a carrier portal, a premium finance company or a bank.</li><li>The required documents come from your checklist (or the defaults); state forms and their wording differ. A missing document here is a filing gap, not a finding about coverage.</li><li>Documents are matched by type words (application, UM/UIM, flood, declination) or your aliases; a scan named oddly may be missed.</li><li>Results returned to the AI model have client names, birth dates, driver licence numbers, addresses and other direct identifiers masked. The files written here keep the real values: keep them in a secure folder.</li><li>Not legal, tax, accounting or coverage advice. It does not bind, cancel, endorse, place or recommend coverage; a licensed person at your agency decides.</li></ul>
+<p class="mut" style="margin-top:32px">Written by a Fairpolicy agent from your files on this computer. Nothing was bound, cancelled, endorsed, sent or paid. This page contains client information: keep it in your secure folder and do not e-mail it.</p>
+</main></body></html>

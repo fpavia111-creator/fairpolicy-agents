@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-open-claims": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-open-claims@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

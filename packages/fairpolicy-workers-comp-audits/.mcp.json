@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-workers-comp-audits": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-workers-comp-audits@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

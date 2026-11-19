@@ -1,0 +1,9 @@
+status,ref,carrier,client,date,amount,detail,next_step,owner,notes
+shortfall,balance,,,2026-11-16,960,Balance 4020; premiums collected and still owed to carriers 4980.,The account holds less than the premiums owed to carriers. Tell the agency principal today; how to restore it is a decision for them and their accountant.,,
+unexpected_withdrawal,2026-11-16 Check 1043 Example Office Leasing rent,,,2026-11-16,850,"850 paid out on 2026-11-16: ""Check 1043 Example Office Leasing rent"" is not a carrier, a refund or a commission transfer.","A payment out of the trust account that is not a carrier remittance, a client refund or a commission transfer. Find out what it was.",,
+commission_overdraw,commission-transfers,,,2026-11-18,1190,2900 moved to operating; 1710 commission earned on premiums collected.,More commission was moved to operating than was earned on premiums collected.,,
+overdue_remittance,PA-5002,Example Mutual,Ansel Bromwich,2026-11-10,1020,Collected 2026-10-28; 1020 was due to Example Mutual on 2026-11-10 (8 days ago).,Premium collected and past the carrier's due date; remit or ask the carrier for its statement.,,
+due_soon,BOP-5003,Sample Casualty,Bromwich Glassworks LLC,2026-11-22,3960,3960 due to Sample Casualty on 2026-11-22.,Due to the carrier within the next few days.,,
+not_due,WC-5004,Sample Casualty,Tamsin Vellacott,2026-12-15,8100,Premium not collected yet.,,,
+remitted,HO-5001,Example Mutual,Ansel Bromwich,2026-10-15,1700,Remitted 2026-10-12.,,,
+remitted,CGL-5005,Demo Indemnity,Vellacott Kennels Inc,2026-11-01,2210,Remitted 2026-10-30.,,,

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-certificate-limits": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-certificate-limits@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

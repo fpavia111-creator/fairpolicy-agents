@@ -1,0 +1,9 @@
+status,policy_number,client,carrier,producer,kind,share,split_pct,commission,expected,paid,difference,detail,next_step,owner,notes
+underpaid,BOP-4003,Holm Upholstery LLC,Sample Casualty,Sam Ortiz,new,1,50,840,420,336,-84,50% of 840 new commission is 420; paid 336.,"Pay the difference on the next producer statement, or correct the split schedule if the rate changed.",,
+not_paid,WC-4004,Garnet Lane Bakery Inc,Sample Casualty,Riley Chen,renewal,0.4,25,1260,126,0,-126,25% of 40% of 1260 renewal commission is 126; paid 0.,This producer has a share of the policy and was not paid; check the split with the producers.,,
+wrong_producer,CGL-4005,Corvin Ashdale,Demo Indemnity,Jordan Lee,new,,,,0,117,117,Jordan Lee was paid 117 but is not a producer of record on this policy (House).,Paid to someone who is not a producer of record on this policy; check the producer code before the next payroll.,,
+overpaid,HO-4002,Perpetua Holm,Example Mutual,Jordan Lee,renewal,1,25,330,82.5,99,16.5,25% of 330 renewal commission is 82.5; paid 99.,Paid more than the split schedule allows; confirm before the next statement.,,
+no_split_rate,PA-4006,Lysander Quaye,Example Mutual,Avery Stone,renewal,1,,151.2,,37.8,,Avery Stone is not in the split schedule.,Add this producer to the split schedule.,,
+ok,PA-4001,Perpetua Holm,Example Mutual,Jordan Lee,new,1,40,300,120,120,0,,,,
+ok,UMB-4007,Lysander Quaye,Example Mutual,Jordan Lee,renewal,1,25,-60,-15,-15,0,,,,
+ok,WC-4004,Garnet Lane Bakery Inc,Sample Casualty,Sam Ortiz,renewal,0.6,30,1260,226.8,226.8,0,,,,

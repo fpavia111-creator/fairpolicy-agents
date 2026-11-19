@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-direct-agency-bill": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-direct-agency-bill@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

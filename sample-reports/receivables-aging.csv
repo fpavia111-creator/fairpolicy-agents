@@ -1,0 +1,8 @@
+status,invoice,policy_number,client,client_id,carrier,due_date,days_past_due,balance,remitted,producer,csr,detail,next_step,owner,notes
+fronted_premium,INV-7001,CGL-7001,Haverleigh Farms LLC,HAVEFAR-01,Demo Indemnity,2026-08-01,109,2400,true,Sam Ortiz,Drew Kim,"2400 open, 109 days past due; the agency already paid the carrier.",The agency has already paid the carrier and the client has not paid it: call the client this week.,,
+over_90,INV-7002,HO-7002,Brisa Okonkwo-Hale,OKONBRI-01,Example Mutual,2026-08-10,100,900,false,Jordan Lee,Casey Park,"900 open, 100 days past due.",Very late: review with the producer; a carrier notice of cancellation may follow if the premium is not paid.,,
+credit_balance,INV-7007,PA-7007,Teodor Vasquez-Lind,VASQTEO-01,Example Mutual,2026-10-01,48,-220,false,Jordan Lee,Casey Park,220 owed to the client.,The agency owes the client money (return premium or overpayment): refund or apply it.,,
+over_60,INV-7003,CA-7003,Haverleigh Farms LLC,HAVEFAR-01,Sample Casualty,2026-09-15,64,6400,false,Sam Ortiz,Drew Kim,"6400 open, 64 days past due.",Second reminder and a call from the account manager.,,
+over_30,INV-7004,WC-7004,Quillmark Printing Inc,QUILPRI-01,Sample Casualty,2026-10-10,39,3000,false,Sam Ortiz,Drew Kim,"3000 open, 39 days past due.",Send a reminder.,,
+current,INV-7005,PA-7005,Brisa Okonkwo-Hale,OKONBRI-01,Example Mutual,2026-11-05,13,650,false,Jordan Lee,Casey Park,"650 open, 13 days past due.",,,
+not_due,INV-7006,HO-7006,Teodor Vasquez-Lind,VASQTEO-01,Example Mutual,2026-12-01,0,1200,false,Jordan Lee,Casey Park,1200 due 2026-12-01.,,,

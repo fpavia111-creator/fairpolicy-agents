@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-download-errors": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-download-errors@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

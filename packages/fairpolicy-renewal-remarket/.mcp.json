@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-renewal-remarket": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-renewal-remarket@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

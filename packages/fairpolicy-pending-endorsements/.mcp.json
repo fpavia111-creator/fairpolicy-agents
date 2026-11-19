@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-pending-endorsements": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-pending-endorsements@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

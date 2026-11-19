@@ -1,0 +1,22 @@
+{
+  "name": "fairpolicy-open-claims",
+  "version": "0.1.0",
+  "description": "Ages open claims: losses with no carrier claim number, claims with no update for weeks, claims open on policies renewing soon and claims open a long time. Never files, settles or comments on a claim.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-open-claims#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "claims",
+    "open-claims",
+    "claims-follow-up",
+    "adjuster"
+  ]
+}

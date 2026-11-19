@@ -1,0 +1,22 @@
+{
+  "name": "fairpolicy-duplicate-clients",
+  "version": "0.1.0",
+  "description": "Finds client records that are the same person or business (exact, likely and possible duplicates) and different people who share an address or contact. Never merges or deletes a record.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-duplicate-clients#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "duplicate-clients",
+    "deduplication",
+    "data-quality",
+    "agency-management-system"
+  ]
+}

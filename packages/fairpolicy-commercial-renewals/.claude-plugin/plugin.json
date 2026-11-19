@@ -1,0 +1,22 @@
+{
+  "name": "fairpolicy-commercial-renewals",
+  "version": "0.1.0",
+  "description": "Builds a renewal timeline for every commercial policy expiring in the next 150 days and lists overdue milestones, milestones due this week and renewals on track. Never sends a submission or binds.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-commercial-renewals#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "commercial-renewals",
+    "renewal-timeline",
+    "submissions",
+    "loss-runs"
+  ]
+}

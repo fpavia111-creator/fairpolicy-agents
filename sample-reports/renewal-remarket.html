@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Renewals without a review or remarket</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1c1a;--mut:#6b6760;--line:#e4e0d8;--ok:#1f7a4d;--bad:#b42318;--warn:#a15c07;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#161514;--fg:#ecebe8;--mut:#a29d94;--line:#34312d;--ok:#4ade80;--bad:#f87171;--warn:#fbbf24;--card:#1f1e1c}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,Segoe UI,"Hiragino Sans","Yu Gothic UI","Microsoft YaHei","PingFang SC","Malgun Gothic","Apple SD Gothic Neo","Noto Sans CJK",sans-serif}
+main{max-width:1040px;margin:0 auto;padding:24px 16px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}
+.mut{color:var(--mut)}.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+table{border-collapse:collapse;width:100%;background:var(--card);font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{font-weight:600}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tiles{display:flex;gap:12px;flex-wrap:wrap}.tile{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:120px}
+.tile b{display:block;font-size:22px}code{font-size:13px;overflow-wrap:anywhere}pre{overflow-x:auto}
+.wrap{overflow-x:auto;max-width:100%}svg,img{max-width:100%;height:auto}figure{margin:16px 0}p,li,h1,h2,h3{overflow-wrap:break-word}
+</style></head><body><main>
+<h1>Renewals without a review or remarket</h1>
+<p class="mut">6 policy(ies) renew in the next 120 days (26600 premium): 1 expire soon with no review, 1 go up with no remarket, 1 have no review yet; 3 reviewed.</p>
+
+<h2>By status</h2><div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">Count</th></tr></thead><tbody>
+<tr><td>urgent_no_review</td><td>1</td></tr>
+<tr><td>increase_not_remarketed</td><td>1</td></tr>
+<tr><td>no_review</td><td>1</td></tr>
+<tr><td>reviewed</td><td>3</td></tr>
+</tbody></table></div>
+<h2>By account manager</h2><div class="wrap"><table><thead><tr><th scope="col">Account manager</th><th scope="col">Count</th><th scope="col">Premium</th></tr></thead><tbody>
+<tr><td>Drew Kim</td><td>2</td><td>14000</td></tr>
+<tr><td>Casey Park</td><td>1</td><td>2100</td></tr>
+</tbody></table></div>
+<h2>All rows (6)</h2>
+<div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">Policy</th><th scope="col">Carrier</th><th scope="col">Line</th><th scope="col">Expires</th><th scope="col">Days left</th><th scope="col">Premium</th><th scope="col">renewal premium</th><th scope="col">change pct</th><th scope="col">Account manager</th></tr></thead><tbody>
+<tr><td>urgent_no_review</td><td>HO-1201</td><td>Example Mutual</td><td>home</td><td>2026-12-10</td><td>22</td><td>2100</td><td></td><td></td><td>Casey Park</td></tr>
+<tr><td>increase_not_remarketed</td><td>BOP-1203</td><td>Sample Casualty</td><td>bop</td><td>2027-02-01</td><td>75</td><td>5000</td><td>6200</td><td>24</td><td>Drew Kim</td></tr>
+<tr><td>no_review</td><td>WC-1204</td><td>Sample Casualty</td><td>wc</td><td>2027-02-20</td><td>94</td><td>9000</td><td>9300</td><td>3.33</td><td>Drew Kim</td></tr>
+<tr><td>reviewed</td><td>CA-1208</td><td>Test Fire &amp; Marine</td><td>cauto</td><td>2026-12-01</td><td>13</td><td>6100</td><td></td><td></td><td>Drew Kim</td></tr>
+<tr><td>reviewed</td><td>CGL-1205</td><td>Demo Indemnity</td><td>cgl</td><td>2027-01-05</td><td>48</td><td>3000</td><td>3600</td><td>20</td><td>Drew Kim</td></tr>
+<tr><td>reviewed</td><td>PA-1202</td><td>Example Mutual</td><td>pauto</td><td>2027-01-15</td><td>58</td><td>1400</td><td>1450</td><td>3.57</td><td>Casey Park</td></tr>
+</tbody></table></div>
+<h2>Limits</h2><ul><li>Reads only the files you give it. It does not log in to your agency system, a carrier portal, a premium finance company or a bank.</li><li>A review counts when an activity on the policy (or on the client with no policy named) in the 150 days before expiration contains one of the review words. Activities logged elsewhere are not seen.</li><li>Whether to remarket a renewal is a judgement about the client&#39;s needs; the list shows what is not recorded, not what to do.</li><li>Results returned to the AI model have client names, birth dates, driver licence numbers, addresses and other direct identifiers masked. The files written here keep the real values: keep them in a secure folder.</li><li>Not legal, tax, accounting or coverage advice. It does not bind, cancel, endorse, place or recommend coverage; a licensed person at your agency decides.</li></ul>
+<p class="mut" style="margin-top:32px">Written by a Fairpolicy agent from your files on this computer. Nothing was bound, cancelled, endorsed, sent or paid. This page contains client information: keep it in your secure folder and do not e-mail it.</p>
+</main></body></html>

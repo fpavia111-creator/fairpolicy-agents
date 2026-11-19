@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-loss-runs": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-loss-runs@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "fairpolicy-policy-checking",
+  "version": "0.1.0",
+  "description": "Checks each issued policy against what was bound, coverage by coverage: missing coverages, lower limits, higher deductibles, different premium or dates, and binders with nothing issued. Never binds or endorses.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-policy-checking#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "policy-checking",
+    "binders",
+    "errors-and-omissions",
+    "coverage-review"
+  ]
+}

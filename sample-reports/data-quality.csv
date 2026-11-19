@@ -1,0 +1,9 @@
+status,policy_number,client,carrier,line,effective_date,expiration_date,issues,issue_count,producer,csr,detail,next_step,owner,notes
+critical,CGL-2605,Cobbold Roofing LLC,Demo Indemnity,cgl,2026-10-01,2025-10-01,expiration_before_effective,1,Sam Ortiz,Drew Kim,1 issue(s): expiration_before_effective.,"Fix in your agency system first: dates, carrier and premium drive renewals, commissions and downloads.",,
+critical,WC-2607,Penwarden Signs Inc,Sample Casualty,wc,2026-05-01,2027-05-01,no_premium,1,Sam Ortiz,Drew Kim,1 issue(s): no_premium.,"Fix in your agency system first: dates, carrier and premium drive renewals, commissions and downloads.",,
+vehicle_data,PA-2602,Henrietta Cobbold,Example Mutual,pauto,2026-08-01,2027-02-01,vin_missing,1,Jordan Lee,Casey Park,1 issue(s): vin_missing.,Get the VIN from the client or the carrier and correct the vehicle.,,
+vehicle_data,PA-2603,Henrietta Cobbold,Sample Casualty,pauto,2026-09-01,2027-03-01,vin_invalid,1,Jordan Lee,Casey Park,1 issue(s): vin_invalid.,Get the VIN from the client or the carrier and correct the vehicle.,,
+contact_data,HO-2604,Ambrose Penwarden,Example Mutual,home,2026-06-01,2027-06-01,"no_email_or_phone, zip_invalid",2,Jordan Lee,Casey Park,"2 issue(s): no_email_or_phone, zip_invalid.","Complete the client's address, ZIP and an e-mail or phone.",,
+staff_data,BOP-2606,Penwarden Signs Inc,Sample Casualty,bop,2026-05-01,2027-05-01,no_producer,1,,Drew Kim,1 issue(s): no_producer.,Assign a producer and an account manager.,,
+clean,HO-2608,Florian Ashgrove,Example Mutual,home,2026-07-01,2027-07-01,,0,Jordan Lee,Casey Park,,,,
+clean,PA-2601,Florian Ashgrove,Example Mutual,pauto,2026-07-01,2027-01-01,,0,Jordan Lee,Casey Park,,,,

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-additional-insureds": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-additional-insureds@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

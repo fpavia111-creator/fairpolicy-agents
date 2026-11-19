@@ -1,0 +1,10 @@
+status,policy_number,client,carrier,line,effective_date,premium,commission_rate,expected,received,days_since_effective,producer,detail,next_step,owner,notes
+missing,BOP-2003,Fenwright Masonry LLC,Sample Casualty,bop,2026-09-01,5200,17.5,910,0,78,Sam Ortiz,Effective 2026-09-01 (78 days ago); no commission on any statement given. About 910 expected.,"Ask the carrier for the commission, or check whether the policy was coded to another agency or producer code.",,
+missing,HO-2010,Oriel Banfield,Example Mutual,home,2026-07-01,,,,0,140,Jordan Lee,Effective 2026-07-01 (140 days ago); no commission on any statement given. No premium or rate on the policy to estimate it.,"Ask the carrier for the commission, or check whether the policy was coded to another agency or producer code.",,
+missing,PA-2002,Bastian Ruehl,Example Mutual,pauto,2026-07-15,1500,15,225,0,126,Jordan Lee,Effective 2026-07-15 (126 days ago); no commission on any statement given. About 225 expected.,"Ask the carrier for the commission, or check whether the policy was coded to another agency or producer code.",,
+partial,UMB-2008,Imogen Tallow,Example Mutual,pumbr,2026-09-05,450,15,67.5,9,74,Jordan Lee,Only endorsement line(s) (9) on the statements; no new or renewal commission for the term.,The term's new or renewal commission is not on any statement; ask the carrier for it.,,
+not_yet_due,WC-2004,Ruehl Bicycle Works Inc,Sample Casualty,wc,2026-11-01,8800,10,880,0,17,Sam Ortiz,Effective 17 days ago; inside the 45-day wait.,Wait for the next statement cycle.,,
+agency_bill,CGL-2005,Kestrine Florals LLC,Demo Indemnity,cgl,2026-08-20,2400,15,360,0,90,Sam Ortiz,,"Agency bill: commission is kept when the premium is paid, not on carrier statements.",,
+cancelled_flat,HO-2006,Imogen Tallow,Example Mutual,home,2026-08-10,1700,15,255,0,100,Jordan Lee,,Flat cancelled: no commission expected.,,
+received,HO-2001,Odile Fenwright,Example Mutual,home,2026-08-01,2000,15,300,300,109,Jordan Lee,"1 term line(s), 300 received.",,,
+received,PA-2007,Silas Mardell,Example Mutual,pauto,2026-06-01,1300,12,156,156,170,Jordan Lee,"1 term line(s), 156 received.",,,

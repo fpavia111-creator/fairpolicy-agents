@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-lapsed-policies": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-lapsed-policies@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

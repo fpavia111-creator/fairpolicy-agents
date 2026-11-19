@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-commission-statements": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-commission-statements@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

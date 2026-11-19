@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-contingency-bonus": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-contingency-bonus@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

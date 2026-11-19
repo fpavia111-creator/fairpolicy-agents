@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-duplicate-clients": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-duplicate-clients@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

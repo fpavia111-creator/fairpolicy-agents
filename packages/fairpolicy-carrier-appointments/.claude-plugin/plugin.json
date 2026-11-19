@@ -1,0 +1,21 @@
+{
+  "name": "fairpolicy-carrier-appointments",
+  "version": "0.1.0",
+  "description": "Matches each producer's business to their carrier appointments by state: business with no appointment, after termination or while pending, and appointments unused for a year. Never applies for or ends an appointment.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-carrier-appointments#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "carrier-appointments",
+    "producer-licensing",
+    "compliance"
+  ]
+}

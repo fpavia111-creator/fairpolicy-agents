@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carrier appointments against business written</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1c1a;--mut:#6b6760;--line:#e4e0d8;--ok:#1f7a4d;--bad:#b42318;--warn:#a15c07;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#161514;--fg:#ecebe8;--mut:#a29d94;--line:#34312d;--ok:#4ade80;--bad:#f87171;--warn:#fbbf24;--card:#1f1e1c}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,Segoe UI,"Hiragino Sans","Yu Gothic UI","Microsoft YaHei","PingFang SC","Malgun Gothic","Apple SD Gothic Neo","Noto Sans CJK",sans-serif}
+main{max-width:1040px;margin:0 auto;padding:24px 16px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}
+.mut{color:var(--mut)}.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+table{border-collapse:collapse;width:100%;background:var(--card);font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{font-weight:600}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tiles{display:flex;gap:12px;flex-wrap:wrap}.tile{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:120px}
+.tile b{display:block;font-size:22px}code{font-size:13px;overflow-wrap:anywhere}pre{overflow-x:auto}
+.wrap{overflow-x:auto;max-width:100%}svg,img{max-width:100%;height:auto}figure{margin:16px 0}p,li,h1,h2,h3{overflow-wrap:break-word}
+</style></head><body><main>
+<h1>Carrier appointments against business written</h1>
+<p class="mut">7 producer, carrier and state combination(s), 6 appointment(s) on file: 1 with business and no appointment, 1 with business after termination, 1 with business while pending, 1 appointment(s) unused for a year.</p>
+
+<h2>By status</h2><div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">Count</th></tr></thead><tbody>
+<tr><td>not_appointed</td><td>1</td></tr>
+<tr><td>terminated_with_business</td><td>1</td></tr>
+<tr><td>pending_with_business</td><td>1</td></tr>
+<tr><td>unused</td><td>1</td></tr>
+<tr><td>ok</td><td>3</td></tr>
+</tbody></table></div>
+<h2>All rows (7)</h2>
+<div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">Producer</th><th scope="col">Carrier</th><th scope="col">State</th><th scope="col">appointment</th><th scope="col">Policies</th><th scope="col">written last year</th><th scope="col">Detail</th></tr></thead><tbody>
+<tr><td>not_appointed</td><td>Riley Chen</td><td>Example Mutual</td><td>TX</td><td>none</td><td>1</td><td>1</td><td>1 policy(ies) with Example Mutual in TX; no appointment on file.</td></tr>
+<tr><td>terminated_with_business</td><td>Sam Ortiz</td><td>Demo Indemnity</td><td>TX</td><td>terminated</td><td>1</td><td>1</td><td>Appointment terminated 2026-06-30; business effective after it.</td></tr>
+<tr><td>pending_with_business</td><td>Jordan Lee</td><td>Sample Casualty</td><td>TX</td><td>pending</td><td>1</td><td>1</td><td>Appointment pending; 1 policy(ies) already written.</td></tr>
+<tr><td>unused</td><td>Sam Ortiz</td><td>Test Fire &amp; Marine</td><td>TX</td><td>active</td><td>0</td><td>0</td><td>No business written in the last year.</td></tr>
+<tr><td>ok</td><td>Jordan Lee</td><td>Example Mutual</td><td>TX</td><td>active</td><td>1</td><td>1</td><td></td></tr>
+<tr><td>ok</td><td>Riley Chen</td><td>Example Mutual</td><td>OK</td><td>active</td><td>1</td><td>1</td><td></td></tr>
+<tr><td>ok</td><td>Sam Ortiz</td><td>Sample Casualty</td><td>TX</td><td>active</td><td>1</td><td>1</td><td></td></tr>
+</tbody></table></div>
+<h2>Limits</h2><ul><li>Reads only the files you give it. It does not log in to your agency system, a carrier portal, a premium finance company or a bank.</li><li>Whether a producer must be appointed, and when, depends on the state and the carrier; this list shows where your files do not line up, for a person to check.</li><li>Carrier names match with words like Insurance Company ignored; writing companies inside one group stay apart.</li><li>Results returned to the AI model have client names, birth dates, driver licence numbers, addresses and other direct identifiers masked. The files written here keep the real values: keep them in a secure folder.</li><li>Not legal, tax, accounting or coverage advice. It does not bind, cancel, endorse, place or recommend coverage; a licensed person at your agency decides.</li></ul>
+<p class="mut" style="margin-top:32px">Written by a Fairpolicy agent from your files on this computer. Nothing was bound, cancelled, endorsed, sent or paid. This page contains client information: keep it in your secure folder and do not e-mail it.</p>
+</main></body></html>

@@ -1,0 +1,22 @@
+{
+  "name": "fairpolicy-license-renewals",
+  "version": "0.1.0",
+  "description": "Tracks producer and staff licences by state: expired licences, continuing education short before expiration, renewals due, and states with no setting yet. State rules are settings your agency confirms; never files a renewal.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-license-renewals#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "producer-licensing",
+    "continuing-education",
+    "ce-hours",
+    "compliance"
+  ]
+}

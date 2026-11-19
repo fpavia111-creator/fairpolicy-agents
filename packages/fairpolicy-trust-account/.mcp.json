@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-trust-account": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-trust-account@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

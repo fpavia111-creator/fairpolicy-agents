@@ -1,0 +1,22 @@
+{
+  "name": "fairpolicy-book-valuation",
+  "version": "0.1.0",
+  "description": "Summarises your book of business for a valuation conversation: commission and premium in force, mix, revenue by carrier and line, largest clients, and concentration and missing-data figures to watch. Not an appraisal.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-book-valuation#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "book-of-business",
+    "agency-valuation",
+    "perpetuation",
+    "concentration"
+  ]
+}

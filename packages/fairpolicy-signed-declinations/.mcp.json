@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-signed-declinations": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-signed-declinations@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

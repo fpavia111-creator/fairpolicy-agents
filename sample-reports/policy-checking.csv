@@ -1,0 +1,6 @@
+status,policy_number,client,carrier,line,bound_date,coverages,bound_premium,issued_premium,issues,detail,next_step,owner,notes
+not_issued,WC-2904,Wexley Ceramics LLC,Sample Casualty,Workers Compensation,2026-10-01,1,8800,,not_issued,"bound 2026-10-01, 48 days ago, no issued policy.",Bound and no policy issued after the days: ask the carrier for the policy; the binder may be running out.,,
+coverage_reduced,HO-2901,Theodora Wexley,Example Mutual,Homeowners,2026-09-20,2,2000,2000,coverage_reduced,"Dwelling limit 350000 issued, 400000 bound.","The issued policy has a lower limit, a higher deductible or a missing coverage compared with what was bound: ask the carrier to correct it, and tell the client only what a licensed person has confirmed.",,
+premium_differs,PA-2902,Theodora Wexley,Example Mutual,Personal Auto,2026-10-10,2,1400,1520,premium_differs,"1520 issued, 1400 bound (120).",The issued premium differs from the bound premium: confirm with the carrier before billing the client.,,
+dates_differ,CGL-2903,Wexley Ceramics LLC,Demo Indemnity,General Liability,2026-09-25,1,3200,3200,dates_differ,"issued 2026-10-15 to 2027-10-15, bound 2026-10-01 to 2027-10-01.",The policy dates differ from the binder: ask the carrier to correct them.,,
+matches,BOP-2905,Roswitha Pell,Sample Casualty,Business Owners,2026-10-28,2,3500,3500,,,,,

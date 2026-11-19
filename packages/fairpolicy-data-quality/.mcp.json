@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-data-quality": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-data-quality@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

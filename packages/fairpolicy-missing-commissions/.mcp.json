@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-missing-commissions": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-missing-commissions@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Producer commission splits</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1c1a;--mut:#6b6760;--line:#e4e0d8;--ok:#1f7a4d;--bad:#b42318;--warn:#a15c07;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#161514;--fg:#ecebe8;--mut:#a29d94;--line:#34312d;--ok:#4ade80;--bad:#f87171;--warn:#fbbf24;--card:#1f1e1c}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,Segoe UI,"Hiragino Sans","Yu Gothic UI","Microsoft YaHei","PingFang SC","Malgun Gothic","Apple SD Gothic Neo","Noto Sans CJK",sans-serif}
+main{max-width:1040px;margin:0 auto;padding:24px 16px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}
+.mut{color:var(--mut)}.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+table{border-collapse:collapse;width:100%;background:var(--card);font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{font-weight:600}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tiles{display:flex;gap:12px;flex-wrap:wrap}.tile{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:120px}
+.tile b{display:block;font-size:22px}code{font-size:13px;overflow-wrap:anywhere}pre{overflow-x:auto}
+.wrap{overflow-x:auto;max-width:100%}svg,img{max-width:100%;height:auto}figure{margin:16px 0}p,li,h1,h2,h3{overflow-wrap:break-word}
+</style></head><body><main>
+<h1>Producer commission splits</h1>
+<p class="mut">8 policy-producer share(s): 921.6 paid against 960.3 due; 1 underpaid by 84, 1 not paid (126), 1 overpaid by 16.5, 1 paid to the wrong producer (117); 1 house-account line(s) set aside.</p>
+
+<h2>By status</h2><div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">Count</th></tr></thead><tbody>
+<tr><td>underpaid</td><td>1</td></tr>
+<tr><td>not_paid</td><td>1</td></tr>
+<tr><td>wrong_producer</td><td>1</td></tr>
+<tr><td>overpaid</td><td>1</td></tr>
+<tr><td>no_split_rate</td><td>1</td></tr>
+<tr><td>ok</td><td>3</td></tr>
+</tbody></table></div>
+<h2>By producer</h2><div class="wrap"><table><thead><tr><th scope="col">Producer</th><th scope="col">Policies</th><th scope="col">Expected</th><th scope="col">Paid</th><th scope="col">Difference</th></tr></thead><tbody>
+<tr><td>Riley Chen</td><td>1</td><td>126</td><td>0</td><td>-126</td></tr>
+<tr><td>Sam Ortiz</td><td>2</td><td>646.8</td><td>562.8</td><td>-84</td></tr>
+<tr><td>Avery Stone</td><td>1</td><td>0</td><td>37.8</td><td>37.8</td></tr>
+<tr><td>Jordan Lee</td><td>4</td><td>187.5</td><td>321</td><td>133.5</td></tr>
+</tbody></table></div>
+<h2>All rows (8)</h2>
+<div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">Policy</th><th scope="col">Producer</th><th scope="col">kind</th><th scope="col">split pct</th><th scope="col">Commission</th><th scope="col">Expected</th><th scope="col">Paid</th><th scope="col">Difference</th><th scope="col">Detail</th></tr></thead><tbody>
+<tr><td>underpaid</td><td>BOP-4003</td><td>Sam Ortiz</td><td>new</td><td>50</td><td>840</td><td>420</td><td>336</td><td>-84</td><td>50% of 840 new commission is 420; paid 336.</td></tr>
+<tr><td>not_paid</td><td>WC-4004</td><td>Riley Chen</td><td>renewal</td><td>25</td><td>1260</td><td>126</td><td>0</td><td>-126</td><td>25% of 40% of 1260 renewal commission is 126; paid 0.</td></tr>
+<tr><td>wrong_producer</td><td>CGL-4005</td><td>Jordan Lee</td><td>new</td><td></td><td></td><td>0</td><td>117</td><td>117</td><td>Jordan Lee was paid 117 but is not a producer of record on this policy (House).</td></tr>
+<tr><td>overpaid</td><td>HO-4002</td><td>Jordan Lee</td><td>renewal</td><td>25</td><td>330</td><td>82.5</td><td>99</td><td>16.5</td><td>25% of 330 renewal commission is 82.5; paid 99.</td></tr>
+<tr><td>no_split_rate</td><td>PA-4006</td><td>Avery Stone</td><td>renewal</td><td></td><td>151.2</td><td></td><td>37.8</td><td></td><td>Avery Stone is not in the split schedule.</td></tr>
+<tr><td>ok</td><td>PA-4001</td><td>Jordan Lee</td><td>new</td><td>40</td><td>300</td><td>120</td><td>120</td><td>0</td><td></td></tr>
+<tr><td>ok</td><td>UMB-4007</td><td>Jordan Lee</td><td>renewal</td><td>25</td><td>-60</td><td>-15</td><td>-15</td><td>0</td><td></td></tr>
+<tr><td>ok</td><td>WC-4004</td><td>Sam Ortiz</td><td>renewal</td><td>30</td><td>1260</td><td>226.8</td><td>226.8</td><td>0</td><td></td></tr>
+</tbody></table></div>
+<h2>Limits</h2><ul><li>Reads only the files you give it. It does not log in to your agency system, a carrier portal, a premium finance company or a bank.</li><li>Shares are worked out from the commission in the received file and your split schedule; draws, bonuses, advances and payroll taxes are not part of it.</li><li>Results returned to the AI model have client names, birth dates, driver licence numbers, addresses and other direct identifiers masked. The files written here keep the real values: keep them in a secure folder.</li><li>Not legal, tax, accounting or coverage advice. It does not bind, cancel, endorse, place or recommend coverage; a licensed person at your agency decides.</li></ul>
+<p class="mut" style="margin-top:32px">Written by a Fairpolicy agent from your files on this computer. Nothing was bound, cancelled, endorsed, sent or paid. This page contains client information: keep it in your secure folder and do not e-mail it.</p>
+</main></body></html>

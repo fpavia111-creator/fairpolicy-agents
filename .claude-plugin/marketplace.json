@@ -1,491 +1,487 @@
 {
-  "name": "fairpolicy-medical-billing",
+  "name": "fairpolicy-insurance-agency",
   "owner": {
-    "name": "Fairpolicy"
+    "name": "Mythos Machines"
   },
   "metadata": {
-    "description": "Thirty medical billing agents. Each reads your exported files (835, 837, 999, 277CA, 271, 278 or spreadsheets), masks patient identifiers before results reach the model, writes worklists locally and waits for a named person before anything is sent, refunded or paid."
+    "description": "Fairpolicy: thirty insurance agency back-office agents. Each reads files your agency system or carriers already export (policy lists, commission statements, receivables, licences), masks client identifiers before results reach the model, writes worklists locally and waits for a named person before anything is sent. None binds, cancels, endorses or advises on coverage."
   },
   "plugins": [
     {
-      "name": "aloe-of-statements",
-      "source": "./packages/aloe-of-statements",
-      "description": "Plans each patient statement cycle: who gets a first, second or final statement, who is held (insurance still pending, payment plan, dispute, estate or bankruptcy, bad address, small balance, recent payment) and who reaches collections review, and drafts a plain-language statement for a person to send. Patient identifiers are masked before results reach the model.",
-      "version": "0.2.0",
-      "category": "medical-billing",
+      "name": "fairpolicy-additional-insureds",
+      "source": "./packages/fairpolicy-additional-insureds",
+      "description": "Sorts additional insured, waiver of subrogation and primary/non-contributory requests: covered by the policy, needing a carrier endorsement, waiting on the carrier, or open too long. Never issues a certificate.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
       "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "patient-statements",
-        "self-pay",
-        "dunning",
-        "patient-balance"
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "additional-insured",
+        "waiver-of-subrogation",
+        "certificates",
+        "endorsements"
       ]
     },
     {
-      "name": "angelica-of-prices",
-      "source": "./packages/angelica-of-prices",
-      "description": "Hospital price transparency without the fines: checks a machine-readable file against the CMS v3.0 tall CSV template (headers, attestation, code pairs, the twelve conditional rules), compares it with the chargemaster, and computes the median, 10th and 90th percentile allowed amounts and counts from 835s the CMS way.",
-      "version": "0.2.0",
-      "category": "medical-billing",
+      "name": "fairpolicy-book-valuation",
+      "source": "./packages/fairpolicy-book-valuation",
+      "description": "Summarises your book of business for a valuation conversation: commission and premium in force, mix, revenue by carrier and line, largest clients, and concentration and missing-data figures to watch. Not an appraisal.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
       "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "price-transparency",
-        "hospital",
-        "cms",
-        "mrf"
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "book-of-business",
+        "agency-valuation",
+        "perpetuation",
+        "concentration"
       ]
     },
     {
-      "name": "anise-of-dental",
-      "source": "./packages/anise-of-dental",
-      "description": "Dental claims that go out right: checks tooth numbers, surfaces against the restoration code, anterior and posterior codes, quadrants for scaling and root planing, frequency limits against the patient's history, extracted teeth, crown replacement windows and the attachments payers ask for, from an 837D or a practice export.",
-      "version": "0.2.0",
-      "category": "medical-billing",
+      "name": "fairpolicy-carrier-appointments",
+      "source": "./packages/fairpolicy-carrier-appointments",
+      "description": "Matches each producer's business to their carrier appointments by state: business with no appointment, after termination or while pending, and appointments unused for a year. Never applies for or ends an appointment.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
       "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "dental",
-        "cdt",
-        "837d"
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "carrier-appointments",
+        "producer-licensing",
+        "compliance"
       ]
     },
     {
-      "name": "basil-of-eligibility",
-      "source": "./packages/basil-of-eligibility",
-      "description": "Reads 271 eligibility responses against the appointment list and flags visits with inactive coverage, member not found, plan ending before the visit, another payer primary or no response, with copay and deductible to collect.",
-      "version": "0.2.0",
-      "category": "medical-billing",
+      "name": "fairpolicy-carrier-payables",
+      "source": "./packages/fairpolicy-carrier-payables",
+      "description": "Reconciles a carrier's agency-bill account current with the payables in your agency system: amounts that differ, items on one side only, and items past due. Drafts a reconciliation note; never pays the carrier.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
       "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "271",
-        "eligibility",
-        "verification",
-        "front-desk"
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "carrier-payables",
+        "account-current",
+        "agency-bill",
+        "reconciliation"
       ]
     },
     {
-      "name": "borage-of-estimates",
-      "source": "./packages/borage-of-estimates",
-      "description": "Keeps good faith estimates for self-pay and uninsured patients on time: counts business days from scheduling or request to each estimate's due date, finds missing and late estimates, compares final bills with estimates per provider against the 400-dollar dispute threshold, and drafts an estimate for a person to send. Patient identifiers are masked before results reach the model.",
-      "version": "0.2.0",
-      "category": "medical-billing",
+      "name": "fairpolicy-certificate-limits",
+      "source": "./packages/fairpolicy-certificate-limits",
+      "description": "Checks every certificate of insurance you issued against the policy behind it: not in force, limits overstated, additional insured or waiver shown without the endorsement, wrong dates, unknown policy. Never issues or sends a certificate.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
       "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "good-faith-estimate",
-        "no-surprises-act",
-        "self-pay",
-        "price-estimate"
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "certificates-of-insurance",
+        "coi",
+        "additional-insured",
+        "waiver-of-subrogation"
       ]
     },
     {
-      "name": "caraway-of-anesthesia",
-      "source": "./packages/caraway-of-anesthesia",
-      "description": "Anesthesia claims priced and paired right: computes base, time, physical-status and qualifying-circumstance units, checks start and stop times, AA, QK, QY, QX, QZ and AD against how many rooms the anesthesiologist covered at once, pairs each CRNA claim with its medical direction, and flags overlaps.",
-      "version": "0.2.0",
-      "category": "medical-billing",
+      "name": "fairpolicy-commercial-renewals",
+      "source": "./packages/fairpolicy-commercial-renewals",
+      "description": "Builds a renewal timeline for every commercial policy expiring in the next 150 days and lists overdue milestones, milestones due this week and renewals on track. Never sends a submission or binds.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
       "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "anesthesia",
-        "crna",
-        "asa",
-        "medical-direction"
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "commercial-renewals",
+        "renewal-timeline",
+        "submissions",
+        "loss-runs"
       ]
     },
     {
-      "name": "chamomile-of-ar",
-      "source": "./packages/chamomile-of-ar",
-      "description": "Chamomile of A/R: ages open insurance balances by payer and bucket, warns before timely-filing limits pass, finds claims filed late or with no payer response, and builds the follow-up call queue by dollars and age.",
-      "version": "0.2.0",
-      "category": "medical-billing",
+      "name": "fairpolicy-commission-chargebacks",
+      "source": "./packages/fairpolicy-commission-chargebacks",
+      "description": "For every cancelled policy, works out the commission chargeback on the unearned premium, compares it with what the carrier took back, and flags overcharges, chargebacks still to come, chargebacks with no cancellation and producer shares not reversed. Never posts, pays or sends.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
       "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "chargebacks",
+        "cancellations",
+        "unearned-premium",
+        "producer-commission"
+      ]
+    },
+    {
+      "name": "fairpolicy-commission-statements",
+      "source": "./packages/fairpolicy-commission-statements",
+      "description": "Checks every line of your carriers' commission statements against the commission you expect on that policy (your schedule by carrier, line and new or renewal), and lists underpaid, overpaid, duplicate and unmatched lines. Drafts a commission inquiry; never posts or sends.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "commissions",
+        "commission-statements",
+        "direct-bill",
+        "reconciliation"
+      ]
+    },
+    {
+      "name": "fairpolicy-contingency-bonus",
+      "source": "./packages/fairpolicy-contingency-bonus",
+      "description": "Reads carrier experience reports against each carrier's contingency or profit-sharing grid: tier met, estimated bonus, premium needed for the next tier, loss headroom, and bonuses received below the estimate. Never moves business.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "contingency",
+        "profit-sharing",
+        "carrier-bonus",
+        "loss-ratio"
+      ]
+    },
+    {
+      "name": "fairpolicy-cross-sell",
+      "source": "./packages/fairpolicy-cross-sell",
+      "description": "Groups active policies by client and lists one-line accounts and line gaps your agency looks for, by producer. A review list for licensed staff; never contacts a client or recommends coverage.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "cross-sell",
+        "monoline",
+        "account-rounding",
+        "book-of-business"
+      ]
+    },
+    {
+      "name": "fairpolicy-data-quality",
+      "source": "./packages/fairpolicy-data-quality",
+      "description": "Checks every active policy for the data that breaks downloads, renewals and certificates: wrong dates, no carrier or premium, missing or invalid VINs, missing address, ZIP or contact, no producer or account manager. Never edits your agency system.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "data-quality",
+        "vin",
+        "agency-management-system",
+        "clean-up"
+      ]
+    },
+    {
+      "name": "fairpolicy-direct-agency-bill",
+      "source": "./packages/fairpolicy-direct-agency-bill",
+      "description": "Compares how each policy is coded (agency bill or direct bill) with how it is really billed, and flags clients who may be billed twice. Never changes a policy or an invoice.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "direct-bill",
+        "agency-bill",
+        "billing",
+        "reconciliation"
+      ]
+    },
+    {
+      "name": "fairpolicy-download-errors",
+      "source": "./packages/fairpolicy-download-errors",
+      "description": "Reads your carrier download log: failed transactions, transactions unmatched in suspense, and carriers with no successful download for a week. Never re-runs a download or edits a policy.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "carrier-download",
+        "ivans",
+        "al3",
+        "suspense"
+      ]
+    },
+    {
+      "name": "fairpolicy-duplicate-clients",
+      "source": "./packages/fairpolicy-duplicate-clients",
+      "description": "Finds client records that are the same person or business (exact, likely and possible duplicates) and different people who share an address or contact. Never merges or deletes a record.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "duplicate-clients",
+        "deduplication",
+        "data-quality",
+        "agency-management-system"
+      ]
+    },
+    {
+      "name": "fairpolicy-lapsed-policies",
+      "source": "./packages/fairpolicy-lapsed-policies",
+      "description": "Finds policies cancelled, lapsed or expired in the last 90 days: non-payment cancellations still inside a reinstatement window, clients with no replacement policy, and policies shown active but past expiration. Never reinstates or advises.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "lapsed-policies",
+        "cancellations",
+        "non-payment",
+        "retention"
+      ]
+    },
+    {
+      "name": "fairpolicy-license-renewals",
+      "source": "./packages/fairpolicy-license-renewals",
+      "description": "Tracks producer and staff licences by state: expired licences, continuing education short before expiration, renewals due, and states with no setting yet. State rules are settings your agency confirms; never files a renewal.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "producer-licensing",
+        "continuing-education",
+        "ce-hours",
+        "compliance"
+      ]
+    },
+    {
+      "name": "fairpolicy-loss-runs",
+      "source": "./packages/fairpolicy-loss-runs",
+      "description": "Summarises carrier loss runs by account over five policy years: claims, incurred, loss ratio, large losses and frequency, year by year. Reads the loss runs you have; never requests them or judges a claim.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "loss-runs",
+        "claims-history",
+        "loss-ratio",
+        "commercial-renewals"
+      ]
+    },
+    {
+      "name": "fairpolicy-missing-commissions",
+      "source": "./packages/fairpolicy-missing-commissions",
+      "description": "Finds policies you wrote or renewed that never showed up on a carrier commission statement, and the ones paid only on endorsements, with the commission you expected on each. Drafts a request to the carrier; never posts or sends.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "missing-commissions",
+        "commission-statements",
+        "direct-bill"
+      ]
+    },
+    {
+      "name": "fairpolicy-open-claims",
+      "source": "./packages/fairpolicy-open-claims",
+      "description": "Ages open claims: losses with no carrier claim number, claims with no update for weeks, claims open on policies renewing soon and claims open a long time. Never files, settles or comments on a claim.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "claims",
+        "open-claims",
+        "claims-follow-up",
+        "adjuster"
+      ]
+    },
+    {
+      "name": "fairpolicy-pending-endorsements",
+      "source": "./packages/fairpolicy-pending-endorsements",
+      "description": "Follows every policy change a client asked for: not sent to the carrier, sent and not confirmed, or confirmed with a premium change that was never billed. Never sends a change or confirms one to a client.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "endorsements",
+        "policy-changes",
+        "service",
+        "agency-bill"
+      ]
+    },
+    {
+      "name": "fairpolicy-policy-checking",
+      "source": "./packages/fairpolicy-policy-checking",
+      "description": "Checks each issued policy against what was bound, coverage by coverage: missing coverages, lower limits, higher deductibles, different premium or dates, and binders with nothing issued. Never binds or endorses.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "policy-checking",
+        "binders",
+        "errors-and-omissions",
+        "coverage-review"
+      ]
+    },
+    {
+      "name": "fairpolicy-premium-finance",
+      "source": "./packages/fairpolicy-premium-finance",
+      "description": "Watches premium finance agreements: notices of intent to cancel, installments past due or due soon, agreements not funded, and funding not passed on to the carrier. Never pays, reinstates or cancels.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "premium-finance",
+        "finance-agreements",
+        "notice-of-intent-to-cancel"
+      ]
+    },
+    {
+      "name": "fairpolicy-producer-retention",
+      "source": "./packages/fairpolicy-producer-retention",
+      "description": "Works out retention by producer, line and carrier from your policy terms, by count and premium, with the lost policies and their reasons. Never contacts a client.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "retention",
+        "producer",
+        "book-of-business",
+        "renewals"
+      ]
+    },
+    {
+      "name": "fairpolicy-producer-splits",
+      "source": "./packages/fairpolicy-producer-splits",
+      "description": "Works out each producer's share of the commission the agency received (new and renewal percents, shared policies, house accounts) and compares it with the producer statement. Never changes producer pay.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "producer-commission",
+        "commission-splits",
+        "producer-pay"
+      ]
+    },
+    {
+      "name": "fairpolicy-receivables-aging",
+      "source": "./packages/fairpolicy-receivables-aging",
+      "description": "Ages agency-bill receivables by client and producer, flags premiums the agency already paid the carrier but has not collected, and credit balances owed back to clients. Drafts a reminder; never sends, charges or cancels.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "receivables",
         "accounts-receivable",
-        "aging",
-        "timely-filing",
-        "follow-up"
+        "agency-bill",
+        "aging"
       ]
     },
     {
-      "name": "clover-of-charges",
-      "source": "./packages/clover-of-charges",
-      "description": "Matches completed visits to charges: finds visits with no charge, charges with no visit or on a cancelled one, late charge entry, missing expected codes, and E/M level mix by provider against peers. Patient identifiers are masked before results reach the model.",
-      "version": "0.2.0",
-      "category": "medical-billing",
+      "name": "fairpolicy-renewal-remarket",
+      "source": "./packages/fairpolicy-renewal-remarket",
+      "description": "Lists renewals coming due with no renewal review logged, the ones expiring soon with nothing done, and renewals that go up with no remarket logged. Never quotes, binds or recommends a carrier.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
       "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "charge-capture",
-        "charge-lag",
-        "em-levels"
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "renewals",
+        "remarket",
+        "expiration-list",
+        "account-review"
       ]
     },
     {
-      "name": "cumin-of-dme",
-      "source": "./packages/cumin-of-dme",
-      "description": "DME claims and rentals kept straight: checks rental and purchase modifiers, the capped-rental month (KH, KI, KJ) and the 13-month cap, oxygen months, right and left on paired items, prior authorization, the order before delivery and units, and tracks every rental to its next modifier.",
-      "version": "0.2.0",
-      "category": "medical-billing",
+      "name": "fairpolicy-return-premiums",
+      "source": "./packages/fairpolicy-return-premiums",
+      "description": "Follows return premiums on agency-bill policies from the carrier's credit to the client: refunds overdue or due, refund checks not cleared, and direct-bill returns the carrier pays. Never writes a check or moves money.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
       "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "dme",
-        "dmepos",
-        "rentals",
-        "hcpcs"
-      ]
-    },
-    {
-      "name": "dill-of-modifiers",
-      "source": "./packages/dill-of-modifiers",
-      "description": "Checks the modifiers on each claim line before it goes out: missing 25 on an E/M with a procedure, 25 or 57 on the wrong code, conflicting pairs, 59 with X modifiers, missing laterality, bilateral units, repeat modifiers with no first service, pricing order, and payer rules. Patient identifiers are masked before results reach the model.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "modifiers",
-        "modifier-25",
-        "modifier-59",
-        "laterality"
-      ]
-    },
-    {
-      "name": "fennel-of-remits",
-      "source": "./packages/fennel-of-remits",
-      "description": "Matches 835 remittances to bank deposits by trace number, then amount and date, explains provider-level adjustments (recoveries, interest, levies), and drafts the payer inquiry for money without a remittance or a remittance without money.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "835",
-        "era",
-        "eft",
-        "reconciliation",
-        "plb"
-      ]
-    },
-    {
-      "name": "ginger-of-edits",
-      "source": "./packages/ginger-of-edits",
-      "description": "Checks claims against the CMS NCCI procedure-to-procedure edits and medically unlikely edits files you download, by date of service, with the modifier indicator, bypass modifiers and MUE adjudication indicator, plus payer pair edits your team adds.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "ncci",
-        "mue",
-        "ptp",
-        "bundling",
-        "coding"
-      ]
-    },
-    {
-      "name": "hyssop-of-fees",
-      "source": "./packages/hyssop-of-fees",
-      "description": "Prices each code on your fee schedule from the Medicare RVU and GPCI files (RVU x GPCI x conversion factor), finds fees below what payers would allow (money left on the table when payers pay the lesser of charge or allowed), below your target percent of Medicare, or with no Medicare price, and drafts a fee update for a person to approve.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "fee-schedule",
-        "chargemaster",
-        "rvu",
-        "gpci",
-        "pfs"
-      ]
-    },
-    {
-      "name": "laurel-of-contracts",
-      "source": "./packages/laurel-of-contracts",
-      "description": "Compares what each payer pays per code against Medicare and each other, weighted by your volume, flags rates below your floor, keeps a calendar of contract end dates and notice deadlines (auto-renewal traps), and drafts a rate request for a person to send.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "payer-contracts",
-        "rates",
-        "renegotiation",
-        "contract-renewal"
-      ]
-    },
-    {
-      "name": "lavender-of-credentialing",
-      "source": "./packages/lavender-of-credentialing",
-      "description": "Keeps provider credentialing and payer enrollment on track: license, DEA, board and malpractice expirations, CAQH re-attestation every 120 days, NPI check digits, enrollments pending too long, denied or not yet effective, and revalidation dates, with a work list and a calendar (.ics) of every due date.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "credentialing",
-        "enrollment",
-        "caqh",
-        "revalidation",
-        "ics"
-      ]
-    },
-    {
-      "name": "lovage-of-telehealth",
-      "source": "./packages/lovage-of-telehealth",
-      "description": "Telehealth claims coded the way each payer wants: checks place of service 02 or 10 against where the patient was, the 95, GT, 93 or FQ modifiers by payer, audio-only against video codes, deleted phone codes, the provider's license in the patient's state, consent for virtual check-ins, and same-day in-person visits.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "telehealth",
-        "virtual-care",
-        "pos"
-      ]
-    },
-    {
-      "name": "mallow-of-kpis",
-      "source": "./packages/mallow-of-kpis",
-      "description": "Revenue cycle KPIs from your own claims and remittances: denial rate, first-pass rate, net collection, days to pay, days in A/R and unanswered claims, by payer, month and provider, against the targets you set.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "kpi",
-        "dashboard",
-        "denial-rate",
-        "days-in-ar",
-        "net-collection"
-      ]
-    },
-    {
-      "name": "marjoram-of-registration",
-      "source": "./packages/marjoram-of-registration",
-      "description": "Checks patient registration and insurance records before the visit: member id shape per payer and Medicare MBI format, missing or impossible birth dates, subscriber and guarantor gaps, ended coverage, the same plan entered twice, and likely duplicate charts. Patient identifiers are masked before results reach the model.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "registration",
-        "demographics",
-        "mbi",
-        "duplicates"
-      ]
-    },
-    {
-      "name": "mint-of-authorizations",
-      "source": "./packages/mint-of-authorizations",
-      "description": "Matches claims or scheduled services to your prior-authorization log and 278 responses, and flags services with no authorization, expired or not-yet-valid dates, codes not on the authorization, units used up, pended or denied reviews, and authorizations about to run out.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "prior-authorization",
-        "278",
-        "utilization-review"
-      ]
-    },
-    {
-      "name": "nettle-of-audits",
-      "source": "./packages/nettle-of-audits",
-      "description": "Coding audits without the spreadsheet: draws a reproducible random sample of charges per provider, gives the auditor a worksheet, then scores the results (agree, upcoded, downcoded, wrong code, modifier or diagnosis error, not supported) with accuracy and dollar impact by provider.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "coding-audit",
-        "compliance",
-        "e-m"
-      ]
-    },
-    {
-      "name": "rosemary-of-appeals",
-      "source": "./packages/rosemary-of-appeals",
-      "description": "Drafts a first-level appeal for a denied claim with quotes from the payer policies you supply (file and line), tracks every appeal against its filing deadline and the payer's response time, and never sends anything itself.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "appeals",
-        "denials",
-        "payer-policy"
-      ]
-    },
-    {
-      "name": "sage-of-claims",
-      "source": "./packages/sage-of-claims",
-      "description": "Scrubs 837 claims (or claim exports) before they go out, catching the errors payers reject on: NPIs, payer and member ids, dates, totals, codes, modifiers, diagnosis pointers, place of service, corrected-claim references and prior authorizations.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "837",
-        "claim-scrubber",
-        "clean-claims",
-        "npi"
-      ]
-    },
-    {
-      "name": "savory-of-plans",
-      "source": "./packages/savory-of-plans",
-      "description": "Tracks patient payment plans against your policy: installments due after a grace period, missed payments and plans to review for default, plans paid off or ahead, monthly amounts and terms outside your policy, plan options for a new balance, and a draft plan agreement for a person to send. Patient identifiers are masked before results reach the model.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "payment-plans",
-        "installments",
-        "patient-financing"
-      ]
-    },
-    {
-      "name": "sorrel-of-payers",
-      "source": "./packages/sorrel-of-payers",
-      "description": "Scores each payer from your 835s and claim submissions: days to pay, denial rate and top denial reasons, share of billed paid, reversals, and a month-by-month trend, against your targets. Patient identifiers are masked before results reach the model.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "payer-scorecard",
-        "days-to-pay",
-        "denial-rate"
-      ]
-    },
-    {
-      "name": "tansy-of-credits",
-      "source": "./packages/tansy-of-credits",
-      "description": "Works the credit balance report: tells patient credits from payer overpayments, counts days against each payer's refund deadline (60 days from identification for Medicare by default), finds credits that should go to an open balance first or are nearing unclaimed-property age, and drafts each refund for a person to approve. Patient identifiers are masked before results reach the model.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "credit-balances",
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "return-premium",
         "refunds",
-        "overpayments",
+        "agency-bill",
         "unclaimed-property"
       ]
     },
     {
-      "name": "tarragon-of-labs",
-      "source": "./packages/tarragon-of-labs",
-      "description": "Lab claims that get paid: checks the CLIA number and certificate (QW on waived tests, nothing outside a waiver), finds panel components billed one by one or with their panel, venipuncture more than once a day, repeats without 91, diagnoses that do not support a test, and tests ordered more often than your rules allow.",
-      "version": "0.2.0",
-      "category": "medical-billing",
+      "name": "fairpolicy-signed-declinations",
+      "source": "./packages/fairpolicy-signed-declinations",
+      "description": "Checks each active policy file for the signed documents your agency requires: applications, UM/UIM rejections, flood offers and declinations of coverage offered. Lists what is missing or unsigned; never sends forms or advises on coverage.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
       "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "lab",
-        "clia",
-        "panels"
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "errors-and-omissions",
+        "e-and-o",
+        "declinations",
+        "um-uim",
+        "file-review"
       ]
     },
     {
-      "name": "thyme-of-underpayments",
-      "source": "./packages/thyme-of-underpayments",
-      "description": "Compares what payers allowed on each 835 line with your contract (fee schedule, percent of Medicare or percent of charge, with modifier and multiple-procedure rules) and drafts the reprocessing request for a person to send.",
-      "version": "0.2.0",
-      "category": "medical-billing",
+      "name": "fairpolicy-trust-account",
+      "source": "./packages/fairpolicy-trust-account",
+      "description": "Reconciles the premium trust account: bank balance against premiums collected and owed to carriers, unexpected withdrawals, commission moved beyond what was earned, and remittances overdue or due soon. Never moves money.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
       "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "835",
-        "underpayments",
-        "contracts",
-        "fee-schedule"
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "premium-trust-account",
+        "trust-accounting",
+        "agency-bill",
+        "reconciliation"
       ]
     },
     {
-      "name": "verbena-of-rejects",
-      "source": "./packages/verbena-of-rejects",
-      "description": "Reads 999 and 277CA acknowledgements, ties each syntax error to the claim and segment in the 837 you sent, lists front-end rejections with what to fix, and flags claims that were never acknowledged.",
-      "version": "0.2.0",
-      "category": "medical-billing",
+      "name": "fairpolicy-workers-comp-audits",
+      "source": "./packages/fairpolicy-workers-comp-audits",
+      "description": "Follows premium audits on workers comp and other auditable policies: audits not started, large additional premium, returns due, and payroll far from the estimate. Never disputes an audit or contacts the carrier.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
       "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "999",
-        "277ca",
-        "rejections",
-        "acknowledgements"
-      ]
-    },
-    {
-      "name": "vervain-of-onboarding",
-      "source": "./packages/vervain-of-onboarding",
-      "description": "Go-live readiness for a new practice: checks the billing NPI, tax ID and billing address, the provider roster, every payer's EDI, ERA, EFT and credentialing enrollment, payer IDs and the fee schedule against the charges you will bill, and lists the blockers before go-live.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "onboarding",
-        "go-live",
-        "enrollment",
-        "era",
-        "eft",
-        "edi",
-        "credentialing",
-        "setup"
-      ]
-    },
-    {
-      "name": "yarrow-of-denials",
-      "source": "./packages/yarrow-of-denials",
-      "description": "Sorts 835 denials by reason code and root cause into a worklist with the team and next step for each, learns payer-specific code meanings a person accepts, and never resubmits or appeals on its own.",
-      "version": "0.2.0",
-      "category": "medical-billing",
-      "keywords": [
-        "medical-billing",
-        "revenue-cycle",
-        "healthcare",
-        "denials",
-        "835",
-        "era",
-        "carc",
-        "rarc"
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "workers-compensation",
+        "premium-audit",
+        "payroll",
+        "commercial-lines"
       ]
     }
   ]

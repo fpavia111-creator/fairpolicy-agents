@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-book-valuation": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-book-valuation@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

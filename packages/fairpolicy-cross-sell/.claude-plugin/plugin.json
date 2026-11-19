@@ -1,0 +1,22 @@
+{
+  "name": "fairpolicy-cross-sell",
+  "version": "0.1.0",
+  "description": "Groups active policies by client and lists one-line accounts and line gaps your agency looks for, by producer. A review list for licensed staff; never contacts a client or recommends coverage.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-cross-sell#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "cross-sell",
+    "monoline",
+    "account-rounding",
+    "book-of-business"
+  ]
+}

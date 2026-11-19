@@ -1,0 +1,7 @@
+status,policy_number,client,carrier,bill_type,return_amount,credited_date,days_since_credit,refunded_date,check_number,cleared_date,applied_to,csr,detail,next_step,owner,notes
+refund_overdue,PA-2801,Willa Carrow-Benn,Example Mutual,agency,412.5,2026-09-15,64,,,,,Casey Park,412.5 credited by the carrier 2026-09-15 (64 days ago); not refunded.,The carrier credited this return premium to the agency and the client has not received it: refund or apply it now.,,
+check_uncashed,BOP-2803,Carrow Benn Antiques LLC,Sample Casualty,agency,960,2026-06-01,170,2026-06-10,1201,,,Drew Kim,Check 1201 for 960 sent 2026-06-10 (161 days); not cleared.,"The refund check has not cleared: contact the client; uncashed money may have to be reported under your state's unclaimed property rules, which your accountant confirms.",,
+refund_due,HO-2802,Willa Carrow-Benn,Example Mutual,agency,180,2026-11-10,8,,,,,Casey Park,180 credited by the carrier 2026-11-10 (8 days ago); not refunded.,Refund within your agency's usual days.,,
+carrier_refunds,WC-2804,Carrow Benn Antiques LLC,Sample Casualty,direct,1500,2026-10-05,44,,,,,Drew Kim,Direct bill.,Direct bill: the carrier refunds the client; nothing for the agency to send.,,
+refunded,CGL-2805,Osric Lanyon,Demo Indemnity,agency,275,2026-10-01,48,2026-10-05,1205,2026-10-12,,Drew Kim,Refunded 2026-10-05.,,,
+refunded,PA-2806,Osric Lanyon,Example Mutual,agency,140,2026-10-20,29,,,,INV-9031,Casey Park,Applied to INV-9031.,,,

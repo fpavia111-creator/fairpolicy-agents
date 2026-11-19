@@ -1,0 +1,23 @@
+{
+  "name": "fairpolicy-signed-declinations",
+  "version": "0.1.0",
+  "description": "Checks each active policy file for the signed documents your agency requires: applications, UM/UIM rejections, flood offers and declinations of coverage offered. Lists what is missing or unsigned; never sends forms or advises on coverage.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-signed-declinations#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "errors-and-omissions",
+    "e-and-o",
+    "declinations",
+    "um-uim",
+    "file-review"
+  ]
+}

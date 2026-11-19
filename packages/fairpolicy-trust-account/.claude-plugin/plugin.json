@@ -1,0 +1,22 @@
+{
+  "name": "fairpolicy-trust-account",
+  "version": "0.1.0",
+  "description": "Reconciles the premium trust account: bank balance against premiums collected and owed to carriers, unexpected withdrawals, commission moved beyond what was earned, and remittances overdue or due soon. Never moves money.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-trust-account#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "premium-trust-account",
+    "trust-accounting",
+    "agency-bill",
+    "reconciliation"
+  ]
+}

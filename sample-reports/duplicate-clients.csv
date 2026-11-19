@@ -1,0 +1,5 @@
+status,pair,client_id,client,other_client_id,other_client,name_similarity,shared,detail,next_step,owner,notes
+exact_duplicate,D-001,C3001,Imogen Harcastle,C3002,Imogen Harcastle,1,"name, e-mail, address","Shared: name, e-mail, address.","The same client twice: a person merges the records in your agency system (policies, notes and attachments move with them).",,
+likely_duplicate,D-002,C3003,Bartholomew Quist,C3004,Bartholemew Quist,0.97,"similar name (97%), phone","Shared: similar name (97%), phone.",Probably the same client spelled differently: check and merge.,,
+possible_duplicate,D-003,C3006,Delphina Marrow,C3007,Delphina Marrow-Keene,1,similar name (100%),Shared: similar name (100%).,Similar names only: check before merging.,,
+same_household,D-004,C3006,Delphina Marrow,C3008,Tobias Marrow,0.76,address,Shared: address.,Different people at the same address or contact: link them as a household if your system supports it; do not merge.,,

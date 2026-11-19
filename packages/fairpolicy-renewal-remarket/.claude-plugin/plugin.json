@@ -1,0 +1,22 @@
+{
+  "name": "fairpolicy-renewal-remarket",
+  "version": "0.1.0",
+  "description": "Lists renewals coming due with no renewal review logged, the ones expiring soon with nothing done, and renewals that go up with no remarket logged. Never quotes, binds or recommends a carrier.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-renewal-remarket#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "renewals",
+    "remarket",
+    "expiration-list",
+    "account-review"
+  ]
+}

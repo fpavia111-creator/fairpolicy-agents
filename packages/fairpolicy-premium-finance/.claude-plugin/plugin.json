@@ -1,0 +1,21 @@
+{
+  "name": "fairpolicy-premium-finance",
+  "version": "0.1.0",
+  "description": "Watches premium finance agreements: notices of intent to cancel, installments past due or due soon, agreements not funded, and funding not passed on to the carrier. Never pays, reinstates or cancels.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-premium-finance#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "premium-finance",
+    "finance-agreements",
+    "notice-of-intent-to-cancel"
+  ]
+}

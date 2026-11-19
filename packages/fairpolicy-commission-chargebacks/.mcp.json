@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-commission-chargebacks": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-commission-chargebacks@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

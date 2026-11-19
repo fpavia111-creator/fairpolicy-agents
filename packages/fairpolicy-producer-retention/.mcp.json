@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-producer-retention": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-producer-retention@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-receivables-aging": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-receivables-aging@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

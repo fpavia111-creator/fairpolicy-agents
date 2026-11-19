@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commission statement check</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1c1a;--mut:#6b6760;--line:#e4e0d8;--ok:#1f7a4d;--bad:#b42318;--warn:#a15c07;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#161514;--fg:#ecebe8;--mut:#a29d94;--line:#34312d;--ok:#4ade80;--bad:#f87171;--warn:#fbbf24;--card:#1f1e1c}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,Segoe UI,"Hiragino Sans","Yu Gothic UI","Microsoft YaHei","PingFang SC","Malgun Gothic","Apple SD Gothic Neo","Noto Sans CJK",sans-serif}
+main{max-width:1040px;margin:0 auto;padding:24px 16px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}
+.mut{color:var(--mut)}.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+table{border-collapse:collapse;width:100%;background:var(--card);font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{font-weight:600}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tiles{display:flex;gap:12px;flex-wrap:wrap}.tile{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:120px}
+.tile b{display:block;font-size:22px}code{font-size:13px;overflow-wrap:anywhere}pre{overflow-x:auto}
+.wrap{overflow-x:auto;max-width:100%}svg,img{max-width:100%;height:auto}figure{margin:16px 0}p,li,h1,h2,h3{overflow-wrap:break-word}
+</style></head><body><main>
+<h1>Commission statement check</h1>
+<p class="mut">13 statement line(s), 3892 paid against 3089.7 expected: 2 underpaid by 307.2, 1 overpaid by 20.5; 2 possible duplicate(s), 1 not in your policy list, 1 with no expected rate.</p>
+
+<h2>By status</h2><div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">Count</th></tr></thead><tbody>
+<tr><td>underpaid</td><td>2</td></tr>
+<tr><td>possible_duplicate</td><td>2</td></tr>
+<tr><td>overpaid</td><td>1</td></tr>
+<tr><td>no_policy</td><td>1</td></tr>
+<tr><td>no_rate</td><td>1</td></tr>
+<tr><td>not_checked</td><td>1</td></tr>
+<tr><td>ok</td><td>5</td></tr>
+</tbody></table></div>
+<h2>By carrier</h2><div class="wrap"><table><thead><tr><th scope="col">Carrier</th><th scope="col">Count</th><th scope="col">Paid</th><th scope="col">Expected</th><th scope="col">short</th><th scope="col">over</th></tr></thead><tbody>
+<tr><td>Sample Casualty</td><td>3</td><td>1944</td><td>2100</td><td>252</td><td>0</td></tr>
+<tr><td>Example Mutual</td><td>7</td><td>1082.5</td><td>892.2</td><td>55.2</td><td>20.5</td></tr>
+<tr><td>Demo Indemnity</td><td>2</td><td>97.5</td><td>97.5</td><td>0</td><td>0</td></tr>
+<tr><td>Test Fire &amp; Marine</td><td>1</td><td>768</td><td>0</td><td>0</td><td>0</td></tr>
+</tbody></table></div>
+<h2>All rows (13)</h2>
+<div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">Carrier</th><th scope="col">Policy</th><th scope="col">Transaction</th><th scope="col">Premium</th><th scope="col">expected rate</th><th scope="col">Expected</th><th scope="col">Paid</th><th scope="col">Difference</th><th scope="col">Detail</th></tr></thead><tbody>
+<tr><td>underpaid</td><td>Example Mutual</td><td>PA-5521800</td><td>new</td><td>1840</td><td>15</td><td>276</td><td>220.8</td><td>-55.2</td><td>Paid 220.8 on premium 1840; 15% (schedule: Example Mutual Personal Auto new) is 276, so 55.2 short (the statement shows 12%).</td></tr>
+<tr><td>underpaid</td><td>Sample Casualty</td><td>WC-88120</td><td>new</td><td>12600</td><td>10</td><td>1260</td><td>1008</td><td>-252</td><td>Paid 1008 on premium 12600; 10% (schedule: Sample Casualty Workers Compensation new) is 1260, so 252 short (the statement shows 8%).</td></tr>
+<tr><td>possible_duplicate</td><td>Example Mutual</td><td>HO-7730288</td><td>endorsement</td><td>240</td><td>15</td><td>36</td><td>36</td><td>0</td><td>The same endorsement line for HO-7730288 (36) appears 2 times.</td></tr>
+<tr><td>possible_duplicate</td><td>Example Mutual</td><td>HO-7730288</td><td>endorsement</td><td>240</td><td>15</td><td>36</td><td>36</td><td>0</td><td>The same endorsement line for HO-7730288 (36) appears 2 times.</td></tr>
+<tr><td>overpaid</td><td>Example Mutual</td><td>UMB-9002</td><td>renewal</td><td>410</td><td>15</td><td>61.5</td><td>82</td><td>20.5</td><td>Paid 82 on premium 410; 15% (schedule: Example Mutual Personal Umbrella) is 61.5, so 20.5 more than expected.</td></tr>
+<tr><td>no_policy</td><td>Example Mutual</td><td>PA-5599999</td><td>new</td><td>1500</td><td></td><td></td><td>225</td><td></td><td>PA-5599999 is not in your policy list.</td></tr>
+<tr><td>no_rate</td><td>Test Fire &amp; Marine</td><td>CA-20441</td><td>new</td><td>6400</td><td></td><td></td><td>768</td><td></td><td>No expected rate for Test Fire &amp; Marine cauto new in the schedule, and none booked on the policy.</td></tr>
+<tr><td>not_checked</td><td>Sample Casualty</td><td>WC-88120</td><td>audit</td><td></td><td>10</td><td></td><td>96</td><td></td><td>No premium on the audit line to apply 10% to.</td></tr>
+<tr><td>ok</td><td>Sample Casualty</td><td>BOP104455</td><td>renewal</td><td>4800</td><td>17.5</td><td>840</td><td>840</td><td>0</td><td></td></tr>
+<tr><td>ok</td><td>Demo Indemnity</td><td>CGL-330017</td><td>cancellation</td><td>-3250</td><td>15</td><td>-487.5</td><td>-487.5</td><td>0</td><td></td></tr>
+<tr><td>ok</td><td>Demo Indemnity</td><td>CGL-330017</td><td>new</td><td>3900</td><td>15</td><td>585</td><td>585</td><td>0</td><td></td></tr>
+<tr><td>ok</td><td>Example Mutual</td><td>HO-7730141</td><td>renewal</td><td>2210</td><td>15</td><td>331.5</td><td>331.5</td><td>0</td><td></td></tr>
+<tr><td>ok</td><td>Example Mutual</td><td>PA-5521911</td><td>renewal</td><td>1260</td><td>12</td><td>151.2</td><td>151.2</td><td>0</td><td></td></tr>
+</tbody></table></div>
+<h2>Limits</h2><ul><li>Reads only the files you give it. It does not log in to your agency system, a carrier portal, a premium finance company or a bank.</li><li>Expected commission is your schedule&#39;s rate (or the rate booked on the policy) times the premium on the line. Carriers&#39; contingent, bonus and override payments are not on a policy line and are not checked here.</li><li>Endorsement, cancellation and audit lines use the policy&#39;s new or renewal rate when your agency system says which; otherwise the renewal rate.</li><li>Results returned to the AI model have client names, birth dates, driver licence numbers, addresses and other direct identifiers masked. The files written here keep the real values: keep them in a secure folder.</li><li>Not legal, tax, accounting or coverage advice. It does not bind, cancel, endorse, place or recommend coverage; a licensed person at your agency decides.</li></ul>
+<p class="mut" style="margin-top:32px">Written by a Fairpolicy agent from your files on this computer. Nothing was bound, cancelled, endorsed, sent or paid. This page contains client information: keep it in your secure folder and do not e-mail it.</p>
+</main></body></html>

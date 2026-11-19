@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certificates checked against policies</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1c1a;--mut:#6b6760;--line:#e4e0d8;--ok:#1f7a4d;--bad:#b42318;--warn:#a15c07;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#161514;--fg:#ecebe8;--mut:#a29d94;--line:#34312d;--ok:#4ade80;--bad:#f87171;--warn:#fbbf24;--card:#1f1e1c}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,Segoe UI,"Hiragino Sans","Yu Gothic UI","Microsoft YaHei","PingFang SC","Malgun Gothic","Apple SD Gothic Neo","Noto Sans CJK",sans-serif}
+main{max-width:1040px;margin:0 auto;padding:24px 16px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}
+.mut{color:var(--mut)}.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+table{border-collapse:collapse;width:100%;background:var(--card);font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{font-weight:600}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tiles{display:flex;gap:12px;flex-wrap:wrap}.tile{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:120px}
+.tile b{display:block;font-size:22px}code{font-size:13px;overflow-wrap:anywhere}pre{overflow-x:auto}
+.wrap{overflow-x:auto;max-width:100%}svg,img{max-width:100%;height:auto}figure{margin:16px 0}p,li,h1,h2,h3{overflow-wrap:break-word}
+</style></head><body><main>
+<h1>Certificates checked against policies</h1>
+<p class="mut">6 certificate(s), 7 policy line(s) checked: 6 certificate(s) with something the policy does not support (1 not in force, 1 limits overstated, 1 additional insured not on the policy, 1 waiver not on the policy, 1 wrong dates, 1 unknown policy).</p>
+
+<h2>By status</h2><div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">Count</th></tr></thead><tbody>
+<tr><td>policy_not_in_force</td><td>1</td></tr>
+<tr><td>limit_overstated</td><td>1</td></tr>
+<tr><td>ai_not_on_policy</td><td>1</td></tr>
+<tr><td>waiver_not_on_policy</td><td>1</td></tr>
+<tr><td>dates_wrong</td><td>1</td></tr>
+<tr><td>policy_unknown</td><td>1</td></tr>
+<tr><td>ok</td><td>1</td></tr>
+</tbody></table></div>
+<h2>All rows (7)</h2>
+<div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">certificate</th><th scope="col">holder</th><th scope="col">Policy</th><th scope="col">issued date</th><th scope="col">issues</th><th scope="col">Detail</th></tr></thead><tbody>
+<tr><td>policy_not_in_force</td><td>C-9004</td><td>Sample General Contractors</td><td>CGL-1804</td><td>2026-10-15</td><td>policy_not_in_force</td><td>Issued 2026-10-15; the policy was cancelled 2026-09-30.</td></tr>
+<tr><td>limit_overstated</td><td>C-9002</td><td>Sample General Contractors</td><td>CGL-1801</td><td>2026-10-20</td><td>limit_overstated</td><td>Certificate shows 2000000 / 2000000; the policy has 1000000 / 2000000.</td></tr>
+<tr><td>ai_not_on_policy</td><td>C-9003</td><td>Demo Property Management</td><td>CA-1803</td><td>2026-11-03</td><td>ai_not_on_policy</td><td>Additional insured shown; no additional insured endorsement on the policy.</td></tr>
+<tr><td>waiver_not_on_policy</td><td>C-9001</td><td>Example City Public Works</td><td>WC-1802</td><td>2026-10-02</td><td>waiver_not_on_policy</td><td>Waiver of subrogation shown; no waiver endorsement on the policy.</td></tr>
+<tr><td>dates_wrong</td><td>C-9005</td><td>Example City Public Works</td><td>XS-1805</td><td>2026-11-10</td><td>dates_wrong</td><td>Certificate dates 2026-03-01 to 2027-03-01; policy 2026-04-01 to 2027-04-01.</td></tr>
+<tr><td>policy_unknown</td><td>C-9006</td><td>Demo Property Management</td><td>BOP-1899</td><td>2026-11-12</td><td>policy_unknown</td><td>BOP-1899 is not in the coverage file.</td></tr>
+<tr><td>ok</td><td>C-9001</td><td>Example City Public Works</td><td>CGL-1801</td><td>2026-10-02</td><td></td><td></td></tr>
+</tbody></table></div>
+<h2>Limits</h2><ul><li>Reads only the files you give it. It does not log in to your agency system, a carrier portal, a premium finance company or a bank.</li><li>A certificate is information only and does not change the policy; this check compares what was shown with your coverage file, which must be current.</li><li>Whether an endorsement is blanket or must name the holder is in the policy wording; the coverage file says yes or no only.</li><li>Results returned to the AI model have client names, birth dates, driver licence numbers, addresses and other direct identifiers masked. The files written here keep the real values: keep them in a secure folder.</li><li>Not legal, tax, accounting or coverage advice. It does not bind, cancel, endorse, place or recommend coverage; a licensed person at your agency decides.</li></ul>
+<p class="mut" style="margin-top:32px">Written by a Fairpolicy agent from your files on this computer. Nothing was bound, cancelled, endorsed, sent or paid. This page contains client information: keep it in your secure folder and do not e-mail it.</p>
+</main></body></html>

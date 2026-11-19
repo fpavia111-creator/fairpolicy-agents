@@ -1,0 +1,8 @@
+status,person,role,state,license_number,license_type,resident,expiration_date,days_left,ce_hours,ce_required,ethics_hours,ethics_required,detail,next_step,owner,notes
+expired,Jordan Lee,Producer,OK,OK-55102,General Lines P&C,false,2026-10-31,-18,0,,0,,Expired 2026-10-31 (18 days ago).,"The licence has expired in this state: the person must not sell, solicit or negotiate there until it is reinstated. The agency principal decides what happens with their accounts.",,
+ce_short,Jordan Lee,Producer,TX,TX-90001,General Lines P&C,true,2027-01-10,53,18,24,3,3,"Expires 2027-01-10 (53 days); 18 of 24 hours, 3 of 3 ethics hours.",Continuing education hours are short of the state setting before expiration: book the courses now.,,
+renewal_due,Sam Ortiz,Producer,TX,TX-90002,General Lines P&C,true,2027-01-05,48,24,24,3,3,Expires 2027-01-05 (48 days).,Renew before the expiration date.,,
+no_state_rule,Sam Ortiz,Producer,LA,LA-31003,General Lines P&C,true,2027-08-01,256,24,,3,,No settings for LA.,"No setting for this state: add its continuing education rule, as your agency confirms it, to the settings file.",,
+current,Riley Chen,Producer,FL,FL-77004,General Lines 2-20,true,2027-01-20,63,24,24,5,5,,,,
+current,Drew Kim,Account Manager,TX,TX-90005,General Lines P&C,true,2027-06-01,195,10,24,3,3,,,,
+current,Casey Park,Account Manager,TX,TX-90003,Limited Lines,true,2028-03-01,469,4,24,1,3,,,,

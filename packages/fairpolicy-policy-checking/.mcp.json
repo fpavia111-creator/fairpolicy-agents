@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-policy-checking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-policy-checking@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

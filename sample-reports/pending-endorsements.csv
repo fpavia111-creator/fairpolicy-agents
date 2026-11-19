@@ -1,0 +1,8 @@
+status,request_id,policy_number,client,carrier,change,requested_date,submitted_date,confirmed_date,premium_change,bill_type,invoiced,csr,detail,next_step,owner,notes
+not_submitted,E-1,PA-2001,Cosima Threlkeld,Example Mutual,Add vehicle,2026-11-10,,,0,direct,false,Casey Park,Asked for 2026-11-10 (8 days ago); not sent to the carrier.,The client asked for this change and it has not gone to the carrier: a person submits it today and tells the client it is not done until confirmed.,,
+unconfirmed,E-2,HO-2002,Cosima Threlkeld,Example Mutual,Mortgagee change,2026-10-20,2026-10-21,,0,direct,false,Casey Park,Sent 2026-10-21 (28 days ago); no confirmation.,Sent to the carrier with no confirmation: follow up and check the change on the next policy download.,,
+premium_change_not_billed,E-4,BOP-2004,Threlkeld Courier LLC,Sample Casualty,Increase building limit,2026-10-28,2026-10-29,2026-11-05,420,agency,false,Drew Kim,Confirmed 2026-11-05 with a premium change of 420 on agency bill; not invoiced.,The carrier confirmed a premium change on an agency-bill policy and no invoice or credit was raised: bill or credit the client.,,
+waiting,E-3,CA-2003,Threlkeld Courier LLC,Test Fire & Marine,Add driver,2026-11-12,2026-11-12,,0,agency,false,Drew Kim,Sent 2026-11-12.,,,
+done,E-5,PA-2005,Ignatius Morrow-Vale,Example Mutual,Remove vehicle,2026-10-25,2026-10-26,2026-11-01,-180,agency,true,Casey Park,,,,
+done,E-7,WC-2007,Morrow Vale Hardware Inc,Sample Casualty,Add class code,2026-10-25,2026-10-26,2026-11-02,950,direct,false,Drew Kim,,,,
+done,E-6,CGL-2006,Morrow Vale Hardware Inc,Demo Indemnity,Mailing address,2026-10-27,2026-10-27,2026-10-30,0,agency,false,Drew Kim,,,,

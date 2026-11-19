@@ -1,0 +1,22 @@
+{
+  "name": "fairpolicy-producer-retention",
+  "version": "0.1.0",
+  "description": "Works out retention by producer, line and carrier from your policy terms, by count and premium, with the lost policies and their reasons. Never contacts a client.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-producer-retention#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "retention",
+    "producer",
+    "book-of-business",
+    "renewals"
+  ]
+}

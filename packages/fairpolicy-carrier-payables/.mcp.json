@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-carrier-payables": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-carrier-payables@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

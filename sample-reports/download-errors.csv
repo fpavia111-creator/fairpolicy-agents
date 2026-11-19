@@ -1,0 +1,8 @@
+status,ref,carrier,policy_number,transaction_type,date,days,message,detail,next_step,owner,notes
+download_error,DL-4,Sample Casualty,WC-2704,RWL,2026-11-16,2,Invalid line of business code,RWL for WC-2704 on 2026-11-16: Invalid line of business code.,"The download failed for this transaction: check the message, fix the policy or code in your agency system, and ask the carrier to resend if needed.",,
+unmatched_old,DL-2,Example Mutual,HO-2702,PCH,2026-11-10,8,Policy not found in agency system,PCH for HO-2702 on 2026-11-10: Policy not found in agency system.,Sitting in suspense: match it to the policy (or add the policy) so the change is not lost.,,
+carrier_stale,carrier:Demo Indemnity,Demo Indemnity,,,2026-11-01,17,,Last successful download 2026-11-01 (17 days ago).,No successful download from this carrier for days: check the carrier's download setup or your download service.,,
+unmatched_new,DL-3,Example Mutual,PA-2703,NEW,2026-11-17,1,Policy not found in agency system,NEW for PA-2703 on 2026-11-17: Policy not found in agency system.,Recently downloaded and not yet matched.,,
+ok,carrier:Test Fire & Marine,Test Fire & Marine,,,2026-11-12,6,,Last successful download 2026-11-12 (6 days ago).,,,
+ok,carrier:Sample Casualty,Sample Casualty,,,2026-11-16,2,,Last successful download 2026-11-16 (2 days ago).,,,
+ok,carrier:Example Mutual,Example Mutual,,,2026-11-17,1,,Last successful download 2026-11-17 (1 days ago).,,,

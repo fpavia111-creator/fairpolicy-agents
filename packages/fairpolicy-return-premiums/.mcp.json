@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-return-premiums": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-return-premiums@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

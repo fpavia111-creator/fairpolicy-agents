@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-cross-sell": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-cross-sell@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

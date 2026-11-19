@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-producer-splits": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-producer-splits@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

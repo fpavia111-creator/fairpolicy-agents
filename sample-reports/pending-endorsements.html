@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pending policy changes</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1c1a;--mut:#6b6760;--line:#e4e0d8;--ok:#1f7a4d;--bad:#b42318;--warn:#a15c07;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#161514;--fg:#ecebe8;--mut:#a29d94;--line:#34312d;--ok:#4ade80;--bad:#f87171;--warn:#fbbf24;--card:#1f1e1c}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,Segoe UI,"Hiragino Sans","Yu Gothic UI","Microsoft YaHei","PingFang SC","Malgun Gothic","Apple SD Gothic Neo","Noto Sans CJK",sans-serif}
+main{max-width:1040px;margin:0 auto;padding:24px 16px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}
+.mut{color:var(--mut)}.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+table{border-collapse:collapse;width:100%;background:var(--card);font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{font-weight:600}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tiles{display:flex;gap:12px;flex-wrap:wrap}.tile{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:120px}
+.tile b{display:block;font-size:22px}code{font-size:13px;overflow-wrap:anywhere}pre{overflow-x:auto}
+.wrap{overflow-x:auto;max-width:100%}svg,img{max-width:100%;height:auto}figure{margin:16px 0}p,li,h1,h2,h3{overflow-wrap:break-word}
+</style></head><body><main>
+<h1>Pending policy changes</h1>
+<p class="mut">7 change request(s), 4 open as of 2026-11-18: 1 not sent to the carrier, 1 sent and not confirmed, 1 confirmed and not billed (420), 1 waiting.</p>
+
+<h2>By status</h2><div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">Count</th></tr></thead><tbody>
+<tr><td>not_submitted</td><td>1</td></tr>
+<tr><td>unconfirmed</td><td>1</td></tr>
+<tr><td>premium_change_not_billed</td><td>1</td></tr>
+<tr><td>waiting</td><td>1</td></tr>
+<tr><td>done</td><td>3</td></tr>
+</tbody></table></div>
+<h2>All rows (7)</h2>
+<div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">request id</th><th scope="col">Policy</th><th scope="col">change</th><th scope="col">requested date</th><th scope="col">submitted date</th><th scope="col">confirmed date</th><th scope="col">premium change</th><th scope="col">Account manager</th></tr></thead><tbody>
+<tr><td>not_submitted</td><td>E-1</td><td>PA-2001</td><td>Add vehicle</td><td>2026-11-10</td><td></td><td></td><td>0</td><td>Casey Park</td></tr>
+<tr><td>unconfirmed</td><td>E-2</td><td>HO-2002</td><td>Mortgagee change</td><td>2026-10-20</td><td>2026-10-21</td><td></td><td>0</td><td>Casey Park</td></tr>
+<tr><td>premium_change_not_billed</td><td>E-4</td><td>BOP-2004</td><td>Increase building limit</td><td>2026-10-28</td><td>2026-10-29</td><td>2026-11-05</td><td>420</td><td>Drew Kim</td></tr>
+<tr><td>waiting</td><td>E-3</td><td>CA-2003</td><td>Add driver</td><td>2026-11-12</td><td>2026-11-12</td><td></td><td>0</td><td>Drew Kim</td></tr>
+<tr><td>done</td><td>E-5</td><td>PA-2005</td><td>Remove vehicle</td><td>2026-10-25</td><td>2026-10-26</td><td>2026-11-01</td><td>-180</td><td>Casey Park</td></tr>
+<tr><td>done</td><td>E-7</td><td>WC-2007</td><td>Add class code</td><td>2026-10-25</td><td>2026-10-26</td><td>2026-11-02</td><td>950</td><td>Drew Kim</td></tr>
+<tr><td>done</td><td>E-6</td><td>CGL-2006</td><td>Mailing address</td><td>2026-10-27</td><td>2026-10-27</td><td>2026-10-30</td><td>0</td><td>Drew Kim</td></tr>
+</tbody></table></div>
+<h2>Limits</h2><ul><li>Reads only the files you give it. It does not log in to your agency system, a carrier portal, a premium finance company or a bank.</li><li>A change is only made when the carrier confirms it; the dates come from your log, so a change sent by phone and not logged shows as not sent.</li><li>Results returned to the AI model have client names, birth dates, driver licence numbers, addresses and other direct identifiers masked. The files written here keep the real values: keep them in a secure folder.</li><li>Not legal, tax, accounting or coverage advice. It does not bind, cancel, endorse, place or recommend coverage; a licensed person at your agency decides.</li></ul>
+<p class="mut" style="margin-top:32px">Written by a Fairpolicy agent from your files on this computer. Nothing was bound, cancelled, endorsed, sent or paid. This page contains client information: keep it in your secure folder and do not e-mail it.</p>
+</main></body></html>

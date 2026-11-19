@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agency-bill receivables aging</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1c1a;--mut:#6b6760;--line:#e4e0d8;--ok:#1f7a4d;--bad:#b42318;--warn:#a15c07;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#161514;--fg:#ecebe8;--mut:#a29d94;--line:#34312d;--ok:#4ade80;--bad:#f87171;--warn:#fbbf24;--card:#1f1e1c}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,Segoe UI,"Hiragino Sans","Yu Gothic UI","Microsoft YaHei","PingFang SC","Malgun Gothic","Apple SD Gothic Neo","Noto Sans CJK",sans-serif}
+main{max-width:1040px;margin:0 auto;padding:24px 16px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}
+.mut{color:var(--mut)}.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+table{border-collapse:collapse;width:100%;background:var(--card);font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{font-weight:600}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tiles{display:flex;gap:12px;flex-wrap:wrap}.tile{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:120px}
+.tile b{display:block;font-size:22px}code{font-size:13px;overflow-wrap:anywhere}pre{overflow-x:auto}
+.wrap{overflow-x:auto;max-width:100%}svg,img{max-width:100%;height:auto}figure{margin:16px 0}p,li,h1,h2,h3{overflow-wrap:break-word}
+</style></head><body><main>
+<h1>Agency-bill receivables aging</h1>
+<p class="mut">7 open item(s) as of 2026-11-18: 14550 owed by clients (1200 not due, 650 1-30 days, 3000 31-60, 6400 61-90, 3300 over 90); 2400 already paid to carriers and not collected; 220 in credit balances owed to clients.</p>
+
+<h2>By status</h2><div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">Count</th></tr></thead><tbody>
+<tr><td>fronted_premium</td><td>1</td></tr>
+<tr><td>over_90</td><td>1</td></tr>
+<tr><td>credit_balance</td><td>1</td></tr>
+<tr><td>over_60</td><td>1</td></tr>
+<tr><td>over_30</td><td>1</td></tr>
+<tr><td>current</td><td>1</td></tr>
+<tr><td>not_due</td><td>1</td></tr>
+</tbody></table></div>
+<h2>By client</h2><div class="wrap"><table><thead><tr><th scope="col">Client</th><th scope="col">invoices</th><th scope="col">Balance</th><th scope="col">past due 30</th><th scope="col">oldest days</th></tr></thead><tbody>
+<tr><td>Haverleigh Farms LLC</td><td>2</td><td>8800</td><td>8800</td><td>109</td></tr>
+<tr><td>Quillmark Printing Inc</td><td>1</td><td>3000</td><td>3000</td><td>39</td></tr>
+<tr><td>Brisa Okonkwo-Hale</td><td>2</td><td>1550</td><td>900</td><td>100</td></tr>
+<tr><td>Teodor Vasquez-Lind</td><td>1</td><td>1200</td><td>0</td><td>0</td></tr>
+</tbody></table></div>
+<h2>By producer</h2><div class="wrap"><table><thead><tr><th scope="col">Producer</th><th scope="col">invoices</th><th scope="col">Balance</th><th scope="col">past due 30</th></tr></thead><tbody>
+<tr><td>Sam Ortiz</td><td>3</td><td>11800</td><td>11800</td></tr>
+<tr><td>Jordan Lee</td><td>3</td><td>2750</td><td>900</td></tr>
+</tbody></table></div>
+<h2>All rows (7)</h2>
+<div class="wrap"><table><thead><tr><th scope="col">Status</th><th scope="col">invoice</th><th scope="col">Policy</th><th scope="col">Carrier</th><th scope="col">Due date</th><th scope="col">days past due</th><th scope="col">Balance</th><th scope="col">remitted</th><th scope="col">Producer</th></tr></thead><tbody>
+<tr><td>fronted_premium</td><td>INV-7001</td><td>CGL-7001</td><td>Demo Indemnity</td><td>2026-08-01</td><td>109</td><td>2400</td><td>true</td><td>Sam Ortiz</td></tr>
+<tr><td>over_90</td><td>INV-7002</td><td>HO-7002</td><td>Example Mutual</td><td>2026-08-10</td><td>100</td><td>900</td><td>false</td><td>Jordan Lee</td></tr>
+<tr><td>credit_balance</td><td>INV-7007</td><td>PA-7007</td><td>Example Mutual</td><td>2026-10-01</td><td>48</td><td>-220</td><td>false</td><td>Jordan Lee</td></tr>
+<tr><td>over_60</td><td>INV-7003</td><td>CA-7003</td><td>Sample Casualty</td><td>2026-09-15</td><td>64</td><td>6400</td><td>false</td><td>Sam Ortiz</td></tr>
+<tr><td>over_30</td><td>INV-7004</td><td>WC-7004</td><td>Sample Casualty</td><td>2026-10-10</td><td>39</td><td>3000</td><td>false</td><td>Sam Ortiz</td></tr>
+<tr><td>current</td><td>INV-7005</td><td>PA-7005</td><td>Example Mutual</td><td>2026-11-05</td><td>13</td><td>650</td><td>false</td><td>Jordan Lee</td></tr>
+<tr><td>not_due</td><td>INV-7006</td><td>HO-7006</td><td>Example Mutual</td><td>2026-12-01</td><td>0</td><td>1200</td><td>false</td><td>Jordan Lee</td></tr>
+</tbody></table></div>
+<h2>Limits</h2><ul><li>Reads only the files you give it. It does not log in to your agency system, a carrier portal, a premium finance company or a bank.</li><li>Ages from the due date in your file. Payments posted after the export are not seen; run it on a fresh export.</li><li>Whether and when a carrier may cancel for non-payment is the carrier&#39;s and the state&#39;s rule; the agent sends no notice.</li><li>Results returned to the AI model have client names, birth dates, driver licence numbers, addresses and other direct identifiers masked. The files written here keep the real values: keep them in a secure folder.</li><li>Not legal, tax, accounting or coverage advice. It does not bind, cancel, endorse, place or recommend coverage; a licensed person at your agency decides.</li></ul>
+<p class="mut" style="margin-top:32px">Written by a Fairpolicy agent from your files on this computer. Nothing was bound, cancelled, endorsed, sent or paid. This page contains client information: keep it in your secure folder and do not e-mail it.</p>
+</main></body></html>

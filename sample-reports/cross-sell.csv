@@ -1,0 +1,8 @@
+status,client,client_id,lines,policies,premium,gaps,next_renewal,producer,csr,detail,next_step,owner,notes
+monoline,Imelda Fawkner,,condo,1,780,home_without_auto,2026-12-01,Jordan Lee,Casey Park,Home or condo with no personal auto policy here,One line with the agency: the account manager reviews the account at its next renewal and records what the client says.,,
+monoline,Rowena Castellane,,pauto,1,1650,auto_without_home,2027-03-01,Jordan Lee,Casey Park,"Personal auto with no home, condo, renters or dwelling policy here",One line with the agency: the account manager reviews the account at its next renewal and records what the client says.,,
+monoline,Castellane Ceramics LLC,,bop,1,3900,gl_without_wc,2027-06-01,Sam Ortiz,Drew Kim,General liability or BOP with no workers compensation here,One line with the agency: the account manager reviews the account at its next renewal and records what the client says.,,
+gaps,Desmond Achterberg,,"home, pauto",2,4200,no_personal_umbrella,2027-01-15,Jordan Lee,Casey Park,"Auto and home here, no personal umbrella",A line your agency asked to look for is not written here: review at renewal. The client may have it elsewhere or not need it.,,
+gaps,Vantongeren Freight Inc,,"cauto, cgl, wc",3,42000,no_commercial_umbrella,2027-02-01,Sam Ortiz,Drew Kim,Commercial auto with no commercial umbrella or excess here,A line your agency asked to look for is not written here: review at renewal. The client may have it elsewhere or not need it.,,
+rounded,Aurelio Vantongeren,,"home, pauto, pumbr",3,5180,,2026-10-01,Jordan Lee,Casey Park,,,,
+rounded,Achterberg Bakery LLC,,"bop, cumbr, wc",3,11600,,2027-09-01,Sam Ortiz,Drew Kim,,,,

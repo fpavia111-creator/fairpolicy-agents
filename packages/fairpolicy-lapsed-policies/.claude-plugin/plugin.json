@@ -1,0 +1,22 @@
+{
+  "name": "fairpolicy-lapsed-policies",
+  "version": "0.1.0",
+  "description": "Finds policies cancelled, lapsed or expired in the last 90 days: non-payment cancellations still inside a reinstatement window, clients with no replacement policy, and policies shown active but past expiration. Never reinstates or advises.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-lapsed-policies#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "lapsed-policies",
+    "cancellations",
+    "non-payment",
+    "retention"
+  ]
+}

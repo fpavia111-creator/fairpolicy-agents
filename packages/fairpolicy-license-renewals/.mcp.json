@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fairpolicy-license-renewals": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "fairpolicy-license-renewals@0.1.0",
+        "mcp"
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "fairpolicy-commission-chargebacks",
+  "version": "0.1.0",
+  "description": "For every cancelled policy, works out the commission chargeback on the unearned premium, compares it with what the carrier took back, and flags overcharges, chargebacks still to come, chargebacks with no cancellation and producer shares not reversed. Never posts, pays or sends.",
+  "author": {
+    "name": "Kurt Francisco"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-commission-chargebacks#readme",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "chargebacks",
+    "cancellations",
+    "unearned-premium",
+    "producer-commission"
+  ]
+}

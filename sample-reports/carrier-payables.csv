@@ -1,0 +1,7 @@
+status,policy_number,client,carrier,transaction_type,effective_date,carrier_net,agency_net,difference,due_date,detail,next_step,owner,notes
+amount_differs,WC-1102,Gwendolyn Ashcombe,Sample Casualty,new,2026-10-20,8100,8460,-360,2026-12-15,"Carrier net 8100 (premium 9000, commission 900); your system 8460 (premium 9000, commission 540).",The net due differs from your agency system: check the premium and commission rate with the carrier before paying.,,
+not_in_agency_system,CA-1103,Fennimore Optics LLC,Sample Casualty,endorsement,2026-10-28,520,,,2026-12-15,520 billed by the carrier.,"The carrier bills an item your agency system does not have: find the endorsement or audit, or dispute it.",,
+not_on_carrier_statement,CGL-1104,Gwendolyn Ashcombe,Sample Casualty,new,2026-10-25,,2210,,,"2210 in your payables, not on the carrier statement.","Your agency system owes the carrier an item the carrier has not billed yet: hold it, or ask the carrier.",,
+past_due,PKG-1105,Ashcombe Nurseries Inc,Sample Casualty,renewal,2026-09-01,5400,5400,0,2026-11-15,5400 was due 2026-11-15.,Due to the carrier and past the statement due date.,,
+ok,BOP-1101,Fennimore Optics LLC,Sample Casualty,new,2026-10-15,3630,3630,0,2026-12-15,,,,
+ok,CA-1106,Ashcombe Nurseries Inc,Sample Casualty,cancellation,2026-10-30,-830,-830,0,2026-12-15,,,,

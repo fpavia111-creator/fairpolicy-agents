@@ -1,0 +1,8 @@
+status,producer,carrier,state,appointment,appointment_effective,terminated,policies,written_last_year,policy_numbers,detail,next_step,owner,notes
+not_appointed,Riley Chen,Example Mutual,TX,none,,,1,1,HO-2305,1 policy(ies) with Example Mutual in TX; no appointment on file.,Business written with a carrier in a state where this producer has no appointment: the agency principal reviews it with the carrier today.,,
+terminated_with_business,Sam Ortiz,Demo Indemnity,TX,terminated,2021-05-01,2026-06-30,1,1,CGL-2304,Appointment terminated 2026-06-30; business effective after it.,The appointment ended before this business started: review with the carrier.,,
+pending_with_business,Jordan Lee,Sample Casualty,TX,pending,2026-11-01,,1,1,BOP-2302,Appointment pending; 1 policy(ies) already written.,Business written while the appointment is pending: confirm with the carrier that it is in place.,,
+unused,Sam Ortiz,Test Fire & Marine,TX,active,2024-02-01,,0,0,,No business written in the last year.,No business in the last year under this appointment: decide whether to keep it before the next renewal fee.,,
+ok,Jordan Lee,Example Mutual,TX,active,2020-01-15,,1,1,PA-2301,,,,
+ok,Riley Chen,Example Mutual,OK,active,2025-07-01,,1,1,PA-2306,,,,
+ok,Sam Ortiz,Sample Casualty,TX,active,2019-03-01,,1,1,WC-2303,,,,
