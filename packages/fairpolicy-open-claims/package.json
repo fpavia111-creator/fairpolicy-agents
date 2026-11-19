@@ -1,0 +1,57 @@
+{
+  "name": "fairpolicy-open-claims",
+  "version": "0.1.0",
+  "description": "Ages open claims: losses with no carrier claim number, claims with no update for weeks, claims open on policies renewing soon and claims open a long time. Never files, settles or comments on a claim.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-open-claims": "bin/fairpolicy-open-claims.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-open-claims.js demo",
+    "eval": "node bin/fairpolicy-open-claims.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-open-claims"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-open-claims#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "claims",
+    "open-claims",
+    "claims-follow-up",
+    "adjuster"
+  ]
+}

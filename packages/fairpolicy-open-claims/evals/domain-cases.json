@@ -1,0 +1,22 @@
+{
+  "suite": "fairpolicy-open-claims", "root": "..",
+  "data_note": "Fictional claim log in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "claims_check", "args": { "claims": "fixtures/claims.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "equals": { "result.open": 5, "result.closed": 1, "result.incurred_open": 64200, "result.needing_attention": 4 } } },
+    { "id": "every-status", "tool": "claims_check", "args": { "claims": "fixtures/claims.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_status.not_reported": 1, "result.by_status.no_update": 1, "result.by_status.renewal_soon": 1, "result.by_status.open_long": 1, "result.by_status.active": 1 } } },
+    { "id": "not-reported-first", "tool": "claims_check", "args": { "claims": "fixtures/claims.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.items.0.claim_ref": "AC-1", "result.items.1.claim_ref": "AC-2", "result.items.1.days_quiet": 59 } } },
+    { "id": "renewal-soon", "tool": "claims_explain", "args": { "claims": "fixtures/claims.csv", "as_of": "2026-11-18", "claim_ref": "AC-3" },
+      "expect": { "equals": { "result.claim.status": "renewal_soon", "result.claim.incurred": 18000 } } },
+    { "id": "open-long", "tool": "claims_explain", "args": { "claims": "fixtures/claims.csv", "as_of": "2026-11-18", "claim_ref": "AC-4" },
+      "expect": { "equals": { "result.claim.status": "open_long", "result.claim.days_open": 262 } } },
+    { "id": "by-carrier", "tool": "claims_check", "args": { "claims": "fixtures/claims.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_carrier.0.carrier": "Example Mutual", "result.by_carrier.0.needing_attention": 2, "result.by_carrier.1.incurred": 54500 } } },
+    { "id": "longer-quiet-days", "tool": "claims_check", "args": { "claims": "fixtures/claims.csv", "as_of": "2026-11-18", "quiet_days": 90 },
+      "expect": { "equals": { "result.by_status.active": 2 } } },
+    { "id": "report-written", "tool": "claims_write_report", "args": { "claims": "fixtures/claims.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "contains": ["open-claims.csv", "open-claims.html"] } }
+  ]
+}
