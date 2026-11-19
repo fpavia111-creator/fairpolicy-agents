@@ -25,7 +25,7 @@ Every agent is read-and-report. None binds, cancels, endorses, places or recomme
 | `npm run hostile` (formulas, HTML, `../` ids, AI-aimed text planted in every fixture, every eval case) | 2,650 calls, 681 planted values, 0 findings |
 | `npm run hostile:args` (null, numbers, arrays, a 200,000-character string, `../` and absolute paths in every argument of every tool) | HOSTILE_ARGS |
 | `npm run intl` (every spreadsheet eval case rewritten as a German, French, Spanish, Brazilian, Italian, Japanese, Chinese and Korean export: local column names, `1.234,56`, day-first dates, semicolons, legacy encodings) | 417 cases x 8 languages, every case that passes in English passes in every language; 338 of 448 column names translated (German count) |
-| `npm run bench` (1,000 and 10,000 rows per input file, every read and report tool with an eval case) | BENCH |
+| `npm run bench` (1,000 and 10,000 rows per input file, every read and report tool with an eval case) | 90 tool runs at 10,000 rows, 0 need attention after two fixes (below); median 1.2 s, slowest 5.5 s, peak memory under 340 MB |
 | `npm run release:check:offline` | RELEASE |
 | Masking canaries | every agent lists at least 3 fictional client identifiers; a test runs every eval case and none reaches a result |
 | MCP stdio smoke test | every agent: initialize, list tools, refuse an unknown tool, write the audit log |
@@ -44,6 +44,8 @@ Every agent is read-and-report. None binds, cancels, endorses, places or recomme
 - **Fixtures** are fictional throughout: carriers are named Example Mutual, Sample Casualty, Demo Indemnity, Test Fire & Marine and similar; clients have invented names; VINs start with 0 (no manufacturer uses it) and carry a valid check digit.
 
 ## Found and fixed during the build
+- **Speed, renewal-remarket:** 52 s at 10,000 rows. Every policy re-read every activity of its client and normalised the text again for each review word. Each activity is now read once and only the latest review, remarket and activity dates are kept per client: 2.7 s.
+- **Speed, lapsed-policies:** 9.3 s at 10,000 rows. The replacement search worked out a date and filtered the whole client-and-line group for every policy. Active policies are now grouped and sorted once: 2.2 s.
 - **Policy numbers:** the term-suffix rule first treated `PA-1` and `PA-2` as the same policy (both "PA" without the suffix). Base matching now needs five characters or more.
 - **Result fields:** a count named `items` collided with the paged list the family builder returns (carrier-payables). Renamed `lines`; noted for every agent.
 - **Safety evals:** the generator found a refused tool whose name contained `_request_` and treated it as the one-click approval tool. Draft and request tools are now found by the agent's own prefix, in the generator, the default prompt and the demo.

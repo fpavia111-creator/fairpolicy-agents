@@ -16,6 +16,8 @@ export function checkLapses(policyRows, { asOf, lookbackDays = 90, reinstateDays
   const byClientLine = groupBy(pols, (p) => `${clientKey(p.client)}|${p.line_code}`);
   const byKey = groupBy(pols, (p) => p.policy_key);
   const since = addDays(asOf, -lookbackDays);
+  // Active policies per client and line, read once and sorted by policy number, so the first match is the same whatever the row order.
+  const activeByClientLine = new Map([...byClientLine.entries()].map(([k, g]) => [k, g.filter((o) => !GONE.includes(o.status_code)).map((o) => Object.assign(o, { eff: str(o.effective_date), exp: str(o.expiration_date) })).sort((x, y) => x.policy_number.localeCompare(y.policy_number))]));
   const rows = [];
   for (const p of pols) {
     const exp = str(p.expiration_date);
@@ -26,8 +28,8 @@ export function checkLapses(policyRows, { asOf, lookbackDays = 90, reinstateDays
     if (!endDate || endDate < since || endDate > asOf) continue;
     const renewed = (byKey.get(p.policy_key) || []).some((o) => o !== p && str(o.effective_date) >= exp && !GONE.includes(o.status_code));
     if (staleActive && renewed) continue;
-    const others = (byClientLine.get(`${clientKey(p.client)}|${p.line_code}`) || []).filter((o) => o !== p && !GONE.includes(o.status_code) && str(o.effective_date) >= addDays(endDate, -replaceWindowDays) && str(o.expiration_date) > endDate);
-    const replacement = renewed ? p.policy_number : others.map((o) => o.policy_number).sort()[0] || '';
+    const startFrom = addDays(endDate, -replaceWindowDays); let replacement = renewed ? p.policy_number : '';
+    if (!replacement) for (const o of activeByClientLine.get(`${clientKey(p.client)}|${p.line_code}`) || []) { if (o !== p && o.eff >= startFrom && o.exp > endDate) { replacement = o.policy_number; break; } } // the list is sorted by policy number
     const days = daysBetween(endDate, asOf);
     const nonpay = p.status_code === 'cancelled' && NONPAY.test(str(p.cancel_reason) + ' ' + str(p.status));
     let status;

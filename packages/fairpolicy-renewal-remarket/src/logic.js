@@ -13,9 +13,15 @@ export const REMARKET_WORDS = ['remarket', 're-market', 'quote', 'quotes', 'mark
 const has = (text, words) => { const t = ` ${normalizeName(text)} `; return words.some((w) => { const k = normalizeName(w); return k && t.includes(` ${k} `); }); };
 
 export function checkRenewals(policyRows, activityRows, { asOf, windowDays = 120, urgentDays = 45, increasePct = 10, lookbackDays = 150, reviewWords = REVIEW_WORDS, remarketWords = REMARKET_WORDS } = {}) {
-  const acts = activityRows.map((r) => ({ policy_number: str(r.policy_number), client: str(r.client), date: str(r.date), text: `${str(r.type)} ${str(r.description)}` })).filter((x) => x.date && x.date <= asOf);
+  // Each activity is read once: is it a review, a remarket, and when. Per client only the latest dates are kept,
+  // so a client with thousands of notes costs no more per policy than one with a single note.
+  const revW = reviewWords.map((w) => normalizeName(w)).filter(Boolean), remW = remarketWords.map((w) => normalizeName(w)).filter(Boolean);
+  const hit = (t, ws) => ws.some((k) => t.includes(` ${k} `));
+  const acts = activityRows.map((r) => ({ policy_number: str(r.policy_number), client: str(r.client), date: str(r.date), text: `${str(r.type)} ${str(r.description)}` })).filter((x) => x.date && x.date <= asOf)
+    .map((x) => { const t = ` ${normalizeName(x.text)} `; const rem = hit(t, remW); return { ...x, rem, rev: rem || hit(t, revW) }; });
+  const latest = (list) => { const m = { rev: '', rem: '', any: '' }; for (const x of list) { if (x.date > m.any) m.any = x.date; if (x.rev && x.date > m.rev) m.rev = x.date; if (x.rem && x.date > m.rem) m.rem = x.date; } return m; };
   const aIdx = policyIndex(acts.filter((x) => x.policy_number));
-  const byClient = groupBy(acts.filter((x) => !x.policy_number && x.client), (x) => clientKey(x.client));
+  const byClient = new Map([...groupBy(acts.filter((x) => !x.policy_number && x.client), (x) => clientKey(x.client)).entries()].map(([k, g]) => [k, latest(g)]));
   const until = addDays(asOf, windowDays);
   const rows = [];
   for (const raw of policyRows) {
@@ -24,9 +30,10 @@ export function checkRenewals(policyRows, activityRows, { asOf, windowDays = 120
     if (!p.policy_key || !exp || exp < asOf || exp > until) continue;
     if (['cancelled', 'non_renewed', 'expired', 'lapsed'].includes(p.status_code)) continue;
     const from = addDays(exp, -lookbackDays);
-    const mine = [...aIdx.find(p.policy_number), ...(byClient.get(clientKey(p.client)) || [])].filter((x) => x.date >= from);
-    const remarketed = mine.some((x) => has(x.text, remarketWords));
-    const reviewed = remarketed || mine.some((x) => has(x.text, reviewWords));
+    const own = latest(aIdx.find(p.policy_number)); const cl = byClient.get(clientKey(p.client)) || { rev: '', rem: '', any: '' };
+    const remarketed = (own.rem >= from && !!own.rem) || (cl.rem >= from && !!cl.rem);
+    const reviewed = remarketed || (own.rev >= from && !!own.rev) || (cl.rev >= from && !!cl.rev);
+    const mine = [own.any, cl.any].filter((d) => d && d >= from).map((date) => ({ date }));
     const renewal = num(raw.renewal_premium);
     const change = renewal !== null && p.premium ? pct(renewal - p.premium, p.premium) : null;
     const days = daysBetween(asOf, exp);
