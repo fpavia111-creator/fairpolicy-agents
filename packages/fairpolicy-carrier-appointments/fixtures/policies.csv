@@ -1,0 +1,8 @@
+Client Name,Policy Number,Line of Business,Carrier,State,Effective Date,Expiration Date,Premium,Producer,Policy Status
+Annika Rosewarne,PA-2301,Personal Auto,Example Mutual,TX,06/01/2026,12/01/2026,1500.00,Jordan Lee,Active
+Rosewarne Cabinets LLC,BOP-2302,Business Owners,Sample Casualty,TX,11/05/2026,11/05/2027,4200.00,Jordan Lee,Active
+Halloran Freight Inc,WC-2303,Workers Compensation,Sample Casualty,TX,04/01/2026,04/01/2027,15000.00,Sam Ortiz,Active
+Halloran Freight Inc,CGL-2304,General Liability,Demo Indemnity,TX,08/01/2026,08/01/2027,3600.00,Sam Ortiz,Active
+Maeve Tolliver,HO-2305,Homeowners,Example Mutual,TX,10/01/2026,10/01/2027,2100.00,Riley Chen,Active
+Maeve Tolliver,PA-2306,Personal Auto,Example Mutual,OK,09/01/2026,03/01/2027,1300.00,Riley Chen,Active
+Maeve Tolliver,HO-2307,Homeowners,Demo Indemnity,TX,01/01/2025,01/01/2026,1900.00,Riley Chen,Expired

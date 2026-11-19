@@ -1,0 +1,22 @@
+{
+  "suite": "fairpolicy-carrier-appointments", "root": "..",
+  "data_note": "Fictional appointments and policies in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "appointments_check", "args": { "appointments": "fixtures/appointments.csv", "policies": "fixtures/policies.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "equals": { "result.combinations": 7, "result.appointments": 6, "result.needing_attention": 4 } } },
+    { "id": "every-status", "tool": "appointments_check", "args": { "appointments": "fixtures/appointments.csv", "policies": "fixtures/policies.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_status.not_appointed": 1, "result.by_status.terminated_with_business": 1, "result.by_status.pending_with_business": 1, "result.by_status.unused": 1, "result.by_status.ok": 3 } } },
+    { "id": "not-appointed-first", "tool": "appointments_check", "args": { "appointments": "fixtures/appointments.csv", "policies": "fixtures/policies.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.items.0.ref": "Riley Chen|Example Mutual|TX", "result.items.0.policy_numbers": "HO-2305" } } },
+    { "id": "terminated-with-business", "tool": "appointments_explain", "args": { "appointments": "fixtures/appointments.csv", "policies": "fixtures/policies.csv", "as_of": "2026-11-18", "ref": "Sam Ortiz|Demo Indemnity|TX" },
+      "expect": { "equals": { "result.combination.status": "terminated_with_business", "result.combination.terminated": "2026-06-30" } } },
+    { "id": "unused-appointment", "tool": "appointments_check", "args": { "appointments": "fixtures/appointments.csv", "policies": "fixtures/policies.csv", "as_of": "2026-11-18", "status": "unused" },
+      "expect": { "equals": { "result.items.0.carrier": "Test Fire & Marine" } } },
+    { "id": "expired-policy-left-out", "tool": "appointments_check", "args": { "appointments": "fixtures/appointments.csv", "policies": "fixtures/policies.csv", "as_of": "2026-11-18" },
+      "expect": { "not_contains": ["HO-2307"] } },
+    { "id": "before-the-pending-business", "tool": "appointments_check", "args": { "appointments": "fixtures/appointments.csv", "policies": "fixtures/policies.csv", "as_of": "2026-11-02" },
+      "expect": { "equals": { "result.by_status.ok": 4 } } },
+    { "id": "report-written", "tool": "appointments_write_report", "args": { "appointments": "fixtures/appointments.csv", "policies": "fixtures/policies.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "contains": ["carrier-appointments.csv", "carrier-appointments.html"] } }
+  ]
+}
