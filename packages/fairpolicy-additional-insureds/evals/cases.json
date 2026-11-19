@@ -1,0 +1,241 @@
+{
+  "suite": "fairpolicy-additional-insureds",
+  "root": "..",
+  "data_note": "Fictional requests and policy endorsements in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "insureds_check",
+      "args": {
+        "requests": "fixtures/requests.csv",
+        "coverage": "fixtures/endorsements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.requests": 7,
+          "result.open": 5
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "insureds_check",
+      "args": {
+        "requests": "fixtures/requests.csv",
+        "coverage": "fixtures/endorsements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.needs_endorsement": 1,
+          "result.by_status.endorsement_pending": 1,
+          "result.by_status.open_overdue": 1,
+          "result.by_status.ready_to_issue": 1,
+          "result.by_status.awaiting_carrier": 1,
+          "result.by_status.complete": 2
+        }
+      }
+    },
+    {
+      "id": "needs-endorsement-first",
+      "tool": "insureds_check",
+      "args": {
+        "requests": "fixtures/requests.csv",
+        "coverage": "fixtures/endorsements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.request_id": "R-3",
+          "result.items.0.requirement": "pnc"
+        }
+      }
+    },
+    {
+      "id": "blanket-but-open",
+      "tool": "insureds_explain",
+      "args": {
+        "requests": "fixtures/requests.csv",
+        "coverage": "fixtures/endorsements.csv",
+        "as_of": "2026-11-18",
+        "request_id": "R-2"
+      },
+      "expect": {
+        "equals": {
+          "result.request.status": "open_overdue",
+          "result.request.days_open": 16,
+          "result.request.covered_by": "blanket wording on the policy"
+        }
+      }
+    },
+    {
+      "id": "carrier-endorsement-late",
+      "tool": "insureds_explain",
+      "args": {
+        "requests": "fixtures/requests.csv",
+        "coverage": "fixtures/endorsements.csv",
+        "as_of": "2026-11-18",
+        "request_id": "R-4"
+      },
+      "expect": {
+        "equals": {
+          "result.request.status": "endorsement_pending",
+          "result.request.requirement": "waiver"
+        }
+      }
+    },
+    {
+      "id": "scheduled-holder",
+      "tool": "insureds_explain",
+      "args": {
+        "requests": "fixtures/requests.csv",
+        "coverage": "fixtures/endorsements.csv",
+        "as_of": "2026-11-18",
+        "request_id": "R-6"
+      },
+      "expect": {
+        "equals": {
+          "result.request.covered_by": "holder scheduled on the policy"
+        }
+      }
+    },
+    {
+      "id": "longer-pending-days",
+      "tool": "insureds_check",
+      "args": {
+        "requests": "fixtures/requests.csv",
+        "coverage": "fixtures/endorsements.csv",
+        "as_of": "2026-11-18",
+        "pending_days": 30
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.awaiting_carrier": 2
+        }
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "insureds_write_report",
+      "args": {
+        "requests": "fixtures/requests.csv",
+        "coverage": "fixtures/endorsements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "additional-insureds.csv",
+          "additional-insureds.html"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "insureds_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "insureds_check",
+      "args": {
+        "requests": "../../outside.csv",
+        "coverage": "fixtures/endorsements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "insureds_check",
+      "mode": "review",
+      "args": {
+        "requests": "fixtures/requests.csv",
+        "coverage": "fixtures/endorsements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.requests": 7,
+          "result.open": 5
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "insureds_check",
+      "args": {
+        "coverage": "fixtures/endorsements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "requests"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "insureds_check",
+      "args": {
+        "requests": "fixtures/requests.csv",
+        "coverage": "fixtures/endorsements.csv",
+        "as_of": "2026-11-18",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-refused-certificate_issue",
+      "tool": "certificate_issue",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-endorsement_request_send",
+      "tool": "endorsement_request_send",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "insureds_check",
+      "args": {
+        "requests": "fixtures/requests.csv",
+        "coverage": "fixtures/endorsements.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Yarrowby Builders",
+          "Ostrowe Paving",
+          "Yarrowby"
+        ]
+      }
+    }
+  ]
+}

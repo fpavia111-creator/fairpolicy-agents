@@ -1,0 +1,8 @@
+Request ID,Insured,Policy Number,Holder,Requirement,Requested Date,Endorsement Requested,Endorsement Received,Completed Date,CSR
+R-1,Yarrowby Builders LLC,CGL-1901,Sample Developers LLC,Additional Insured,11/16/2026,,,,Drew Kim
+R-2,Yarrowby Builders LLC,CGL-1901,Demo Hospital,Additional Insured,11/02/2026,,,,Drew Kim
+R-3,Yarrowby Builders LLC,CGL-1901,Demo Hospital,Primary non-contributory,11/02/2026,,,,Drew Kim
+R-4,Yarrowby Builders LLC,WC-1902,Sample Developers LLC,Waiver of subrogation,10/20/2026,10/22/2026,,,Drew Kim
+R-5,Yarrowby Builders LLC,WC-1902,Example Stadium Authority,WOS,11/10/2026,11/12/2026,,,Casey Park
+R-6,Yarrowby Builders LLC,CA-1903,Example County Roads,AI,10/01/2026,,,10/03/2026,Casey Park
+R-7,Ostrowe Paving Inc,CA-1903,Sample Developers LLC,AI,11/01/2026,11/03/2026,11/14/2026,11/15/2026,Casey Park

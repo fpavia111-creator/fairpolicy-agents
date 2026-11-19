@@ -1,0 +1,57 @@
+{
+  "name": "fairpolicy-additional-insureds",
+  "version": "0.1.0",
+  "description": "Sorts additional insured, waiver of subrogation and primary/non-contributory requests: covered by the policy, needing a carrier endorsement, waiting on the carrier, or open too long. Never issues a certificate.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-additional-insureds": "bin/fairpolicy-additional-insureds.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-additional-insureds.js demo",
+    "eval": "node bin/fairpolicy-additional-insureds.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-additional-insureds"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-additional-insureds#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "additional-insured",
+    "waiver-of-subrogation",
+    "certificates",
+    "endorsements"
+  ]
+}
