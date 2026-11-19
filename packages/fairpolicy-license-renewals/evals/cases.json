@@ -1,0 +1,253 @@
+{
+  "suite": "fairpolicy-license-renewals",
+  "root": "..",
+  "data_note": "Fictional licences and example state settings in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "licenses_check",
+      "args": {
+        "licenses": "fixtures/licenses.csv",
+        "states": "fixtures/state-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.licenses": 7,
+          "result.people": 5,
+          "result.needing_attention": 4
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "licenses_check",
+      "args": {
+        "licenses": "fixtures/licenses.csv",
+        "states": "fixtures/state-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.expired": 1,
+          "result.by_status.ce_short": 1,
+          "result.by_status.renewal_due": 1,
+          "result.by_status.no_state_rule": 1,
+          "result.by_status.current": 3
+        }
+      }
+    },
+    {
+      "id": "expired-first",
+      "tool": "licenses_check",
+      "args": {
+        "licenses": "fixtures/licenses.csv",
+        "states": "fixtures/state-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.license_number": "OK-55102",
+          "result.items.0.days_left": -18
+        }
+      }
+    },
+    {
+      "id": "ce-short",
+      "tool": "licenses_explain",
+      "args": {
+        "licenses": "fixtures/licenses.csv",
+        "states": "fixtures/state-settings.json",
+        "as_of": "2026-11-18",
+        "license_number": "TX-90001"
+      },
+      "expect": {
+        "equals": {
+          "result.license.status": "ce_short",
+          "result.license.ce_hours": 18,
+          "result.license.ce_required": 24
+        }
+      }
+    },
+    {
+      "id": "short-but-far-off",
+      "tool": "licenses_explain",
+      "args": {
+        "licenses": "fixtures/licenses.csv",
+        "states": "fixtures/state-settings.json",
+        "as_of": "2026-11-18",
+        "license_number": "TX-90005"
+      },
+      "expect": {
+        "equals": {
+          "result.license.status": "current"
+        }
+      }
+    },
+    {
+      "id": "wider-ce-window",
+      "tool": "licenses_check",
+      "args": {
+        "licenses": "fixtures/licenses.csv",
+        "states": "fixtures/state-settings.json",
+        "as_of": "2026-11-18",
+        "ce_days": 200
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.ce_short": 2
+        }
+      }
+    },
+    {
+      "id": "by-person",
+      "tool": "licenses_check",
+      "args": {
+        "licenses": "fixtures/licenses.csv",
+        "states": "fixtures/state-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.by_person.0.person": "Jordan Lee",
+          "result.by_person.0.needing_attention": 2
+        }
+      }
+    },
+    {
+      "id": "bad-settings-refused",
+      "tool": "licenses_check",
+      "args": {
+        "licenses": "fixtures/licenses.csv",
+        "states": "fixtures/phi-canaries.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error"
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "licenses_write_report",
+      "args": {
+        "licenses": "fixtures/licenses.csv",
+        "states": "fixtures/state-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "license-renewals.csv",
+          "license-renewals.html"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "licenses_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "licenses_check",
+      "args": {
+        "licenses": "../../outside.csv",
+        "states": "fixtures/state-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "licenses_check",
+      "mode": "review",
+      "args": {
+        "licenses": "fixtures/licenses.csv",
+        "states": "fixtures/state-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.licenses": 7,
+          "result.people": 5,
+          "result.needing_attention": 4
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "licenses_check",
+      "args": {
+        "states": "fixtures/state-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "licenses"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "licenses_check",
+      "args": {
+        "licenses": "fixtures/licenses.csv",
+        "states": "fixtures/state-settings.json",
+        "as_of": "2026-11-18",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-refused-license_renewal_file",
+      "tool": "license_renewal_file",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-ce_course_purchase",
+      "tool": "ce_course_purchase",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "licenses_check",
+      "args": {
+        "licenses": "fixtures/licenses.csv",
+        "states": "fixtures/state-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Lavinia Oyelaran",
+          "Wexford Plating",
+          "Cosima Threlkeld"
+        ]
+      }
+    }
+  ]
+}
