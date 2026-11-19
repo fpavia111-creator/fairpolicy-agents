@@ -1,0 +1,8 @@
+Carrier,Policy Number,Insured Name,Transaction Type,Premium,Commission Rate,Commission Amount
+Example Mutual,PA-4001,Perpetua Holm,NEW,2000.00,15,300.00
+Example Mutual,HO-4002,Perpetua Holm,RWL,2200.00,15,330.00
+Sample Casualty,BOP-4003,Holm Upholstery LLC,NEW,4800.00,17.5,840.00
+Sample Casualty,WC-4004,Garnet Lane Bakery Inc,RWL,12600.00,10,1260.00
+Demo Indemnity,CGL-4005,Corvin Ashdale,NEW,3900.00,15,585.00
+Example Mutual,PA-4006,Lysander Quaye,RWL,1260.00,12,151.20
+Example Mutual,UMB-4007,Lysander Quaye,XLC,-400.00,15,-60.00

@@ -1,0 +1,24 @@
+{
+  "suite": "fairpolicy-producer-splits", "root": "..",
+  "data_note": "Fictional commission, policies, producer pay and split schedule in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "splits_check", "args": { "received": "fixtures/received-2026-10.csv", "policies": "fixtures/policies.csv", "producer_pay": "fixtures/producer-pay-2026-10.csv", "splits": "fixtures/splits.json" },
+      "expect": { "status": "executed", "equals": { "result.pairs": 8, "result.expected": 960.3, "result.paid": 921.6, "result.underpaid_total": 84, "result.not_paid_total": 126, "result.overpaid_total": 16.5, "result.wrong_producer_total": 117, "result.house_lines": 1 } } },
+    { "id": "every-status", "tool": "splits_check", "args": { "received": "fixtures/received-2026-10.csv", "policies": "fixtures/policies.csv", "producer_pay": "fixtures/producer-pay-2026-10.csv", "splits": "fixtures/splits.json" },
+      "expect": { "equals": { "result.by_status.underpaid": 1, "result.by_status.not_paid": 1, "result.by_status.wrong_producer": 1, "result.by_status.overpaid": 1, "result.by_status.no_split_rate": 1, "result.by_status.ok": 3 } } },
+    { "id": "underpaid-share", "tool": "splits_explain", "args": { "received": "fixtures/received-2026-10.csv", "policies": "fixtures/policies.csv", "producer_pay": "fixtures/producer-pay-2026-10.csv", "splits": "fixtures/splits.json", "policy_number": "BOP-4003" },
+      "expect": { "equals": { "result.share.status": "underpaid", "result.share.split_pct": 50, "result.share.expected": 420, "result.share.difference": -84 } } },
+    { "id": "shared-policy-second-producer", "tool": "splits_check", "args": { "received": "fixtures/received-2026-10.csv", "policies": "fixtures/policies.csv", "producer_pay": "fixtures/producer-pay-2026-10.csv", "splits": "fixtures/splits.json", "status": "not_paid" },
+      "expect": { "equals": { "result.items.0.producer": "Riley Chen", "result.items.0.share": 0.4, "result.items.0.expected": 126 } } },
+    { "id": "house-account-paid-out", "tool": "splits_check", "args": { "received": "fixtures/received-2026-10.csv", "policies": "fixtures/policies.csv", "producer_pay": "fixtures/producer-pay-2026-10.csv", "splits": "fixtures/splits.json", "status": "wrong_producer" },
+      "expect": { "equals": { "result.items.0.policy_number": "CGL-4005", "result.items.0.paid": 117 } } },
+    { "id": "by-producer", "tool": "splits_check", "args": { "received": "fixtures/received-2026-10.csv", "policies": "fixtures/policies.csv", "producer_pay": "fixtures/producer-pay-2026-10.csv", "splits": "fixtures/splits.json" },
+      "expect": { "equals": { "result.by_producer.0.producer": "Riley Chen", "result.by_producer.0.difference": -126, "result.by_producer.1.producer": "Sam Ortiz", "result.by_producer.1.difference": -84 } } },
+    { "id": "chargeback-split", "tool": "splits_check", "args": { "received": "fixtures/received-2026-10.csv", "policies": "fixtures/policies.csv", "producer_pay": "fixtures/producer-pay-2026-10.csv", "splits": "fixtures/splits.json", "status": "ok" },
+      "expect": { "contains": ["UMB-4007", "-15"] } },
+    { "id": "bad-schedule-refused", "tool": "splits_check", "args": { "received": "fixtures/received-2026-10.csv", "policies": "fixtures/policies.csv", "producer_pay": "fixtures/producer-pay-2026-10.csv", "splits": "fixtures/phi-canaries.json" },
+      "expect": { "status": "error" } },
+    { "id": "report-written", "tool": "splits_write_report", "args": { "received": "fixtures/received-2026-10.csv", "policies": "fixtures/policies.csv", "producer_pay": "fixtures/producer-pay-2026-10.csv", "splits": "fixtures/splits.json" },
+      "expect": { "status": "executed", "contains": ["producer-splits.csv", "producer-splits.html"] } }
+  ]
+}
