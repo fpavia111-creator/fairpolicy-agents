@@ -1,0 +1,22 @@
+{
+  "suite": "fairpolicy-data-quality", "root": "..",
+  "data_note": "Fictional policies and vehicles in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "quality_check", "args": { "policies": "fixtures/policies.csv", "vehicles": "fixtures/vehicles.csv" },
+      "expect": { "status": "executed", "equals": { "result.policies": 8, "result.clean": 2, "result.issues": 7, "result.clean_pct": 25 } } },
+    { "id": "every-status", "tool": "quality_check", "args": { "policies": "fixtures/policies.csv", "vehicles": "fixtures/vehicles.csv" },
+      "expect": { "equals": { "result.by_status.critical": 2, "result.by_status.vehicle_data": 2, "result.by_status.contact_data": 1, "result.by_status.staff_data": 1, "result.by_status.clean": 2 } } },
+    { "id": "bad-vin", "tool": "quality_explain", "args": { "policies": "fixtures/policies.csv", "vehicles": "fixtures/vehicles.csv", "policy_number": "PA-2603" },
+      "expect": { "equals": { "result.policy.status": "vehicle_data", "result.policy.issues": "vin_invalid" } } },
+    { "id": "contact-gaps", "tool": "quality_explain", "args": { "policies": "fixtures/policies.csv", "vehicles": "fixtures/vehicles.csv", "policy_number": "HO-2604" },
+      "expect": { "equals": { "result.policy.issues": "no_email_or_phone, zip_invalid" } } },
+    { "id": "dates-wrong-critical", "tool": "quality_check", "args": { "policies": "fixtures/policies.csv", "vehicles": "fixtures/vehicles.csv", "status": "critical" },
+      "expect": { "equals": { "result.items.0.policy_number": "CGL-2605", "result.items.1.policy_number": "WC-2607" } } },
+    { "id": "without-vehicles-no-vin-check", "tool": "quality_check", "args": { "policies": "fixtures/policies.csv" },
+      "expect": { "equals": { "result.vehicles_checked": false, "result.by_status.clean": 4 } } },
+    { "id": "by-issue", "tool": "quality_check", "args": { "policies": "fixtures/policies.csv", "vehicles": "fixtures/vehicles.csv" },
+      "expect": { "equals": { "result.by_issue.0.count": 1 } } },
+    { "id": "report-written", "tool": "quality_write_report", "args": { "policies": "fixtures/policies.csv", "vehicles": "fixtures/vehicles.csv" },
+      "expect": { "status": "executed", "contains": ["data-quality.csv", "data-quality.html"] } }
+  ]
+}
