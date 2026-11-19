@@ -1,0 +1,71 @@
+{
+  "product": "Fairpolicy",
+  "industry": "Independent insurance agencies and brokerages",
+  "kicker": "Agency back-office checks from the files you already export",
+  "lede": "Thirty agents that read your agency system's policy lists, carrier commission statements, receivables, trust account, certificate and licence exports on your own computer and hand your staff a worklist, while binding, paying and sending stay one named person's click.",
+  "from": "$1,000",
+  "packages": [
+    ["$2,000 · One agency", "Commission check", "Carrier commission statements against expected commission, missing commissions and cancellation chargebacks"],
+    ["$1,500 · One agency", "Producer pay and bonuses", "Producer splits against producer pay, carrier bonus tiers and retention by producer"],
+    ["$2,500 · One agency", "Agency bill and trust account", "Premium trust account, receivables aging, double billing, carrier account currents, return premiums and premium finance"],
+    ["$2,500 · One agency", "Renewals and retention", "Renewals with no review or remarket, commercial renewal timelines, lapses and one-line accounts"],
+    ["$2,500 · One agency", "Service desk", "Certificates against policies, additional insured requests, pending changes, policy checking, open claims and loss runs"],
+    ["$2,000 · One agency", "Licensing and E&O file", "Licences and continuing education by state, carrier appointments, signed declinations and premium audits"],
+    ["$1,500 · One agency", "Data clean-up", "Policy data quality, duplicate clients and carrier download errors"],
+    ["$1,000 · One agency", "Book summary", "Book of business figures for a valuation or perpetuation conversation"],
+    ["$9,500 · One agency", "Whole agency", "All 30 agents set up on your exports, with one training session for the team"],
+    ["$15,000 · Partner rollout", "For agency networks and clusters", "All 30 agents for up to 10 member agencies, with export mapping per agency system and a runbook"]
+  ],
+  "support": "Support after setup: $250 a month per package, $750 a month for the whole agency, $2,000 a month for a partner rollout; covers new export layouts, setting changes and a review call.",
+  "notes": [
+    "Reads files your agency exports; it does not log in to your agency system, a carrier portal, a premium finance company or a bank.",
+    "Export layouts for Applied Epic, AMS360, Sagitta, HawkSoft, EZLynx and QQCatalyst were written from knowledge of each system and are confirmed on your own files during setup.",
+    "Commission schedules, split percents, bonus grids, state continuing-education hours and deadlines are settings your agency writes and confirms; they are not a carrier's rule or a state's law.",
+    "A finding is a lead for a licensed person to check, not a conclusion about coverage, a client or an employee.",
+    "Book valuation figures are a summary of your files, not an appraisal or a price."
+  ],
+  "warn": "Your exports, reports and drafts stay on your computer; client names, birth dates, licence numbers and addresses are masked before anything reaches an AI model. No agent binds, cancels, endorses or recommends coverage, pays a carrier or producer, moves trust money, issues a certificate or sends a message.",
+  "groups": [
+    ["Commissions", [
+      ["Commission statements", "Every statement line against the commission your schedule expects, by carrier"],
+      ["Missing commissions", "Policies you wrote or renewed that never reached a statement"],
+      ["Commission chargebacks", "Chargebacks on cancellations against the unearned premium"],
+      ["Producer splits", "Each producer's share of commission received against producer pay"],
+      ["Contingency bonus", "Carrier bonus tiers met, the estimate, and the premium to the next tier"]
+    ]],
+    ["Agency bill, trust and premium money", [
+      ["Trust account", "The premium trust balance against premiums owed to carriers"],
+      ["Receivables aging", "What clients owe, how late, and premium you already paid the carrier"],
+      ["Direct and agency bill", "Clients who may be billed twice by you and the carrier"],
+      ["Premium finance", "Notices of intent to cancel, late installments and funding not passed on"],
+      ["Carrier payables", "A carrier's account current against your payables, item by item"],
+      ["Return premiums", "Return premiums not refunded and refund checks not cashed"]
+    ]],
+    ["Renewals, retention and the book", [
+      ["Renewal remarket", "Renewals with no review logged, and increases with no remarket"],
+      ["Commercial renewals", "Loss runs, submissions and quotes against each renewal's timeline"],
+      ["Lapsed policies", "Cancellations and lapses with no replacement policy"],
+      ["Cross-sell", "One-line accounts and line gaps, as a review list"],
+      ["Producer retention", "Retention by producer, line and carrier, with lost reasons"],
+      ["Book valuation", "Commission in force, mix, concentration and missing data"]
+    ]],
+    ["Service", [
+      ["Certificate limits", "Certificates against the policy: limits, dates, AI and waiver"],
+      ["Additional insureds", "Requests covered by blanket wording or waiting on the carrier"],
+      ["Pending endorsements", "Changes not sent, not confirmed or not billed"],
+      ["Policy checking", "Issued policies against what was bound"],
+      ["Open claims", "Claims with no update, open long, or near renewal"],
+      ["Loss runs", "Claims, incurred and loss ratio by account and year"]
+    ]],
+    ["Compliance and data", [
+      ["License renewals", "Licences and continuing education by state, from your settings"],
+      ["Carrier appointments", "Business written without an active appointment"],
+      ["Signed declinations", "Signed applications, UM/UIM rejections, flood offers and declinations on file"],
+      ["Workers comp audits", "Audits not started, large additional premium, returns due"],
+      ["Data quality", "Dates, VINs, contacts and staff fields that break renewals"],
+      ["Duplicate clients", "Client records that are the same person or business"],
+      ["Download errors", "Failed and unmatched carrier downloads, carriers gone quiet"]
+    ]]
+  ],
+  "closing": "Each one does one job, on your computer, from a file you export. The software is free and open source; you pay once for the setup on your own files, and a licensed person at your agency decides what happens next."
+}
