@@ -1,0 +1,24 @@
+{
+  "suite": "fairpolicy-producer-retention", "root": "..",
+  "data_note": "Fictional policy terms in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "retention_check", "args": { "policies": "fixtures/policy-terms.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "equals": { "result.due": 13, "result.renewed": 11, "result.retention_pct": 84.62, "result.premium_due": 40300, "result.premium_renewed": 35800, "result.premium_retention_pct": 88.83, "result.producers": 3 } } },
+    { "id": "every-status", "tool": "retention_check", "args": { "policies": "fixtures/policy-terms.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_status.below_target": 1, "result.by_status.too_few": 1, "result.by_status.at_target": 1 } } },
+    { "id": "producer-below-target", "tool": "retention_explain", "args": { "policies": "fixtures/policy-terms.csv", "as_of": "2026-11-18", "producer": "Jordan Lee" },
+      "expect": { "equals": { "result.producer.status": "below_target", "result.producer.retention_pct": 83.33, "result.producer.premium_retention_pct": 73.33, "result.producer.lost_policies": "HO-1506" } } },
+    { "id": "rewrite-same-client-and-line-counts", "tool": "retention_check", "args": { "policies": "fixtures/policy-terms.csv", "as_of": "2026-11-18" },
+      "expect": { "not_contains": ["PA-1504 ("] } },
+    { "id": "lost-reasons", "tool": "retention_check", "args": { "policies": "fixtures/policy-terms.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.lost_reasons.0.reason": "Moved to another agency", "result.lost_reasons.1.reason": "Price" } } },
+    { "id": "by-line", "tool": "retention_check", "args": { "policies": "fixtures/policy-terms.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_line.0.line": "home", "result.by_line.0.due": 4, "result.by_line.0.renewed": 2 } } },
+    { "id": "lower-target", "tool": "retention_check", "args": { "policies": "fixtures/policy-terms.csv", "as_of": "2026-11-18", "target": 80 },
+      "expect": { "equals": { "result.by_status.at_target": 2 } } },
+    { "id": "fewer-terms-to-judge", "tool": "retention_check", "args": { "policies": "fixtures/policy-terms.csv", "as_of": "2026-11-18", "min_terms": 2 },
+      "expect": { "equals": { "result.by_status.below_target": 2 } } },
+    { "id": "report-written", "tool": "retention_write_report", "args": { "policies": "fixtures/policy-terms.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "contains": ["producer-retention.csv", "producer-retention.html"] } }
+  ]
+}
