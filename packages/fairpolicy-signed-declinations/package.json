@@ -1,0 +1,58 @@
+{
+  "name": "fairpolicy-signed-declinations",
+  "version": "0.1.0",
+  "description": "Checks each active policy file for the signed documents your agency requires: applications, UM/UIM rejections, flood offers and declinations of coverage offered. Lists what is missing or unsigned; never sends forms or advises on coverage.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-signed-declinations": "bin/fairpolicy-signed-declinations.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-signed-declinations.js demo",
+    "eval": "node bin/fairpolicy-signed-declinations.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-signed-declinations"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-signed-declinations#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "errors-and-omissions",
+    "e-and-o",
+    "declinations",
+    "um-uim",
+    "file-review"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "suite": "fairpolicy-signed-declinations", "root": "..",
+  "data_note": "Fictional policies, documents and checklist in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "declinations_check", "args": { "policies": "fixtures/policies.csv", "documents": "fixtures/documents.csv" },
+      "expect": { "status": "executed", "equals": { "result.policies": 6, "result.with_gaps": 4 } } },
+    { "id": "every-status", "tool": "declinations_check", "args": { "policies": "fixtures/policies.csv", "documents": "fixtures/documents.csv" },
+      "expect": { "equals": { "result.by_status.missing": 3, "result.by_status.unsigned": 1, "result.by_status.complete": 2 } } },
+    { "id": "um-rejection-needed", "tool": "declinations_explain", "args": { "policies": "fixtures/policies.csv", "documents": "fixtures/documents.csv", "policy_number": "PA-2401" },
+      "expect": { "equals": { "result.policy.status": "missing", "result.policy.missing": "um_rejection", "result.policy.required": "signed_application, um_rejection" } } },
+    { "id": "declination-needed", "tool": "declinations_explain", "args": { "policies": "fixtures/policies.csv", "documents": "fixtures/documents.csv", "policy_number": "CGL-2405" },
+      "expect": { "equals": { "result.policy.missing": "declination" } } },
+    { "id": "unsigned-flood-offer", "tool": "declinations_explain", "args": { "policies": "fixtures/policies.csv", "documents": "fixtures/documents.csv", "policy_number": "HO-2403" },
+      "expect": { "equals": { "result.policy.status": "unsigned", "result.policy.unsigned": "flood_offer" } } },
+    { "id": "by-document", "tool": "declinations_check", "args": { "policies": "fixtures/policies.csv", "documents": "fixtures/documents.csv" },
+      "expect": { "equals": { "result.by_document.0.count": 1 } } },
+    { "id": "agency-checklist", "tool": "declinations_explain", "args": { "policies": "fixtures/policies.csv", "documents": "fixtures/documents.csv", "checklist": "fixtures/checklist.json", "policy_number": "WC-2406" },
+      "expect": { "equals": { "result.policy.missing": "signed_application, experience_mod_worksheet" } } },
+    { "id": "expired-left-out", "tool": "declinations_check", "args": { "policies": "fixtures/policies.csv", "documents": "fixtures/documents.csv" },
+      "expect": { "not_contains": ["PA-2407"] } },
+    { "id": "report-written", "tool": "declinations_write_report", "args": { "policies": "fixtures/policies.csv", "documents": "fixtures/documents.csv" },
+      "expect": { "status": "executed", "contains": ["signed-declinations.csv", "signed-declinations.html"] } }
+  ]
+}
