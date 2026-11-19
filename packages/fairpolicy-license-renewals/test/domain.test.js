@@ -32,3 +32,11 @@ test('state codes compare without case; totals by person count what needs attent
   const r = checkLicenses([lic({ state: 'tx', expiration_date: '2026-10-01' }), lic({ license_number: 'L-2' })], settings, { asOf: '2026-11-18' });
   assert.equal(r.by_person[0].needing_attention, 1); assert.equal(r.rows[0].state, 'TX');
 });
+
+test('blank CE hours are unknown, not zero: a licence list without CE columns is not listed as short (real-data fix, 19 Nov)', () => {
+  assert.equal(st({ expiration_date: '2027-01-10', ce_hours: '', ethics_hours: '' }), 'renewal_due');
+  const r = checkLicenses([lic({ expiration_date: '2027-01-10', ce_hours: '', ethics_hours: '' })], settings, { asOf: '2026-11-18' }).rows[0];
+  assert.equal(r.ce_hours, null);
+  assert.match(r.detail, /not in the file/);
+  assert.equal(st({ expiration_date: '2027-01-10', ce_hours: '0', ethics_hours: '' }), 'ce_short');
+});

@@ -17,17 +17,20 @@ export function checkLicenses(rows, settings = {}, { asOf, dueDays = 60, ceDays 
     const st = str(r.state).toUpperCase(); const rule = states[st] || null;
     const exp = str(r.expiration_date); const days = exp ? daysBetween(asOf, exp) : null;
     const resident = r.resident === undefined || str(r.resident) === '' ? true : yes(r.resident);
+    // Blank hours mean the export has no CE figures (a state's licence list, for one): not zero hours. Found on the
+    // Texas Department of Insurance open-data file, where every licence close to expiration read as short.
+    const known = str(r.ce_hours) !== '' || str(r.ethics_hours) !== '';
     const hours = num(r.ce_hours) ?? 0, ethics = num(r.ethics_hours) ?? 0;
     const needH = rule ? num(rule.ce_hours) ?? 0 : null, needE = rule ? num(rule.ethics_hours) ?? 0 : null;
-    const short = resident && rule && (hours < needH || ethics < needE);
+    const short = known && resident && rule && (hours < needH || ethics < needE);
     let status;
     if (days !== null && days < 0) status = 'expired';
     else if (resident && !rule) status = 'no_state_rule';
     else if (short && days !== null && days <= ceDays) status = 'ce_short';
     else if (days !== null && days <= dueDays) status = 'renewal_due';
     else status = 'current';
-    const detail = status === 'expired' ? `Expired ${exp} (${-days} days ago).` : status === 'ce_short' ? `Expires ${exp} (${days} days); ${hours} of ${needH} hours, ${ethics} of ${needE} ethics hours.` : status === 'renewal_due' ? `Expires ${exp} (${days} days).` : status === 'no_state_rule' ? `No settings for ${st}.` : resident ? '' : 'Non-resident: continuing education usually follows the home state; confirm.';
-    return { status, person: str(r.person), role: str(r.role), state: st, license_number: str(r.license_number), license_type: str(r.license_type), resident, expiration_date: exp, days_left: days, ce_hours: hours, ce_required: resident ? needH : null, ethics_hours: ethics, ethics_required: resident ? needE : null, detail, next_step: NEXT[status] };
+    const detail = status === 'expired' ? `Expired ${exp} (${-days} days ago).` : status === 'ce_short' ? `Expires ${exp} (${days} days); ${hours} of ${needH} hours, ${ethics} of ${needE} ethics hours.` : status === 'renewal_due' ? `Expires ${exp} (${days} days).${known ? '' : ' Continuing education hours are not in the file.'}` : status === 'no_state_rule' ? `No settings for ${st}.` : resident ? '' : 'Non-resident: continuing education usually follows the home state; confirm.';
+    return { status, person: str(r.person), role: str(r.role), state: st, license_number: str(r.license_number), license_type: str(r.license_type), resident, expiration_date: exp, days_left: days, ce_hours: known ? hours : null, ce_required: resident ? needH : null, ethics_hours: known ? ethics : null, ethics_required: resident ? needE : null, detail, next_step: NEXT[status] };
   });
   out.sort((a, b) => STATUSES.indexOf(a.status) - STATUSES.indexOf(b.status) || (a.days_left ?? 99999) - (b.days_left ?? 99999) || a.person.localeCompare(b.person) || a.state.localeCompare(b.state));
   const byPerson = [...groupBy(out, (r) => r.person).values()].map((g) => ({ person: g[0].person, role: g[0].role, licenses: g.length, needing_attention: g.filter((r) => r.status !== 'current').length, next_expiration: g.map((r) => r.expiration_date).filter((d) => d && d >= asOf).sort()[0] || '' })).sort((a, b) => b.needing_attention - a.needing_attention || a.person.localeCompare(b.person));
