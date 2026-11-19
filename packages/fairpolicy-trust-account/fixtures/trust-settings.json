@@ -1,0 +1,8 @@
+{
+  "tolerance": 1,
+  "due_soon_days": 7,
+  "operating_words": ["operating account", "commission transfer"],
+  "refund_words": ["refund", "return premium"],
+  "fee_words": ["bank service charge"],
+  "state_note": "Fictional example: the agency confirmed its state allows commission transfers only after the premium is collected."
+}

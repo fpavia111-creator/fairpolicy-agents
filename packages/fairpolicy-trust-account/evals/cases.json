@@ -1,0 +1,282 @@
+{
+  "suite": "fairpolicy-trust-account",
+  "root": "..",
+  "data_note": "Fictional payables, trust bank export and settings in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "trust_check",
+      "args": {
+        "payables": "fixtures/payables.csv",
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/trust-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.balance": 4020,
+          "result.owed_to_carriers": 4980,
+          "result.shortfall": 960,
+          "result.commission_earned": 1710,
+          "result.commission_transferred": 2900,
+          "result.unexpected_withdrawals": 850,
+          "result.overdue": 1020
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "trust_check",
+      "args": {
+        "payables": "fixtures/payables.csv",
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/trust-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.shortfall": 1,
+          "result.by_status.unexpected_withdrawal": 1,
+          "result.by_status.commission_overdraw": 1,
+          "result.by_status.overdue_remittance": 1,
+          "result.by_status.due_soon": 1,
+          "result.by_status.not_due": 1,
+          "result.by_status.remitted": 2
+        }
+      }
+    },
+    {
+      "id": "shortfall-first",
+      "tool": "trust_check",
+      "args": {
+        "payables": "fixtures/payables.csv",
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/trust-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.status": "shortfall",
+          "result.items.0.amount": 960,
+          "result.items.1.status": "unexpected_withdrawal",
+          "result.items.1.amount": 850
+        }
+      }
+    },
+    {
+      "id": "explain-balance",
+      "tool": "trust_explain",
+      "args": {
+        "payables": "fixtures/payables.csv",
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/trust-settings.json",
+        "as_of": "2026-11-18",
+        "ref": "balance"
+      },
+      "expect": {
+        "equals": {
+          "result.item.status": "shortfall"
+        },
+        "contains": [
+          "Balance 4020"
+        ]
+      }
+    },
+    {
+      "id": "overdraw",
+      "tool": "trust_check",
+      "args": {
+        "payables": "fixtures/payables.csv",
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/trust-settings.json",
+        "as_of": "2026-11-18",
+        "status": "commission_overdraw"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.amount": 1190
+        }
+      }
+    },
+    {
+      "id": "earlier-date-covered",
+      "tool": "trust_check",
+      "args": {
+        "payables": "fixtures/payables.csv",
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/trust-settings.json",
+        "as_of": "2026-10-31"
+      },
+      "expect": {
+        "equals": {
+          "result.balance": 1590,
+          "result.by_status.covered": 1
+        }
+      }
+    },
+    {
+      "id": "remitted-carriers-not-flagged",
+      "tool": "trust_check",
+      "args": {
+        "payables": "fixtures/payables.csv",
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/trust-settings.json",
+        "as_of": "2026-11-18",
+        "status": "unexpected_withdrawal"
+      },
+      "expect": {
+        "not_contains": [
+          "Example Mutual premium remittance",
+          "Refund"
+        ]
+      }
+    },
+    {
+      "id": "bad-settings-refused",
+      "tool": "trust_check",
+      "args": {
+        "payables": "fixtures/payables.csv",
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/phi-canaries.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error"
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "trust_write_report",
+      "args": {
+        "payables": "fixtures/payables.csv",
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/trust-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "trust-account.csv",
+          "trust-account.html"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "trust_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "trust_check",
+      "args": {
+        "payables": "../../outside.csv",
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/trust-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "trust_check",
+      "mode": "review",
+      "args": {
+        "payables": "fixtures/payables.csv",
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/trust-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.balance": 4020,
+          "result.owed_to_carriers": 4980,
+          "result.shortfall": 960,
+          "result.commission_earned": 1710,
+          "result.commission_transferred": 2900,
+          "result.unexpected_withdrawals": 850,
+          "result.overdue": 1020
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "trust_check",
+      "args": {
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/trust-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "payables"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "trust_check",
+      "args": {
+        "payables": "fixtures/payables.csv",
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/trust-settings.json",
+        "as_of": "2026-11-18",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-refused-bank_transfer",
+      "tool": "bank_transfer",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-carrier_remit",
+      "tool": "carrier_remit",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "trust_check",
+      "args": {
+        "payables": "fixtures/payables.csv",
+        "bank": "fixtures/trust-bank-2026-11.csv",
+        "settings": "fixtures/trust-settings.json",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Ansel Bromwich",
+          "Bromwich Glassworks",
+          "Tamsin Vellacott",
+          "Vellacott Kennels"
+        ]
+      }
+    }
+  ]
+}
