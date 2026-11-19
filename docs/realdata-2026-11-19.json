@@ -1,0 +1,110 @@
+{
+  "date": "2026-11-19",
+  "downloaded": "2026-11-19T07:20:00.049Z",
+  "as_of": "2026-11-19",
+  "sources": {
+    "tdi_licenses": {
+      "name": "Texas Department of Insurance: insurance agents, adjusters and people approved to manage insurance-related products or claims (data.texas.gov kxv3-diwf)",
+      "page": "https://data.texas.gov/dataset/kxv3-diwf",
+      "url": "https://data.texas.gov/resource/kxv3-diwf.json?$select=license_number,license_type,qualification,state,license_issue_date,expiration_date,npn&$where=license_type=%27General%20Lines%20Agent%27&$order=license_number&$limit=20000",
+      "licence": "Texas Open Data Portal, published by the Texas Department of Insurance; no licence named on the dataset (data.texas.gov terms of use). The name column was not downloaded."
+    },
+    "tdi_companies": {
+      "name": "Texas Department of Insurance: active insurance company appointments for agencies and businesses (data.texas.gov avjc-7u2m), distinct company and NAIC id",
+      "page": "https://data.texas.gov/dataset/avjc-7u2m",
+      "url": "https://data.texas.gov/resource/avjc-7u2m.json?$select=company,naic_id&$group=company,naic_id&$order=naic_id&$limit=50000",
+      "licence": "Texas Open Data Portal, published by the Texas Department of Insurance; no licence named on the dataset (data.texas.gov terms of use)."
+    },
+    "nyc_fhv": {
+      "name": "NYC Taxi and Limousine Commission: For Hire Vehicles (FHV) - Active (NYC Open Data 8wbx-tsch), VIN and model year only",
+      "page": "https://data.cityofnewyork.us/Transportation/For-Hire-Vehicles-FHV-Active/8wbx-tsch",
+      "url": "https://data.cityofnewyork.us/resource/8wbx-tsch.json?$select=vehicle_license_number,vehicle_vin_number,vehicle_year&$order=vehicle_license_number&$limit=200000",
+      "licence": "NYC Open Data terms of use (public data, free to use). The owner name column was not downloaded."
+    },
+    "nfip_claims": {
+      "name": "FEMA OpenFEMA: FIMA NFIP redacted claims v3, Vermont, years of loss 2019 onwards",
+      "page": "https://www.fema.gov/openfema-data-page/fima-nfip-redacted-claims-v2",
+      "url": "https://www.fema.gov/api/open/v3/NfipClaims?$filter=state%20eq%20'VT'%20and%20yearOfLoss%20ge%202019&$select=id,dateOfLoss,yearOfLoss,countyCode,amountPaidOnBuildingClaim,amountPaidOnContentsClaim,amountPaidOnIncreasedCostOfComplianceClaim&$top=10000",
+      "licence": "OpenFEMA: U.S. government data, no copyright; FEMA asks users not to imply its endorsement. Redacted by FEMA (no names or addresses)."
+    }
+  },
+  "results": [
+    {
+      "id": "tdi_licenses",
+      "agent": "fairpolicy-license-renewals",
+      "rows": 20000,
+      "residents": 18326,
+      "by_status": {
+        "expired": 444,
+        "renewal_due": 702,
+        "current": 18854
+      },
+      "disagreements": 0,
+      "examples": [],
+      "seconds": 0.463,
+      "found": "444 expired, 702 due in 60 days, 18854 current",
+      "false_positives": "0 after the fix; before it, the 1195 resident licences expiring within 90 days were listed as short of CE because blank hours read as zero",
+      "note": "The first 20,000 General Lines Agent licences by licence number. CE hours are not published, so CE itself is not tested here."
+    },
+    {
+      "id": "tdi_companies",
+      "agent": "fairpolicy-core carrier matching (used by 12 agents)",
+      "rows": 1417,
+      "companies": 1417,
+      "distinct_keys": 1417,
+      "key_clashes": 0,
+      "key_clash_examples": [],
+      "same_name_different_id": 0,
+      "loose_prefix_pairs": 211,
+      "loose_examples": [
+        "\"Access Insurance Company\" ~ \"Access Home Insurance Company\"",
+        "\"Aetna Health Insurance Company\" ~ \"Aetna Health Inc.\"",
+        "\"Aetna Health Insurance Company\" ~ \"AETNA HEALTH AND LIFE INSURANCE COMPANY\"",
+        "\"Allied World Insurance Company\" ~ \"Allied World National Assurance Company\"",
+        "\"Allied World Insurance Company\" ~ \"Allied World Specialty Insurance Company\""
+      ],
+      "find_carrier_other_company": 0,
+      "find_carrier_wrong_key": 0,
+      "found": "1417 insurers (NAIC ids) gave 1417 carrier keys",
+      "false_positives": "0 key(s) shared by different NAIC ids (0 of them already share the same printed name); findCarrier picked another company's entry for 0 of 1417 names when the whole list was given; before the fix 8 keys were shared by 16 different insurers (assurance, underwriters, group, corp and inc were treated as filler words)",
+      "note": "A loose match (one name is the other with words left off the end) is used only when no exact key matches and it points at one entry."
+    },
+    {
+      "id": "nyc_fhv",
+      "agent": "fairpolicy-data-quality",
+      "rows": 105138,
+      "flagged": 25,
+      "independent": 25,
+      "kinds": {
+        "blank": 19,
+        "invalid": 6,
+        "check_digit": 0
+      },
+      "missed": 0,
+      "extra": 0,
+      "other_findings": 0,
+      "seconds": 5.743,
+      "found": "25 of 105138 vehicles with a VIN problem (19 blank, 6 wrong length or letters, 0 failing the check digit)",
+      "false_positives": "0 flagged that the independent check passes, 0 the independent check fails that the agent missed; 0 other findings on the filler policy rows",
+      "note": "A VIN that fails the check digit is a typo in the public file or a vehicle built without a North American check digit; the agent asks a person to confirm it, it does not say which."
+    },
+    {
+      "id": "nfip_claims",
+      "agent": "fairpolicy-loss-runs",
+      "rows": 1027,
+      "years": "2022-2026",
+      "accounts": 11,
+      "claims_in_window": 922,
+      "by_status": {
+        "large_loss": 10,
+        "frequency": 1
+      },
+      "disagreements": 0,
+      "examples": [],
+      "seconds": 0.103,
+      "found": "11 counties, 922 claims in 2022-2026, 52152800.96 paid; 10 with a loss of 25,000 or more, 1 with 3 or more claims in a year",
+      "false_positives": "0 counties where the agent's claims, total or status differ from the independent count",
+      "note": "Counties stand in for accounts because FEMA removes the insured; there is no premium file, so no loss ratio is tested."
+    }
+  ]
+}

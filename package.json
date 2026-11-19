@@ -27,7 +27,9 @@
     "readme:i18n": "node scripts/readme-i18n.mjs",
     "accuracy": "node scripts/accuracy.mjs --record",
     "accuracy:write": "node scripts/accuracy.mjs --write",
-    "model-view": "node scripts/model-view.mjs"
+    "model-view": "node scripts/model-view.mjs",
+    "realdata": "node scripts/realdata.mjs --download",
+    "realdata:offline": "node scripts/realdata.mjs"
   },
   "engines": {
     "node": ">=20"

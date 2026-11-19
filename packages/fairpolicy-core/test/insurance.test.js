@@ -86,3 +86,13 @@ test('a path longer than 1,024 characters is refused before anything touches the
   assert.throws(() => safePath('.', 'a'.repeat(200000)), /too long/);
   assert.ok(safePath('.', 'fixtures/x.csv'));
 });
+
+test('carrier keys keep assurance, underwriters, group, corp and inc apart (real-data fix, TDI insurer list, 19 Nov); a loose match still links "X Inc" when it is the only fit', () => {
+  const pairs = [['Example Insurance Company', 'Example Assurance Company'], ['Sample Insurance Underwriters Inc.', 'Sample Insurance Corporation'], ['Demo Property and Casualty Insurance Company', 'Demo Group Property and Casualty Insurance Company'], ['Test Republic Insurance Company', 'Test Republic Corp Insurance Company'], ['Example Health Insurance Company', 'Example Health Inc.']];
+  for (const [a, b] of pairs) assert.notEqual(carrierKey(a), carrierKey(b), `${a} / ${b}`);
+  assert.equal(carrierKey('Example Ins Co'), carrierKey('Example Insurance Company'));
+  assert.equal(carrierKey('Example Mutual Insurance Company, The'), carrierKey('The Example Mutual Ins. Co.'));
+  const list = [{ carrier: 'Example Mutual Insurance Company' }, { carrier: 'Sample Casualty Company' }];
+  assert.equal(findCarrier(list, 'Example Mutual Inc').carrier, 'Example Mutual Insurance Company');
+  assert.equal(findCarrier([...list, { carrier: 'Example Mutual Inc' }], 'Example Mutual Inc').carrier, 'Example Mutual Inc');
+});

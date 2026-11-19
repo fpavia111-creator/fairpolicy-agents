@@ -57,14 +57,20 @@ export const AS_OF_ARG = Object.freeze({ type: 'string', description: 'Date to c
 
 // Words that do not tell carriers apart in agency exports ("Example Insurance Company",
 // "Example Ins Co" and "Example" are the same carrier). Words that name a writing
-// company inside a group (casualty, indemnity, mutual, fire, national) are kept.
-const CARRIER_FILLER = new Set(['insurance', 'ins', 'company', 'co', 'companies', 'cos', 'group', 'grp', 'the', 'of', 'and', 'corp', 'corporation', 'inc', 'incorporated', 'llc', 'ltd', 'assurance', 'underwriters']);
+// company inside a group (casualty, indemnity, mutual, fire, national) are kept, and so are assurance,
+// underwriters, group, corp and inc: on the Texas Department of Insurance list of 1,417 insurers (19 Nov 2026)
+// they told apart 8 pairs of different companies ("Great American Insurance Company" and "Great American
+// Assurance Company", "Aetna Health Insurance Company" and "Aetna Health Inc."). "Example Inc" still finds
+// "Example Insurance Company" through the loose match when no other carrier fits.
+const CARRIER_FILLER = new Set(['insurance', 'ins', 'company', 'co', 'companies', 'cos', 'the', 'of', 'and', 'llc', 'ltd']);
 const CKEYS = new Map();
 /** Canonical key for a carrier name, for matching across files. */
 export function carrierKey(v) {
   const s = str(v); if (!s) return '';
   const hit = CKEYS.get(s); if (hit !== undefined) return hit;
-  const words = normalizeName(s).split(' ').filter((w) => w && !CARRIER_FILLER.has(w));
+  // normalizeName drops legal forms; Inc and Corp are kept here because they name different insurers.
+  const kept = s.replace(/\b(inc|incorporated)\b\.?/gi, ' zzinc ').replace(/\b(corp|corporation)\b\.?/gi, ' zzcorp ');
+  const words = normalizeName(kept).split(' ').filter((w) => w && !CARRIER_FILLER.has(w)).map((w) => (w === 'zzinc' ? 'inc' : w === 'zzcorp' ? 'corp' : w));
   const k = words.join(' ') || normalizeName(s) || s.toLowerCase();
   if (CKEYS.size > 50000) CKEYS.clear();
   CKEYS.set(s, k); return k;
