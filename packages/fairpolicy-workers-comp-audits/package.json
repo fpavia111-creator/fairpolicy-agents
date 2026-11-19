@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-workers-comp-audits",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-workers-comp-audits",
   "description": "Follows premium audits on workers comp and other auditable policies: audits not started, large additional premium, returns due, and payroll far from the estimate. Never disputes an audit or contacts the carrier.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

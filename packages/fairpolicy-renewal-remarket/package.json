@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-renewal-remarket",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-renewal-remarket",
   "description": "Lists renewals coming due with no renewal review logged, the ones expiring soon with nothing done, and renewals that go up with no remarket logged. Never quotes, binds or recommends a carrier.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

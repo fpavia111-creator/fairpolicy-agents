@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-download-errors",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-download-errors",
   "description": "Reads your carrier download log: failed transactions, transactions unmatched in suspense, and carriers with no successful download for a week. Never re-runs a download or edits a policy.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

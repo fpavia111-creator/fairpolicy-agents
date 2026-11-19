@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-cross-sell",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-cross-sell",
   "description": "Groups active policies by client and lists one-line accounts and line gaps your agency looks for, by producer. A review list for licensed staff; never contacts a client or recommends coverage.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

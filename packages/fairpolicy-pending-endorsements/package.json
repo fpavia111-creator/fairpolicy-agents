@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-pending-endorsements",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-pending-endorsements",
   "description": "Follows every policy change a client asked for: not sent to the carrier, sent and not confirmed, or confirmed with a premium change that was never billed. Never sends a change or confirms one to a client.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

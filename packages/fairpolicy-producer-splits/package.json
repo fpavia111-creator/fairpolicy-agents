@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-producer-splits",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-producer-splits",
   "description": "Works out each producer's share of the commission the agency received (new and renewal percents, shared policies, house accounts) and compares it with the producer statement. Never changes producer pay.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

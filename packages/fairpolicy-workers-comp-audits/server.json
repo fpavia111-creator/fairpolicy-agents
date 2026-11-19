@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.fpavia111-creator/fairpolicy-workers-comp-audits",
+  "title": "Fairpolicy Workers Comp Audits",
+  "description": "Follows premium audits on workers comp and other auditable policies",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents",
+    "source": "github",
+    "subfolder": "packages/fairpolicy-workers-comp-audits"
+  },
+  "websiteUrl": "https://fair-agents.com/fairpolicy.html",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "fairpolicy-workers-comp-audits",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "mcp"
+        },
+        {
+          "type": "named",
+          "name": "--root",
+          "description": "Folder holding the exports this agent may read and write (it cannot reach outside it)",
+          "isRequired": true,
+          "format": "filepath",
+          "valueHint": "exports_folder"
+        }
+      ]
+    }
+  ]
+}

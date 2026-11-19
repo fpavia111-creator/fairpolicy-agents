@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-producer-retention",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-producer-retention",
   "description": "Works out retention by producer, line and carrier from your policy terms, by count and premium, with the lost policies and their reasons. Never contacts a client.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

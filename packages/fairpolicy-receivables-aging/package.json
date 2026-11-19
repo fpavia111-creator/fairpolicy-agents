@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-receivables-aging",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-receivables-aging",
   "description": "Ages agency-bill receivables by client and producer, flags premiums the agency already paid the carrier but has not collected, and credit balances owed back to clients. Drafts a reminder; never sends, charges or cancels.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-additional-insureds",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-additional-insureds",
   "description": "Sorts additional insured, waiver of subrogation and primary/non-contributory requests: covered by the policy, needing a carrier endorsement, waiting on the carrier, or open too long. Never issues a certificate.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

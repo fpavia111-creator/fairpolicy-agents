@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-direct-agency-bill",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-direct-agency-bill",
   "description": "Compares how each policy is coded (agency bill or direct bill) with how it is really billed, and flags clients who may be billed twice. Never changes a policy or an invoice.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

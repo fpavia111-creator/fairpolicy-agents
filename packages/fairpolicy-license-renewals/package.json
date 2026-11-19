@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-license-renewals",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-license-renewals",
   "description": "Tracks producer and staff licences by state: expired licences, continuing education short before expiration, renewals due, and states with no setting yet. State rules are settings your agency confirms; never files a renewal.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

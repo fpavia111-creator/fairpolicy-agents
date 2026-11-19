@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-policy-checking",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-policy-checking",
   "description": "Checks each issued policy against what was bound, coverage by coverage: missing coverages, lower limits, higher deductibles, different premium or dates, and binders with nothing issued. Never binds or endorses.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

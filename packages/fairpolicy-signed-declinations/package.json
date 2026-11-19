@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-signed-declinations",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-signed-declinations",
   "description": "Checks each active policy file for the signed documents your agency requires: applications, UM/UIM rejections, flood offers and declinations of coverage offered. Lists what is missing or unsigned; never sends forms or advises on coverage.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

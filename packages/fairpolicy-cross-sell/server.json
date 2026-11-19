@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.fpavia111-creator/fairpolicy-cross-sell",
+  "title": "Fairpolicy Cross Sell",
+  "description": "Groups active policies by client and lists one-line accounts and line gaps your agency looks for…",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents",
+    "source": "github",
+    "subfolder": "packages/fairpolicy-cross-sell"
+  },
+  "websiteUrl": "https://fair-agents.com/fairpolicy.html",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "fairpolicy-cross-sell",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "mcp"
+        },
+        {
+          "type": "named",
+          "name": "--root",
+          "description": "Folder holding the exports this agent may read and write (it cannot reach outside it)",
+          "isRequired": true,
+          "format": "filepath",
+          "valueHint": "exports_folder"
+        }
+      ]
+    }
+  ]
+}

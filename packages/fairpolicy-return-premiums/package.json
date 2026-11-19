@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-return-premiums",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-return-premiums",
   "description": "Follows return premiums on agency-bill policies from the carrier's credit to the client: refunds overdue or due, refund checks not cleared, and direct-bill returns the carrier pays. Never writes a check or moves money.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

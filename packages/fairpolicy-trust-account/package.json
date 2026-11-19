@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-trust-account",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-trust-account",
   "description": "Reconciles the premium trust account: bank balance against premiums collected and owed to carriers, unexpected withdrawals, commission moved beyond what was earned, and remittances overdue or due soon. Never moves money.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

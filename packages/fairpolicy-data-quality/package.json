@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-data-quality",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-data-quality",
   "description": "Checks every active policy for the data that breaks downloads, renewals and certificates: wrong dates, no carrier or premium, missing or invalid VINs, missing address, ZIP or contact, no producer or account manager. Never edits your agency system.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-contingency-bonus",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-contingency-bonus",
   "description": "Reads carrier experience reports against each carrier's contingency or profit-sharing grid: tier met, estimated bonus, premium needed for the next tier, loss headroom, and bonuses received below the estimate. Never moves business.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

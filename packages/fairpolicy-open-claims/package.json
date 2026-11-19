@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-open-claims",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-open-claims",
   "description": "Ages open claims: losses with no carrier claim number, claims with no update for weeks, claims open on policies renewing soon and claims open a long time. Never files, settles or comments on a claim.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

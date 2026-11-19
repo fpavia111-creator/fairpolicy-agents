@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-commission-chargebacks",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-commission-chargebacks",
   "description": "For every cancelled policy, works out the commission chargeback on the unearned premium, compares it with what the carrier took back, and flags overcharges, chargebacks still to come, chargebacks with no cancellation and producer shares not reversed. Never posts, pays or sends.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",

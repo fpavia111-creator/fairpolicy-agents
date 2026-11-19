@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.fpavia111-creator/fairpolicy-producer-splits",
+  "title": "Fairpolicy Producer Splits",
+  "description": "Works out each producer's share of the commission the agency received (new and renewal percents…",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents",
+    "source": "github",
+    "subfolder": "packages/fairpolicy-producer-splits"
+  },
+  "websiteUrl": "https://fair-agents.com/fairpolicy.html",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "fairpolicy-producer-splits",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "mcp"
+        },
+        {
+          "type": "named",
+          "name": "--root",
+          "description": "Folder holding the exports this agent may read and write (it cannot reach outside it)",
+          "isRequired": true,
+          "format": "filepath",
+          "valueHint": "exports_folder"
+        }
+      ]
+    }
+  ]
+}

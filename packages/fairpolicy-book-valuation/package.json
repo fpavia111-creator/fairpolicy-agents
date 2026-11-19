@@ -1,6 +1,7 @@
 {
   "name": "fairpolicy-book-valuation",
   "version": "0.1.0",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-book-valuation",
   "description": "Summarises your book of business for a valuation conversation: commission and premium in force, mix, revenue by carrier and line, largest clients, and concentration and missing-data figures to watch. Not an appraisal.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +24,8 @@
     "evals",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",
