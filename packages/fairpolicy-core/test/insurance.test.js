@@ -80,3 +80,9 @@ test('a value with junk in front (a planted formula) is still found inside text'
   const out = m.maskResult({ rows: [{ client: '=Fictional Roofing Co' }], note: 'Fictional Roofing Co asked for a COI' });
   assert.ok(!out.note.includes('Fictional Roofing'), out.note);
 });
+
+test('a path longer than 1,024 characters is refused before anything touches the disk', async () => {
+  const { safePath } = await import('../src/index.js');
+  assert.throws(() => safePath('.', 'a'.repeat(200000)), /too long/);
+  assert.ok(safePath('.', 'fixtures/x.csv'));
+});
