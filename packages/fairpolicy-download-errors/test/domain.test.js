@@ -26,3 +26,8 @@ test('carrier names group with "Insurance Company" ignored; lines after as_of ar
   const r = run([dl({}), dl({ download_id: 'D-2', carrier: 'Example Mutual Insurance Company' }), dl({ download_id: 'D-3', date: '2026-11-25', status: 'Error' })]);
   assert.equal(r.carriers, 1); assert.equal(r.transactions, 2);
 });
+
+test('rows without a carrier or date are skipped, and every status word is read', () => {
+  const r = checkDownloads([{ download_id: 'X', date: '', carrier: 'Example Mutual', status: 'Error' }, { download_id: 'Y', date: '2026-11-17', carrier: '', status: 'Error' }, { download_id: 'Z', date: '2026-11-17', carrier: 'Example Mutual', status: 'Applied' }], { asOf: '2026-11-18' });
+  assert.equal(r.transactions, 1); assert.equal(r.posted, 1);
+});

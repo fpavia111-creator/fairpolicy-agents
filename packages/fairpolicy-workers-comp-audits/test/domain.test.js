@@ -27,3 +27,7 @@ test('policies not yet ended are left out, and totals split additional from retu
   const r = checkAudits([au({}), au({ policy_number: 'W-2', audit_premium: '-80' }), au({ policy_number: 'W-3', expiration_date: '2027-01-01' })], { asOf: '2026-11-18' });
   assert.equal(r.audits, 2); assert.equal(r.additional_premium, 150); assert.equal(r.return_premium, 80);
 });
+
+test('a completed audit with no audited payroll and no audit premium is ok, not an error', () => {
+  assert.equal(st({ audited_payroll: '', audit_premium: '' }), 'ok');
+});

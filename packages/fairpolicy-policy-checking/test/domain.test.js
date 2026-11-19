@@ -26,3 +26,7 @@ test('bound with nothing issued is flagged after the days, and waits before', ()
   assert.equal(st([row({ bound_date: '2026-09-01' })], []).status, 'not_issued');
   assert.equal(checkPolicies([row({ bound_date: '2026-11-10' })], [], { asOf: '2026-11-18' }).policies, 0);
 });
+
+test('coverage names compare without case or punctuation', () => {
+  assert.equal(st([row({ coverage: 'Personal Liability' })], [row({ coverage: 'personal-liability' })]).status, 'matches');
+});

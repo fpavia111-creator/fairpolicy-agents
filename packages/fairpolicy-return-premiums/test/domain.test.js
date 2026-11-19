@@ -27,3 +27,8 @@ test('amounts are positive whatever the sign in the file; credits after as_of ar
   const r = checkRefunds([rp({ return_amount: '-250' }), rp({ policy_number: 'P-2', credited_date: '2026-12-01' })], { asOf: '2026-11-18' });
   assert.equal(r.returns, 1); assert.equal(r.owed_to_clients, 250);
 });
+
+test('the most overdue refund comes first', () => {
+  const r = checkRefunds([rp({ policy_number: 'P-1', credited_date: '2026-10-01' }), rp({ policy_number: 'P-2', credited_date: '2026-08-01' })], { asOf: '2026-11-18' });
+  assert.deepEqual(r.rows.map((x) => x.policy_number), ['P-2', 'P-1']);
+});
