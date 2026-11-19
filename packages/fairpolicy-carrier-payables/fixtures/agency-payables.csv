@@ -1,0 +1,6 @@
+Carrier,Policy Number,Insured Name,Transaction Type,Effective Date,Gross Premium,Commission,Net Due
+Sample Casualty,BOP-1101-01,Fennimore Optics LLC,New Business,10/15/2026,4400.00,770.00,3630.00
+Sample Casualty,WC-1102,Gwendolyn Ashcombe,New Business,10/20/2026,9000.00,540.00,8460.00
+Sample Casualty,CGL-1104,Gwendolyn Ashcombe,New Business,10/25/2026,2600.00,390.00,2210.00
+Sample Casualty,PKG-1105,Ashcombe Nurseries Inc,Renewal,09/01/2026,6000.00,600.00,5400.00
+Sample Casualty,CA-1106,Ashcombe Nurseries Inc,Cancellation,10/30/2026,-950.00,-120.00,-830.00

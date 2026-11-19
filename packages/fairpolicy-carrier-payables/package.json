@@ -1,0 +1,57 @@
+{
+  "name": "fairpolicy-carrier-payables",
+  "version": "0.1.0",
+  "description": "Reconciles a carrier's agency-bill account current with the payables in your agency system: amounts that differ, items on one side only, and items past due. Drafts a reconciliation note; never pays the carrier.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-carrier-payables": "bin/fairpolicy-carrier-payables.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-carrier-payables.js demo",
+    "eval": "node bin/fairpolicy-carrier-payables.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-carrier-payables"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-carrier-payables#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "carrier-payables",
+    "account-current",
+    "agency-bill",
+    "reconciliation"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "suite": "fairpolicy-carrier-payables", "root": "..",
+  "data_note": "Fictional carrier account current and agency payables in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "payables_check", "args": { "carrier_statement": "fixtures/carrier-account-current.csv", "agency_payables": "fixtures/agency-payables.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "equals": { "result.lines": 6, "result.carrier_total": 16820, "result.agency_total": 18870, "result.differences": -360, "result.past_due_total": 5400 } } },
+    { "id": "every-status", "tool": "payables_check", "args": { "carrier_statement": "fixtures/carrier-account-current.csv", "agency_payables": "fixtures/agency-payables.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_status.amount_differs": 1, "result.by_status.not_in_agency_system": 1, "result.by_status.not_on_carrier_statement": 1, "result.by_status.past_due": 1, "result.by_status.ok": 2 } } },
+    { "id": "difference-explained", "tool": "payables_explain", "args": { "carrier_statement": "fixtures/carrier-account-current.csv", "agency_payables": "fixtures/agency-payables.csv", "as_of": "2026-11-18", "policy_number": "WC-1102" },
+      "expect": { "equals": { "result.item.status": "amount_differs", "result.item.carrier_net": 8100, "result.item.agency_net": 8460, "result.item.difference": -360 } } },
+    { "id": "term-suffix-matches", "tool": "payables_explain", "args": { "carrier_statement": "fixtures/carrier-account-current.csv", "agency_payables": "fixtures/agency-payables.csv", "as_of": "2026-11-18", "policy_number": "BOP-1101" },
+      "expect": { "equals": { "result.item.status": "ok", "result.item.agency_net": 3630 } } },
+    { "id": "earlier-not-past-due", "tool": "payables_check", "args": { "carrier_statement": "fixtures/carrier-account-current.csv", "agency_payables": "fixtures/agency-payables.csv", "as_of": "2026-11-10" },
+      "expect": { "equals": { "result.by_status.ok": 3, "result.past_due_total": 0 } } },
+    { "id": "wide-tolerance", "tool": "payables_check", "args": { "carrier_statement": "fixtures/carrier-account-current.csv", "agency_payables": "fixtures/agency-payables.csv", "as_of": "2026-11-10", "tolerance": 500 },
+      "expect": { "equals": { "result.by_status.ok": 4 } } },
+    { "id": "report-written", "tool": "payables_write_report", "args": { "carrier_statement": "fixtures/carrier-account-current.csv", "agency_payables": "fixtures/agency-payables.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "contains": ["carrier-payables.csv", "carrier-payables.html"] } },
+    { "id": "draft-reconciliation", "tool": "payables_draft_reconciliation", "approve": "Casey Park", "args": { "carrier_statement": "fixtures/carrier-account-current.csv", "agency_payables": "fixtures/agency-payables.csv", "as_of": "2026-11-18", "carrier": "Sample Casualty" },
+      "expect": { "status": "executed", "equals": { "result.items": 2 } } },
+    { "id": "nothing-to-reconcile", "tool": "payables_draft_reconciliation", "mode": "auto", "auto_actions": ["payables_draft_reconciliation"], "args": { "carrier_statement": "fixtures/carrier-account-current.csv", "agency_payables": "fixtures/agency-payables.csv", "as_of": "2026-11-18", "carrier": "Example Mutual" },
+      "expect": { "status": "error", "contains": ["nothing to reconcile"] } }
+  ]
+}
