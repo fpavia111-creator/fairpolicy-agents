@@ -31,7 +31,7 @@
     "eval": "node bin/fairpolicy-license-renewals.js eval"
   },
   "dependencies": {
-    "fairpolicy-core": "^0.2.0"
+    "fairpolicy-core": "^0.1.0"
   },
   "repository": {
     "type": "git",

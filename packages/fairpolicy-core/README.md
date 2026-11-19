@@ -1,6 +1,6 @@
 # fairpolicy-core
 
-The shared core for **Fairpolicy Machine domain agents**: small MCP agents that each own one business process and cannot act outside it.
+The shared core for the **Fairpolicy** insurance agency agents (Fair Agents by Mythos Machines): small MCP agents that each own one back-office job and cannot act outside it. It follows the Lodestar and Remedy core pattern, with client-data masking and insurance helpers added.
 
 - **Pack manifest** — name, version, a declared model pin, the tool allowlist and the policy. `defineManifest()` fails closed: an unpinned model (`latest`), a tool without a rule, a write marked `allow`, or a one-click action marked `allow` are rejected at load time.
 - **Talos-style policy** — every tool call gets `allow`, `ask` or `block`. Unknown tools are blocked. The default is block.
@@ -17,6 +17,9 @@ The shared core for **Fairpolicy Machine domain agents**: small MCP agents that 
 - **Caps that survive restarts** — per session, per day and per tool, persisted in `.fairpolicy/usage.json`.
 - **Domain memory (opt-in per agent)** — an agent can remember facts about one customer's setup in its own specialty (a column name, an extra privileged role). Learning only proposes; a fact applies after a named person accepts it, every result says which facts it used, and the file is hash-chained like the audit log. See [Domain memory](#domain-memory).
 - **Private evals** — fixture-based, deterministic test cases, with an offline HTML report and regression highlighting against a baseline.
+- **Client-data masking** — every tool result passes through a masker before it reaches the model: client and insured names and client codes become stable pseudonyms (`CL-3f9a1c2e`, `CID-...`), birth dates become the birth year, driver licence numbers, addresses, phones, e-mails and SSNs are removed, also inside free text. `--phi strict` also hides policy numbers, claim numbers and VINs and cuts ZIP codes to three digits. Files written on your computer keep the real values. It is not anonymisation.
+- **Insurance helpers** — carrier and policy-number matching (term suffixes, "Insurance Company" ignored), lines of business, transaction, status and bill-type words, pro-rata and short-rate unearned premium, commission at a rate, shared column vocabularies for policy lists and commission statements, and named layouts for Applied Epic, Vertafore AMS360 and Sagitta, HawkSoft, EZLynx, QQCatalyst and carrier statements (written from knowledge of each export, not checked against a live account).
+- **Family builder** — `fairpolicyAgent(spec)` builds the check, explain, report, optional draft and one-click request, memory and refused tools with their policy; `familyDemo` runs the same demo shape for every agent.
 - **Shared helpers** — JSON Schema validation, iCalendar, SARIF 2.1.0, unified diff/patch, Jaro-Winkler and name/address normalisation, entropy, a small ZIP/DOCX reader, and a self-contained HTML page template.
 
 MIT, Node ≥ 20, no runtime dependencies.
@@ -267,11 +270,11 @@ This is not copy protection: the packages are MIT-licensed source and anyone can
 
 ## What the model pin means
 
-The manifest declares which host model a pack's prompts and evals target. An MCP server cannot force your MCP host to use that model; the pin is reported in `initialize` and `fairpolicy_info` so you can check it. The wave-1 packs' tools are deterministic and call no model at all.
+The manifest declares which host model a pack's prompts and evals target. An MCP server cannot force your MCP host to use that model; the pin is reported in `initialize` and `fairpolicy_info` so you can check it. The Fairpolicy agents' tools are deterministic and call no model at all.
 
 ## Packs built on this core
 
-All 30 Fairpolicy domain agents in the monorepo, from `olympus-of-migration` to `solon-of-clauses`. Source: <https://github.com/fpavia111-creator/fairpolicy-agents>.
+All 30 Fairpolicy agents in the monorepo, from `fairpolicy-additional-insureds` to `fairpolicy-workers-comp-audits`. Source: <https://github.com/fpavia111-creator/fairpolicy-agents>.
 
 ## License
 
