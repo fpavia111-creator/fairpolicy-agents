@@ -1,0 +1,51 @@
+{
+  "product": "Fairpolicy",
+  "repo": "https://github.com/fpavia111-creator/fairpolicy-agents",
+  "try_it": ["git clone https://github.com/fpavia111-creator/fairpolicy-agents", "cd fairpolicy-agents", "npm install", "node packages/fairpolicy-commission-statements/bin/fairpolicy-commission-statements.js demo"],
+  "accuracy": { "agents": 30, "planted_found": 122, "planted_total": 122, "clean_rows": 442, "clean_false_positives": 0, "mutation_cases": 79, "mutation_caught": 79, "note": "On fictional test data, 19 Nov 2026." },
+  "real_data": [
+    ["Texas Department of Insurance: agent and adjuster licences (open data)", "https://data.texas.gov/dataset/kxv3-diwf", "2026-11-19", "Texas Open Data Portal, no licence named on the dataset", "Licence renewals read 20,000 General Lines Agent licences: 444 expired, 702 due within 60 days, 0 disagreements with an independent count. The file has no CE hours; before a fix made here, 1,195 licences were wrongly listed as short of CE."],
+    ["Texas Department of Insurance: active company appointments (open data)", "https://data.texas.gov/dataset/avjc-7u2m", "2026-11-19", "Texas Open Data Portal, no licence named on the dataset", "Carrier name matching on 1,417 insurers: each now gets its own key. Before a fix made here, 8 pairs of different insurers (for example Insurance Company and Assurance Company of the same name) were treated as one."],
+    ["NYC Taxi and Limousine Commission: For Hire Vehicles, active (VIN column only)", "https://data.cityofnewyork.us/Transportation/For-Hire-Vehicles-FHV-Active/8wbx-tsch", "2026-11-19", "NYC Open Data terms of use", "Data quality checked 105,138 VINs: 25 flagged (19 blank, 6 wrong length or letters), the same 25 an independent check-digit count finds."],
+    ["FEMA OpenFEMA: NFIP redacted claims, Vermont, 2019 onwards", "https://www.fema.gov/openfema-data-page/fima-nfip-redacted-claims-v2", "2026-11-19", "U.S. government data, no copyright (OpenFEMA terms)", "Loss runs summarised 922 claims in 2022-2026 by county (FEMA removes the insured): claim counts, totals and statuses matched an independent count for all 11 counties."]
+  ],
+  "formats": [
+    ["Applied Epic", "Policy list report (Excel or CSV)", "written from knowledge of the export; not yet checked against documentation or a real export"],
+    ["Applied Epic", "Transaction or receivables detail export", "written from knowledge of the export; not yet checked against documentation or a real export"],
+    ["Vertafore AMS360", "Policy or expiration list (CSV)", "written from knowledge of the export; not yet checked against documentation or a real export"],
+    ["Vertafore AMS360", "Agency bill invoice or receivables report (CSV)", "written from knowledge of the export; not yet checked against documentation or a real export"],
+    ["Vertafore Sagitta", "Policy list report (CSV)", "written from knowledge of the export; not yet checked against documentation or a real export"],
+    ["HawkSoft", "Client and policy export (CSV)", "written from knowledge of the export; not yet checked against documentation or a real export"],
+    ["EZLynx", "Policy report export (CSV)", "written from knowledge of the export; not yet checked against documentation or a real export"],
+    ["QQCatalyst", "Policy list export (CSV)", "written from knowledge of the export; not yet checked against documentation or a real export"],
+    ["Carrier commission statements", "Direct bill commission statement saved as CSV", "written from knowledge of the export; not yet checked against documentation or a real export"],
+    ["IVANS or agency system download log", "Download activity or suspense report (CSV)", "written from knowledge of the export; not yet checked against documentation or a real export"],
+    ["German insurers", "Courtageabrechnung (CSV)", "written from knowledge of the export; not yet checked against documentation or a real export"],
+    ["Texas Department of Insurance", "Agent and adjuster licence list (open data)", "tested on a public sample (converted to the licence agent's columns)"],
+    ["FEMA OpenFEMA", "NFIP redacted claims", "tested on a public sample (converted to the loss-run columns)"]
+  ],
+  "human_review": [
+    ["Commission check", "Whether a short, missing or charged-back commission is really owed, and approving any inquiry draft before a person sends it to the carrier."],
+    ["Producer pay and bonuses", "Every producer pay correction and bonus estimate, against the producer and carrier agreements, before anyone is paid."],
+    ["Agency bill and trust account", "Every trust shortfall, transfer, refund and remittance; the principal or accountant decides, and only a person moves money."],
+    ["Renewals and retention", "Whether to remarket a renewal or call a lapsed client; licensed staff talk to the client, and the agents give no coverage advice."],
+    ["Service desk", "Certificates, endorsements, policy differences and claims: a licensed person checks the policy and issues or corrects anything."],
+    ["Licensing and E&O file", "The state settings (CE hours, appointment and document rules) and each licence, appointment or missing-form finding, confirmed by the agency."],
+    ["Data clean-up", "Every client merge and every correction in the agency system, made by staff after checking."],
+    ["Book summary", "Any use of the figures in a sale or valuation; they summarise your files and are not an appraisal."],
+    ["Whole agency", "All of the above; each draft waits for one named person to approve it, and a person sends it."],
+    ["Agency network rollout", "Each member agency's own settings, findings and approvals, by that agency's staff."]
+  ],
+  "common_problems": [
+    "A carrier paid new business at the renewal commission rate (12% instead of 15%).",
+    "A policy written months ago never appeared on a commission statement.",
+    "A carrier took back the full commission on a mid-term cancellation instead of the unearned part.",
+    "The premium trust account was short of the premiums owed to carriers, and rent had been paid from it.",
+    "A certificate shows a higher limit, a waiver or an additional insured that the policy does not have.",
+    "A renewal 24% higher with a review logged but no remarket.",
+    "A producer wrote business with a carrier while the appointment was pending or terminated.",
+    "A premium finance loan was funded and the money was never passed on to the carrier."
+  ],
+  "reaches_the_model": "When an assistant calls a check, its model sees the result: amounts, rates, dates, statuses, carrier, producer and CSR names, lines of business and policy numbers. Client and insured names and client numbers are replaced by pseudonyms; birth dates become the year; driver's licence numbers, SSNs, addresses, phones and e-mails are removed; --phi strict also hides policy and claim numbers and VINs. Notes people type (cancellation reasons, change requests, bank descriptions) are sent as typed. Results go to whatever model the user's assistant uses, so for client data use a model covered by your own agreements or a local model.",
+  "rules_maintained": "No state law or carrier rule is built in. Continuing-education hours, trust-account allowances, commission schedules, producer splits, bonus grids and document checklists are settings files your agency writes, dates and confirms; the agents read them on every run, so a change takes effect at once. Day counts and limits (reinstatement days, renewal windows, loss-ratio limits) are defaults you can change on each run. Export layouts and line-of-business words ship with the agents and are updated in new versions; you can add your own column names and carrier aliases yourself."
+}
