@@ -1,0 +1,273 @@
+{
+  "suite": "fairpolicy-renewal-remarket",
+  "root": "..",
+  "data_note": "Fictional expiration list and activity log in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "renewals_check",
+      "args": {
+        "policies": "fixtures/expiration-list.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.expiring": 6,
+          "result.premium_expiring": 26600,
+          "result.needing_attention": 3,
+          "result.premium_needing_attention": 16100
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "renewals_check",
+      "args": {
+        "policies": "fixtures/expiration-list.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.urgent_no_review": 1,
+          "result.by_status.increase_not_remarketed": 1,
+          "result.by_status.no_review": 1,
+          "result.by_status.reviewed": 3
+        }
+      }
+    },
+    {
+      "id": "urgent-first",
+      "tool": "renewals_check",
+      "args": {
+        "policies": "fixtures/expiration-list.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.policy_number": "HO-1201",
+          "result.items.0.days_left": 22
+        }
+      }
+    },
+    {
+      "id": "increase-without-remarket",
+      "tool": "renewals_explain",
+      "args": {
+        "policies": "fixtures/expiration-list.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18",
+        "policy_number": "BOP-1203"
+      },
+      "expect": {
+        "equals": {
+          "result.policy.status": "increase_not_remarketed",
+          "result.policy.change_pct": 24,
+          "result.policy.last_activity": "2026-10-20"
+        }
+      }
+    },
+    {
+      "id": "client-level-meeting-counts",
+      "tool": "renewals_explain",
+      "args": {
+        "policies": "fixtures/expiration-list.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18",
+        "policy_number": "CA-1208"
+      },
+      "expect": {
+        "equals": {
+          "result.policy.status": "reviewed"
+        }
+      }
+    },
+    {
+      "id": "certificate-is-not-a-review",
+      "tool": "renewals_explain",
+      "args": {
+        "policies": "fixtures/expiration-list.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18",
+        "policy_number": "WC-1204"
+      },
+      "expect": {
+        "equals": {
+          "result.policy.status": "no_review"
+        }
+      }
+    },
+    {
+      "id": "higher-threshold",
+      "tool": "renewals_check",
+      "args": {
+        "policies": "fixtures/expiration-list.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18",
+        "increase_pct": 30
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.reviewed": 4
+        }
+      }
+    },
+    {
+      "id": "shorter-window",
+      "tool": "renewals_check",
+      "args": {
+        "policies": "fixtures/expiration-list.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18",
+        "window_days": 30
+      },
+      "expect": {
+        "equals": {
+          "result.expiring": 2
+        }
+      }
+    },
+    {
+      "id": "by-account-manager",
+      "tool": "renewals_check",
+      "args": {
+        "policies": "fixtures/expiration-list.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.by_csr.0.csr": "Drew Kim",
+          "result.by_csr.0.count": 2
+        }
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "renewals_write_report",
+      "args": {
+        "policies": "fixtures/expiration-list.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "renewal-remarket.csv",
+          "renewal-remarket.html"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "renewals_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "renewals_check",
+      "args": {
+        "policies": "../../outside.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "renewals_check",
+      "mode": "review",
+      "args": {
+        "policies": "fixtures/expiration-list.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.expiring": 6,
+          "result.premium_expiring": 26600,
+          "result.needing_attention": 3,
+          "result.premium_needing_attention": 16100
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "renewals_check",
+      "args": {
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "policies"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "renewals_check",
+      "args": {
+        "policies": "fixtures/expiration-list.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-refused-carrier_submission_send",
+      "tool": "carrier_submission_send",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-policy_bind",
+      "tool": "policy_bind",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "renewals_check",
+      "args": {
+        "policies": "fixtures/expiration-list.csv",
+        "activities": "fixtures/activities.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Hollis Fairweather",
+          "Fairweather Kilnworks",
+          "Saoirse Penhallow",
+          "Penhallow Tea Rooms"
+        ]
+      }
+    }
+  ]
+}

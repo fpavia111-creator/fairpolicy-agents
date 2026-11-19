@@ -1,0 +1,9 @@
+Client Number,Client Name,Policy Number,Line of Business,Carrier,Effective Date,Expiration Date,Premium,Renewal Premium,Producer,CSR,Policy Status
+1201,Hollis Fairweather,HO-1201,Homeowners,Example Mutual,12/10/2025,12/10/2026,2100.00,,Jordan Lee,Casey Park,Active
+1202,Hollis Fairweather,PA-1202,Personal Auto,Example Mutual,07/15/2026,01/15/2027,1400.00,1450.00,Jordan Lee,Casey Park,Active
+1203,Fairweather Kilnworks LLC,BOP-1203,Business Owners,Sample Casualty,02/01/2026,02/01/2027,5000.00,6200.00,Sam Ortiz,Drew Kim,Active
+1204,Saoirse Penhallow,WC-1204,Workers Compensation,Sample Casualty,02/20/2026,02/20/2027,9000.00,9300.00,Sam Ortiz,Drew Kim,Active
+1205,Penhallow Tea Rooms Inc,CGL-1205,General Liability,Demo Indemnity,01/05/2026,01/05/2027,3000.00,3600.00,Sam Ortiz,Drew Kim,Active
+1206,Saoirse Penhallow,UMB-1206,Personal Umbrella,Example Mutual,06/01/2026,06/01/2027,450.00,,Jordan Lee,Casey Park,Active
+1207,Hollis Fairweather,PA-1207,Personal Auto,Example Mutual,07/01/2026,01/01/2027,1100.00,,Jordan Lee,Casey Park,Cancelled
+1208,Penhallow Tea Rooms Inc,CA-1208,Commercial Auto,Test Fire & Marine,12/01/2025,12/01/2026,6100.00,,Sam Ortiz,Drew Kim,Active

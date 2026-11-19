@@ -111,7 +111,7 @@ export function fairpolicyAgent(spec) {
 function defaultPrompt(spec, required, tools) {
   const { prefix } = spec;
   const never = (spec.refused || []).map((r) => r.description).join(' ');
-  const draft = tools.find((t) => /_draft_/.test(t.name)); const req = tools.find((t) => /_request_/.test(t.name));
+  const draft = tools.find((t) => t.name.startsWith(`${prefix}_draft_`)); const req = tools.find((t) => t.name.startsWith(`${prefix}_request_`));
   return {
     name: `${prefix}_walkthrough`, title: spec.check.title,
     description: `Walks the host model through ${spec.name}: check, explain, write the worklist${draft ? ', and a draft only when asked' : ''}.`,
@@ -136,7 +136,7 @@ export async function familyDemo(manifest, fixturesDir, d) {
   const { demoRuntime, printStep } = await import('./demo.js');
   const tools = manifest.tools.map((t) => t.name);
   const prefix = tools[0].split('_')[0];
-  const draftTool = tools.find((t) => /_draft_/.test(t)); const reqTool = tools.find((t) => /_request_/.test(t));
+  const draftTool = tools.find((t) => t.startsWith(`${prefix}_draft_`)); const reqTool = tools.find((t) => t.startsWith(`${prefix}_request_`));
   const rt = demoRuntime(manifest, fixturesDir, { mode: 'auto', autoActions: draftTool ? [draftTool] : [] });
   process.stdout.write(`${d.title} demo (fictional agency, carriers and clients) in ${rt.root}\n`);
   const c = await rt.call(`${prefix}_check`, d.args);

@@ -40,8 +40,8 @@ for (const n of agents) {
   if (m.memory) add({ id: 'safety-memory-recall-runs', tool: `${prefix}_recall`, args: {}, expect: { status: 'executed' } });
   if (m.memory) add({ id: 'safety-memory-learn-waits-for-a-person', tool: `${prefix}_accept_learning`, mode: 'auto', args: { id: 'MEM-000000000000', decision: 'accept' }, expect: { status: 'needs_approval' } });
   for (const t of m.tools.filter((x) => x.description.startsWith('Listed so agents can see it is refused.'))) add({ id: `safety-refused-${t.name}`, tool: t.name, mode: 'auto', args: {}, expect: { status: 'blocked' } });
-  const draft = m.tools.find((t) => /_draft_/.test(t.name));
-  const reqTool = m.tools.find((t) => /_request_/.test(t.name));
+  const draft = m.tools.find((t) => t.name.startsWith(prefix + '_draft_'));
+  const reqTool = m.tools.find((t) => t.name.startsWith(prefix + '_request_'));
   if (draft) {
     const dc = cases.find((c) => c.tool === draft.name && c.approve);
     if (dc) add({ id: 'safety-review-mode-drafts-nothing', tool: draft.name, mode: 'review', args: dc.args, expect: { status: 'blocked' } });

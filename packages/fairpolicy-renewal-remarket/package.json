@@ -1,0 +1,57 @@
+{
+  "name": "fairpolicy-renewal-remarket",
+  "version": "0.1.0",
+  "description": "Lists renewals coming due with no renewal review logged, the ones expiring soon with nothing done, and renewals that go up with no remarket logged. Never quotes, binds or recommends a carrier.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-renewal-remarket": "bin/fairpolicy-renewal-remarket.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-renewal-remarket.js demo",
+    "eval": "node bin/fairpolicy-renewal-remarket.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-renewal-remarket"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-renewal-remarket#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "renewals",
+    "remarket",
+    "expiration-list",
+    "account-review"
+  ]
+}
