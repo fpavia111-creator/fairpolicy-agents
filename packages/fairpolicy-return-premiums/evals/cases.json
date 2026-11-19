@@ -1,0 +1,229 @@
+{
+  "suite": "fairpolicy-return-premiums",
+  "root": "..",
+  "data_note": "Fictional return premiums in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "refunds_check",
+      "args": {
+        "returns": "fixtures/return-premiums.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.returns": 6,
+          "result.owed_to_clients": 592.5,
+          "result.uncashed": 960
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "refunds_check",
+      "args": {
+        "returns": "fixtures/return-premiums.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.refund_overdue": 1,
+          "result.by_status.check_uncashed": 1,
+          "result.by_status.refund_due": 1,
+          "result.by_status.carrier_refunds": 1,
+          "result.by_status.refunded": 2
+        }
+      }
+    },
+    {
+      "id": "overdue-first",
+      "tool": "refunds_check",
+      "args": {
+        "returns": "fixtures/return-premiums.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.policy_number": "PA-2801",
+          "result.items.0.days_since_credit": 64,
+          "result.items.0.return_amount": 412.5
+        }
+      }
+    },
+    {
+      "id": "uncashed-check",
+      "tool": "refunds_explain",
+      "args": {
+        "returns": "fixtures/return-premiums.csv",
+        "as_of": "2026-11-18",
+        "policy_number": "BOP-2803"
+      },
+      "expect": {
+        "equals": {
+          "result.return.status": "check_uncashed",
+          "result.return.check_number": "1201"
+        }
+      }
+    },
+    {
+      "id": "applied-to-invoice",
+      "tool": "refunds_explain",
+      "args": {
+        "returns": "fixtures/return-premiums.csv",
+        "as_of": "2026-11-18",
+        "policy_number": "PA-2806"
+      },
+      "expect": {
+        "equals": {
+          "result.return.status": "refunded",
+          "result.return.applied_to": "INV-9031"
+        }
+      }
+    },
+    {
+      "id": "longer-refund-days",
+      "tool": "refunds_check",
+      "args": {
+        "returns": "fixtures/return-premiums.csv",
+        "as_of": "2026-11-18",
+        "refund_days": 90
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.refund_due": 2
+        }
+      }
+    },
+    {
+      "id": "earlier-date",
+      "tool": "refunds_check",
+      "args": {
+        "returns": "fixtures/return-premiums.csv",
+        "as_of": "2026-09-01"
+      },
+      "expect": {
+        "equals": {
+          "result.returns": 1,
+          "result.by_status.refunded": 1
+        }
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "refunds_write_report",
+      "args": {
+        "returns": "fixtures/return-premiums.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "return-premiums.csv",
+          "return-premiums.html"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "refunds_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "refunds_check",
+      "args": {
+        "returns": "../../outside.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "refunds_check",
+      "mode": "review",
+      "args": {
+        "returns": "fixtures/return-premiums.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.returns": 6,
+          "result.owed_to_clients": 592.5,
+          "result.uncashed": 960
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "refunds_check",
+      "args": {
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "returns"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "refunds_check",
+      "args": {
+        "returns": "fixtures/return-premiums.csv",
+        "as_of": "2026-11-18",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-refused-refund_check_issue",
+      "tool": "refund_check_issue",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-unclaimed_property_file",
+      "tool": "unclaimed_property_file",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "refunds_check",
+      "args": {
+        "returns": "fixtures/return-premiums.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Willa Carrow-Benn",
+          "Carrow Benn Antiques",
+          "Osric Lanyon"
+        ]
+      }
+    }
+  ]
+}

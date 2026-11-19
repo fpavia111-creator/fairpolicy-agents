@@ -1,0 +1,57 @@
+{
+  "name": "fairpolicy-return-premiums",
+  "version": "0.1.0",
+  "description": "Follows return premiums on agency-bill policies from the carrier's credit to the client: refunds overdue or due, refund checks not cleared, and direct-bill returns the carrier pays. Never writes a check or moves money.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-return-premiums": "bin/fairpolicy-return-premiums.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-return-premiums.js demo",
+    "eval": "node bin/fairpolicy-return-premiums.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-return-premiums"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-return-premiums#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "return-premium",
+    "refunds",
+    "agency-bill",
+    "unclaimed-property"
+  ]
+}
