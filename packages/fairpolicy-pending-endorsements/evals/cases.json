@@ -1,0 +1,229 @@
+{
+  "suite": "fairpolicy-pending-endorsements",
+  "root": "..",
+  "data_note": "Fictional change requests in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "endorsements_check",
+      "args": {
+        "changes": "fixtures/change-requests.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.requests": 7,
+          "result.open": 4,
+          "result.unbilled_premium": 420
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "endorsements_check",
+      "args": {
+        "changes": "fixtures/change-requests.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.not_submitted": 1,
+          "result.by_status.unconfirmed": 1,
+          "result.by_status.premium_change_not_billed": 1,
+          "result.by_status.waiting": 1,
+          "result.by_status.done": 3
+        }
+      }
+    },
+    {
+      "id": "not-sent-first",
+      "tool": "endorsements_check",
+      "args": {
+        "changes": "fixtures/change-requests.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.request_id": "E-1",
+          "result.items.1.request_id": "E-2"
+        }
+      }
+    },
+    {
+      "id": "unbilled-change",
+      "tool": "endorsements_explain",
+      "args": {
+        "changes": "fixtures/change-requests.csv",
+        "as_of": "2026-11-18",
+        "request_id": "E-4"
+      },
+      "expect": {
+        "equals": {
+          "result.change.status": "premium_change_not_billed",
+          "result.change.premium_change": 420,
+          "result.change.bill_type": "agency"
+        }
+      }
+    },
+    {
+      "id": "direct-bill-is-carrier-billed",
+      "tool": "endorsements_explain",
+      "args": {
+        "changes": "fixtures/change-requests.csv",
+        "as_of": "2026-11-18",
+        "request_id": "E-7"
+      },
+      "expect": {
+        "equals": {
+          "result.change.status": "done"
+        }
+      }
+    },
+    {
+      "id": "earlier-date",
+      "tool": "endorsements_check",
+      "args": {
+        "changes": "fixtures/change-requests.csv",
+        "as_of": "2026-11-03"
+      },
+      "expect": {
+        "equals": {
+          "result.requests": 5,
+          "result.by_status.waiting": 2
+        }
+      }
+    },
+    {
+      "id": "longer-confirm-days",
+      "tool": "endorsements_check",
+      "args": {
+        "changes": "fixtures/change-requests.csv",
+        "as_of": "2026-11-18",
+        "confirm_days": 30
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.waiting": 2
+        }
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "endorsements_write_report",
+      "args": {
+        "changes": "fixtures/change-requests.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "pending-endorsements.csv",
+          "pending-endorsements.html"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "endorsements_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "endorsements_check",
+      "args": {
+        "changes": "../../outside.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "endorsements_check",
+      "mode": "review",
+      "args": {
+        "changes": "fixtures/change-requests.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.requests": 7,
+          "result.open": 4,
+          "result.unbilled_premium": 420
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "endorsements_check",
+      "args": {
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "changes"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "endorsements_check",
+      "args": {
+        "changes": "fixtures/change-requests.csv",
+        "as_of": "2026-11-18",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-refused-carrier_change_submit",
+      "tool": "carrier_change_submit",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-client_confirmation_send",
+      "tool": "client_confirmation_send",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "endorsements_check",
+      "args": {
+        "changes": "fixtures/change-requests.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Cosima Threlkeld",
+          "Threlkeld Courier",
+          "Ignatius Morrow-Vale",
+          "Morrow Vale Hardware"
+        ]
+      }
+    }
+  ]
+}

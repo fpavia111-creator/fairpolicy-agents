@@ -1,0 +1,57 @@
+{
+  "name": "fairpolicy-pending-endorsements",
+  "version": "0.1.0",
+  "description": "Follows every policy change a client asked for: not sent to the carrier, sent and not confirmed, or confirmed with a premium change that was never billed. Never sends a change or confirms one to a client.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-pending-endorsements": "bin/fairpolicy-pending-endorsements.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-pending-endorsements.js demo",
+    "eval": "node bin/fairpolicy-pending-endorsements.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-pending-endorsements"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-pending-endorsements#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "endorsements",
+    "policy-changes",
+    "service",
+    "agency-bill"
+  ]
+}
