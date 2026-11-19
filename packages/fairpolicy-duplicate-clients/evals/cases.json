@@ -1,0 +1,220 @@
+{
+  "suite": "fairpolicy-duplicate-clients",
+  "root": "..",
+  "data_note": "Fictional client list in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "duplicates_check",
+      "args": {
+        "clients": "fixtures/clients.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.clients": 10,
+          "result.pairs": 4,
+          "result.clients_in_duplicates": 6
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "duplicates_check",
+      "args": {
+        "clients": "fixtures/clients.csv"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.exact_duplicate": 1,
+          "result.by_status.likely_duplicate": 1,
+          "result.by_status.possible_duplicate": 1,
+          "result.by_status.same_household": 1
+        }
+      }
+    },
+    {
+      "id": "exact-first",
+      "tool": "duplicates_explain",
+      "args": {
+        "clients": "fixtures/clients.csv",
+        "pair": "D-001"
+      },
+      "expect": {
+        "equals": {
+          "result.pair.status": "exact_duplicate",
+          "result.pair.shared": "name, e-mail, address"
+        }
+      }
+    },
+    {
+      "id": "spelling-and-phone",
+      "tool": "duplicates_explain",
+      "args": {
+        "clients": "fixtures/clients.csv",
+        "pair": "D-002"
+      },
+      "expect": {
+        "equals": {
+          "result.pair.status": "likely_duplicate"
+        },
+        "contains": [
+          "phone"
+        ]
+      }
+    },
+    {
+      "id": "household-not-merge",
+      "tool": "duplicates_check",
+      "args": {
+        "clients": "fixtures/clients.csv",
+        "status": "same_household"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.shared": "address"
+        }
+      }
+    },
+    {
+      "id": "stricter-threshold",
+      "tool": "duplicates_check",
+      "args": {
+        "clients": "fixtures/clients.csv",
+        "threshold": 0.98
+      },
+      "expect": {
+        "equals": {
+          "result.pairs": 3,
+          "result.by_status.exact_duplicate": 1
+        }
+      }
+    },
+    {
+      "id": "unknown-pair",
+      "tool": "duplicates_explain",
+      "args": {
+        "clients": "fixtures/clients.csv",
+        "pair": "D-999"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "not found"
+        ]
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "duplicates_write_report",
+      "args": {
+        "clients": "fixtures/clients.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "duplicate-clients.csv",
+          "duplicate-clients.html"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "duplicates_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "duplicates_check",
+      "args": {
+        "clients": "../../outside.csv"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "duplicates_check",
+      "mode": "review",
+      "args": {
+        "clients": "fixtures/clients.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.clients": 10,
+          "result.pairs": 4,
+          "result.clients_in_duplicates": 6
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "duplicates_check",
+      "args": {},
+      "expect": {
+        "status": "error",
+        "contains": [
+          "clients"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "duplicates_check",
+      "args": {
+        "clients": "fixtures/clients.csv",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-refused-client_merge",
+      "tool": "client_merge",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-client_delete",
+      "tool": "client_delete",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "duplicates_check",
+      "args": {
+        "clients": "fixtures/clients.csv"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Imogen Harcastle",
+          "Bartholomew Quist",
+          "Delphina Marrow",
+          "Tobias Marrow",
+          "C3001",
+          "imogen.h@example.test"
+        ]
+      }
+    }
+  ]
+}

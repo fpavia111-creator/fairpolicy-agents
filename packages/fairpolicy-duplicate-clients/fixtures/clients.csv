@@ -1,0 +1,11 @@
+Customer #,Customer Name,Address,Zip Code,Phone,Email
+C3001,Imogen Harcastle,4 Example St,78209,555-201-0001,imogen.h@example.test
+C3002,Imogen Harcastle,4 Example Street,78209,,imogen.h@example.test
+C3003,Bartholomew Quist,9 Sample Rd,78210,555-201-0003,bq@example.test
+C3004,Bartholemew Quist,11 Other Ave,78210,555-201-0003,
+C3005,Rosalind Pyke,30 Lantern Way,78214,555-201-0005,rp@example.test
+C3006,Delphina Marrow,22 Demo Ct,78211,555-201-0006,dm@example.test
+C3007,Delphina Marrow-Keene,80 Far Ln,78299,555-201-0099,dmk@example.test
+C3008,Tobias Marrow,22 Demo Ct,78211,555-201-0008,tm@example.test
+C3009,Harcastle Bakery LLC,120 Market Sq,78215,555-201-0009,orders@example.test
+C3010,Fenwick Oduya,5 Harbor Pl,78216,555-201-0010,fo@example.test
