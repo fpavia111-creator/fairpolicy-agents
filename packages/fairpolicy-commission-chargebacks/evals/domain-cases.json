@@ -1,0 +1,30 @@
+{
+  "suite": "fairpolicy-commission-chargebacks", "root": "..",
+  "data_note": "Fictional policies, statements and producer pay in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "chargebacks_check", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements.csv", "producer_pay": "fixtures/producer-pay.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "equals": { "result.cancellations": 5, "result.expected_chargebacks": 644.07, "result.taken": 639.25, "result.reserve_for_pending": 261.3, "result.overcharged_by": 181.48 } } },
+    { "id": "every-status", "tool": "chargebacks_check", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements.csv", "producer_pay": "fixtures/producer-pay.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_status.overcharged": 1, "result.by_status.chargeback_without_cancel": 1, "result.by_status.producer_not_reversed": 1, "result.by_status.pending_chargeback": 1, "result.by_status.charged_ok": 2 } } },
+    { "id": "overcharge-figures", "tool": "chargebacks_explain", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements.csv", "as_of": "2026-11-18", "policy_number": "HO-3002" },
+      "expect": { "equals": { "result.policy.status": "overcharged", "result.policy.unearned": 1190.14, "result.policy.expected": 178.52, "result.policy.taken": 360, "result.policy.difference": 181.48 } } },
+    { "id": "flat-cancel-takes-full-commission", "tool": "chargebacks_explain", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements.csv", "as_of": "2026-11-18", "policy_number": "UMB-3005" },
+      "expect": { "equals": { "result.policy.status": "charged_ok", "result.policy.flat_cancel": true, "result.policy.expected": 60 } } },
+    { "id": "six-month-term", "tool": "chargebacks_explain", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements.csv", "as_of": "2026-11-18", "policy_number": "PA-3004" },
+      "expect": { "equals": { "result.policy.unearned": 450, "result.policy.expected": 54 } } },
+    { "id": "without-producer-file-no-producer-check", "tool": "chargebacks_check", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.producer_checked": false, "result.by_status.charged_ok": 3 } } },
+    { "id": "short-rate-changes-the-reserve", "tool": "chargebacks_check", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements.csv", "as_of": "2026-11-18", "method": "short_rate" },
+      "expect": { "equals": { "result.method": "short_rate", "result.reserve_for_pending": 235.17 } } },
+    { "id": "pending-reserve", "tool": "chargebacks_check", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements.csv", "as_of": "2026-11-18", "status": "pending_chargeback" },
+      "expect": { "equals": { "result.items.0.policy_number": "BOP-3003", "result.items.0.expected": 261.3 } } },
+    { "id": "stray-chargeback", "tool": "chargebacks_check", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements.csv", "as_of": "2026-11-18", "status": "chargeback_without_cancel" },
+      "expect": { "equals": { "result.items.0.policy_number": "HO-3999", "result.items.0.taken": 75 } } },
+    { "id": "report-written", "tool": "chargebacks_write_report", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements.csv", "producer_pay": "fixtures/producer-pay.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "contains": ["commission-chargebacks.csv", "commission-chargebacks.html"] } },
+    { "id": "draft-recalculation", "tool": "chargebacks_draft_recalculation", "approve": "Casey Park", "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements.csv", "as_of": "2026-11-18", "carrier": "Example Mutual" },
+      "expect": { "status": "executed", "equals": { "result.amount": 181.48, "result.policies": 1 } } },
+    { "id": "no-recalculation-without-overcharge", "tool": "chargebacks_draft_recalculation", "mode": "auto", "auto_actions": ["chargebacks_draft_recalculation"], "args": { "policies": "fixtures/policies.csv", "statements": "fixtures/statements.csv", "as_of": "2026-11-18", "carrier": "Sample Casualty" },
+      "expect": { "status": "error", "contains": ["no overcharged"] } }
+  ]
+}

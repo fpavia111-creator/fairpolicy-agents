@@ -1,0 +1,57 @@
+{
+  "name": "fairpolicy-commission-chargebacks",
+  "version": "0.1.0",
+  "description": "For every cancelled policy, works out the commission chargeback on the unearned premium, compares it with what the carrier took back, and flags overcharges, chargebacks still to come, chargebacks with no cancellation and producer shares not reversed. Never posts, pays or sends.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-commission-chargebacks": "bin/fairpolicy-commission-chargebacks.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-commission-chargebacks.js demo",
+    "eval": "node bin/fairpolicy-commission-chargebacks.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-commission-chargebacks"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-commission-chargebacks#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "chargebacks",
+    "cancellations",
+    "unearned-premium",
+    "producer-commission"
+  ]
+}
