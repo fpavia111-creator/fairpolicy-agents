@@ -1,0 +1,8 @@
+Policy Number,Insured,Carrier,Line of Business,Coverage,Limit,Deductible,Premium,Effective Date,Expiration Date
+HO-2901,Theodora Wexley,Example Mutual,Homeowners,Dwelling,350000,1000,1800.00,10/01/2026,10/01/2027
+HO-2901,Theodora Wexley,Example Mutual,Homeowners,Personal Liability,300000,,200.00,10/01/2026,10/01/2027
+PA-2902,Theodora Wexley,Example Mutual,Personal Auto,Bodily Injury,300000,,1020.00,10/15/2026,04/15/2027
+PA-2902,Theodora Wexley,Example Mutual,Personal Auto,Collision,,500,500.00,10/15/2026,04/15/2027
+CGL-2903,Wexley Ceramics LLC,Demo Indemnity,General Liability,Each Occurrence,1000000,,3200.00,10/15/2026,10/15/2027
+BOP-2905,Roswitha Pell,Sample Casualty,Business Owners,Building,250000,2500,2600.00,11/01/2026,11/01/2027
+BOP-2905,Roswitha Pell,Sample Casualty,Business Owners,Business Personal Property,80000,2500,900.00,11/01/2026,11/01/2027

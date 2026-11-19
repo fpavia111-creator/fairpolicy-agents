@@ -1,0 +1,240 @@
+{
+  "suite": "fairpolicy-policy-checking",
+  "root": "..",
+  "data_note": "Fictional binders and issued policies in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "checking_check",
+      "args": {
+        "bound": "fixtures/bound.csv",
+        "issued": "fixtures/issued.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.policies": 5,
+          "result.with_differences": 4
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "checking_check",
+      "args": {
+        "bound": "fixtures/bound.csv",
+        "issued": "fixtures/issued.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.not_issued": 1,
+          "result.by_status.coverage_reduced": 1,
+          "result.by_status.premium_differs": 1,
+          "result.by_status.dates_differ": 1,
+          "result.by_status.matches": 1
+        }
+      }
+    },
+    {
+      "id": "lower-limit",
+      "tool": "checking_explain",
+      "args": {
+        "bound": "fixtures/bound.csv",
+        "issued": "fixtures/issued.csv",
+        "as_of": "2026-11-18",
+        "policy_number": "HO-2901"
+      },
+      "expect": {
+        "equals": {
+          "result.policy.status": "coverage_reduced"
+        },
+        "contains": [
+          "Dwelling limit 350000 issued, 400000 bound"
+        ]
+      }
+    },
+    {
+      "id": "premium-difference",
+      "tool": "checking_explain",
+      "args": {
+        "bound": "fixtures/bound.csv",
+        "issued": "fixtures/issued.csv",
+        "as_of": "2026-11-18",
+        "policy_number": "PA-2902"
+      },
+      "expect": {
+        "equals": {
+          "result.policy.bound_premium": 1400,
+          "result.policy.issued_premium": 1520
+        }
+      }
+    },
+    {
+      "id": "not-issued-first",
+      "tool": "checking_check",
+      "args": {
+        "bound": "fixtures/bound.csv",
+        "issued": "fixtures/issued.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.policy_number": "WC-2904",
+          "result.items.0.issued_premium": null
+        }
+      }
+    },
+    {
+      "id": "recent-binder-waits",
+      "tool": "checking_check",
+      "args": {
+        "bound": "fixtures/bound.csv",
+        "issued": "fixtures/issued.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "not_contains": [
+          "UMB-2906"
+        ]
+      }
+    },
+    {
+      "id": "wider-tolerance",
+      "tool": "checking_check",
+      "args": {
+        "bound": "fixtures/bound.csv",
+        "issued": "fixtures/issued.csv",
+        "as_of": "2026-11-18",
+        "tolerance": 200
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.matches": 2
+        }
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "checking_write_report",
+      "args": {
+        "bound": "fixtures/bound.csv",
+        "issued": "fixtures/issued.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "policy-checking.csv",
+          "policy-checking.html"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "checking_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "checking_check",
+      "args": {
+        "bound": "../../outside.csv",
+        "issued": "fixtures/issued.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "checking_check",
+      "mode": "review",
+      "args": {
+        "bound": "fixtures/bound.csv",
+        "issued": "fixtures/issued.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.policies": 5,
+          "result.with_differences": 4
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "checking_check",
+      "args": {
+        "issued": "fixtures/issued.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "bound"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "checking_check",
+      "args": {
+        "bound": "fixtures/bound.csv",
+        "issued": "fixtures/issued.csv",
+        "as_of": "2026-11-18",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-refused-carrier_correction_send",
+      "tool": "carrier_correction_send",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-policy_bind",
+      "tool": "policy_bind",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "checking_check",
+      "args": {
+        "bound": "fixtures/bound.csv",
+        "issued": "fixtures/issued.csv",
+        "as_of": "2026-11-18"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Theodora Wexley",
+          "Wexley Ceramics",
+          "Roswitha Pell"
+        ]
+      }
+    }
+  ]
+}
