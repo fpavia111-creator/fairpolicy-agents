@@ -1,0 +1,13 @@
+{
+  "tolerance": 1,
+  "carriers": [
+    { "carrier": "Example Mutual", "tiers": [
+      { "name": "Tier 1", "min_premium": 500000, "max_loss_ratio": 55, "min_growth_pct": 0, "bonus_pct": 1 },
+      { "name": "Tier 2", "min_premium": 500000, "max_loss_ratio": 50, "min_growth_pct": 10, "bonus_pct": 2 },
+      { "name": "Tier 3", "min_premium": 1000000, "max_loss_ratio": 45, "min_growth_pct": 10, "bonus_pct": 3 } ] },
+    { "carrier": "Sample Casualty", "tiers": [ { "name": "Base", "min_premium": 400000, "max_loss_ratio": 60, "min_growth_pct": 5, "bonus_pct": 1.5 } ] },
+    { "carrier": "Demo Indemnity", "tiers": [ { "name": "Gold", "min_premium": 250000, "max_loss_ratio": 50, "min_growth_pct": 15, "bonus_pct": 2.5 } ] },
+    { "carrier": "Placeholder Specialty", "received": 4500, "tiers": [ { "name": "Profit share", "min_premium": 250000, "max_loss_ratio": 50, "min_growth_pct": 5, "bonus_pct": 2 } ] },
+    { "carrier": "Sample Surety", "tiers": [ { "name": "Surety bonus", "min_premium": 100000, "max_loss_ratio": 40, "min_growth_pct": 0, "bonus_pct": 3 } ] }
+  ]
+}

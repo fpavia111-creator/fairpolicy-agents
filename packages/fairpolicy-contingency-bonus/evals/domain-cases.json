@@ -1,0 +1,26 @@
+{
+  "suite": "fairpolicy-contingency-bonus", "root": "..",
+  "data_note": "Fictional carrier experience and bonus grids in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "contingency_check", "args": { "experience": "fixtures/experience.csv", "grid": "fixtures/grid.json" },
+      "expect": { "status": "executed", "equals": { "result.year": 2026, "result.carriers": 6, "result.estimated_bonus": 27850, "result.received": 4500, "result.qualifying": 3 } } },
+    { "id": "every-status", "tool": "contingency_check", "args": { "experience": "fixtures/experience.csv", "grid": "fixtures/grid.json" },
+      "expect": { "equals": { "result.by_status.received_less": 1, "result.by_status.loss_ratio_too_high": 1, "result.by_status.close_to_next": 1, "result.by_status.below_minimum": 1, "result.by_status.qualifies": 1, "result.by_status.no_grid": 1 } } },
+    { "id": "tier-two-and-the-next", "tool": "contingency_explain", "args": { "experience": "fixtures/experience.csv", "grid": "fixtures/grid.json", "carrier": "Example Mutual" },
+      "expect": { "equals": { "result.carrier.status": "close_to_next", "result.carrier.tier": "Tier 2", "result.carrier.estimated_bonus": 18100, "result.carrier.growth_pct": 10.37, "result.carrier.loss_ratio": 45, "result.carrier.premium_to_next": 95000 } } },
+    { "id": "loss-ratio-over", "tool": "contingency_explain", "args": { "experience": "fixtures/experience.csv", "grid": "fixtures/grid.json", "carrier": "Sample Casualty" },
+      "expect": { "equals": { "result.carrier.status": "loss_ratio_too_high", "result.carrier.loss_ratio": 64, "result.carrier.incurred_room": -18200 } } },
+    { "id": "received-below-estimate", "tool": "contingency_check", "args": { "experience": "fixtures/experience.csv", "grid": "fixtures/grid.json", "status": "received_less" },
+      "expect": { "equals": { "result.items.0.carrier": "Placeholder Specialty", "result.items.0.estimated_bonus": 6600, "result.items.0.received": 4500 } } },
+    { "id": "prior-year", "tool": "contingency_check", "args": { "experience": "fixtures/experience.csv", "grid": "fixtures/grid.json", "year": 2025 },
+      "expect": { "equals": { "result.year": 2025, "result.carriers": 5 } } },
+    { "id": "tighter-close-band", "tool": "contingency_check", "args": { "experience": "fixtures/experience.csv", "grid": "fixtures/grid.json", "close_pct": 5 },
+      "expect": { "equals": { "result.by_status.qualifies": 2 } } },
+    { "id": "carrier-not-found", "tool": "contingency_explain", "args": { "experience": "fixtures/experience.csv", "grid": "fixtures/grid.json", "carrier": "Nobody Insurance" },
+      "expect": { "status": "error", "contains": ["not found"] } },
+    { "id": "bad-grid-refused", "tool": "contingency_check", "args": { "experience": "fixtures/experience.csv", "grid": "fixtures/phi-canaries.json" },
+      "expect": { "status": "error" } },
+    { "id": "report-written", "tool": "contingency_write_report", "args": { "experience": "fixtures/experience.csv", "grid": "fixtures/grid.json" },
+      "expect": { "status": "executed", "contains": ["contingency-bonus.csv", "contingency-bonus.html"] } }
+  ]
+}

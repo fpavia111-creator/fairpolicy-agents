@@ -1,0 +1,57 @@
+{
+  "name": "fairpolicy-contingency-bonus",
+  "version": "0.1.0",
+  "description": "Reads carrier experience reports against each carrier's contingency or profit-sharing grid: tier met, estimated bonus, premium needed for the next tier, loss headroom, and bonuses received below the estimate. Never moves business.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-contingency-bonus": "bin/fairpolicy-contingency-bonus.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-contingency-bonus.js demo",
+    "eval": "node bin/fairpolicy-contingency-bonus.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-contingency-bonus"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-contingency-bonus#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "contingency",
+    "profit-sharing",
+    "carrier-bonus",
+    "loss-ratio"
+  ]
+}
