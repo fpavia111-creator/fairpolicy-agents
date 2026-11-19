@@ -1,0 +1,22 @@
+{
+  "suite": "fairpolicy-workers-comp-audits", "root": "..",
+  "data_note": "Fictional audit list in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "audits_check", "args": { "audits": "fixtures/audits.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "equals": { "result.audits": 6, "result.additional_premium": 4170, "result.return_premium": 1800 } } },
+    { "id": "every-status", "tool": "audits_check", "args": { "audits": "fixtures/audits.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_status.audit_not_started": 1, "result.by_status.large_additional_premium": 1, "result.by_status.return_due": 1, "result.by_status.update_estimate": 1, "result.by_status.pending": 1, "result.by_status.ok": 1 } } },
+    { "id": "not-started-first", "tool": "audits_check", "args": { "audits": "fixtures/audits.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.items.0.policy_number": "WC-2501", "result.items.0.days_since_end": 78 } } },
+    { "id": "large-additional", "tool": "audits_explain", "args": { "audits": "fixtures/audits.csv", "as_of": "2026-11-18", "policy_number": "WC-2502" },
+      "expect": { "equals": { "result.audit.status": "large_additional_premium", "result.audit.payroll_change_pct": 30, "result.audit.audit_premium": 3600 } } },
+    { "id": "estimate-to-update", "tool": "audits_explain", "args": { "audits": "fixtures/audits.csv", "as_of": "2026-11-18", "policy_number": "WC-2504" },
+      "expect": { "equals": { "result.audit.status": "update_estimate", "result.audit.payroll_change_pct": 25 } } },
+    { "id": "future-policy-left-out", "tool": "audits_check", "args": { "audits": "fixtures/audits.csv", "as_of": "2026-11-18" },
+      "expect": { "not_contains": ["WC-2507"] } },
+    { "id": "lower-threshold", "tool": "audits_check", "args": { "audits": "fixtures/audits.csv", "as_of": "2026-11-18", "additional_pct": 5 },
+      "expect": { "equals": { "result.by_status.large_additional_premium": 2 } } },
+    { "id": "report-written", "tool": "audits_write_report", "args": { "audits": "fixtures/audits.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "contains": ["workers-comp-audits.csv", "workers-comp-audits.html"] } }
+  ]
+}

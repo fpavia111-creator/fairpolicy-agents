@@ -1,0 +1,8 @@
+Policy Number,Insured,Carrier,Line of Business,Expiration Date,Audit Status,Scheduled Date,Completed Date,Estimated Payroll,Audited Payroll,Estimated Premium,Audit Premium,CSR
+WC-2501,Corbett Linden Landscaping LLC,Sample Casualty,Workers Compensation,09/01/2026,,,,180000,,5400,,Drew Kim
+WC-2502,Hartigan Stoneworks Inc,Sample Casualty,Workers Compensation,07/01/2026,Completed,,10/20/2026,400000,520000,12000,3600,Drew Kim
+WC-2503,Linden Bay Cleaning LLC,Sample Casualty,Workers Compensation,06/01/2026,Completed,,09/15/2026,300000,240000,9000,-1800,Drew Kim
+WC-2504,Ferreira Tile Inc,Sample Casualty,Workers Compensation,08/01/2026,Completed,,10/01/2026,200000,250000,6000,450,Drew Kim
+GL-2505,Hartigan Stoneworks Inc,Demo Indemnity,General Liability,10/01/2026,Scheduled,11/25/2026,,1500000,,8200,,Drew Kim
+WC-2506,Ferreira Tile Inc,Sample Casualty,Workers Compensation,05/01/2026,Completed,,07/01/2026,100000,104000,3000,120,Drew Kim
+WC-2507,Corbett Linden Landscaping LLC,Sample Casualty,Workers Compensation,03/01/2027,,,,190000,,5700,,Drew Kim

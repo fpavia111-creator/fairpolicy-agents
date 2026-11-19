@@ -1,0 +1,57 @@
+{
+  "name": "fairpolicy-workers-comp-audits",
+  "version": "0.1.0",
+  "description": "Follows premium audits on workers comp and other auditable policies: audits not started, large additional premium, returns due, and payroll far from the estimate. Never disputes an audit or contacts the carrier.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-workers-comp-audits": "bin/fairpolicy-workers-comp-audits.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-workers-comp-audits.js demo",
+    "eval": "node bin/fairpolicy-workers-comp-audits.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-workers-comp-audits"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-workers-comp-audits#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "workers-compensation",
+    "premium-audit",
+    "payroll",
+    "commercial-lines"
+  ]
+}
