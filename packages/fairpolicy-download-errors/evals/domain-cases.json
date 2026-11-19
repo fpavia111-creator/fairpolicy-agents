@@ -1,0 +1,22 @@
+{
+  "suite": "fairpolicy-download-errors", "root": "..",
+  "data_note": "Fictional download log in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "downloads_check", "args": { "log": "fixtures/download-log.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "equals": { "result.transactions": 7, "result.posted": 4, "result.problems": 3, "result.carriers": 4 } } },
+    { "id": "every-status", "tool": "downloads_check", "args": { "log": "fixtures/download-log.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_status.download_error": 1, "result.by_status.unmatched_old": 1, "result.by_status.carrier_stale": 1, "result.by_status.unmatched_new": 1, "result.by_status.ok": 3 } } },
+    { "id": "error-first", "tool": "downloads_check", "args": { "log": "fixtures/download-log.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.items.0.ref": "DL-4", "result.items.0.message": "Invalid line of business code" } } },
+    { "id": "stale-carrier", "tool": "downloads_explain", "args": { "log": "fixtures/download-log.csv", "as_of": "2026-11-18", "ref": "carrier:Demo Indemnity" },
+      "expect": { "equals": { "result.item.status": "carrier_stale", "result.item.days": 17 } } },
+    { "id": "unmatched-old", "tool": "downloads_explain", "args": { "log": "fixtures/download-log.csv", "as_of": "2026-11-18", "ref": "DL-2" },
+      "expect": { "equals": { "result.item.status": "unmatched_old", "result.item.days": 8 } } },
+    { "id": "future-line-left-out", "tool": "downloads_check", "args": { "log": "fixtures/download-log.csv", "as_of": "2026-11-18" },
+      "expect": { "not_contains": ["DL-8"] } },
+    { "id": "longer-stale-days", "tool": "downloads_check", "args": { "log": "fixtures/download-log.csv", "as_of": "2026-11-18", "stale_days": 30 },
+      "expect": { "equals": { "result.by_status.ok": 4 } } },
+    { "id": "report-written", "tool": "downloads_write_report", "args": { "log": "fixtures/download-log.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "contains": ["download-errors.csv", "download-errors.html"] } }
+  ]
+}
