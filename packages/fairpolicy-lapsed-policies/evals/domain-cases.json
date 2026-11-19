@@ -1,0 +1,24 @@
+{
+  "suite": "fairpolicy-lapsed-policies", "root": "..",
+  "data_note": "Fictional policy list in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "lapses_check", "args": { "policies": "fixtures/policies.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "equals": { "result.policies": 5, "result.not_replaced": 3, "result.premium_not_replaced": 8400, "result.replaced": 1 } } },
+    { "id": "every-status", "tool": "lapses_check", "args": { "policies": "fixtures/policies.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_status.reinstatement_window": 1, "result.by_status.not_replaced": 2, "result.by_status.expired_no_renewal_record": 1, "result.by_status.replaced": 1 } } },
+    { "id": "reinstatement-window-first", "tool": "lapses_check", "args": { "policies": "fixtures/policies.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.items.0.policy_number": "PA-1301", "result.items.0.days_since": 13 } } },
+    { "id": "personal-lines-before-commercial", "tool": "lapses_check", "args": { "policies": "fixtures/policies.csv", "as_of": "2026-11-18", "status": "not_replaced" },
+      "expect": { "equals": { "result.items.0.policy_number": "HO-1302", "result.items.1.policy_number": "BOP-1304" } } },
+    { "id": "replacement-with-another-carrier", "tool": "lapses_explain", "args": { "policies": "fixtures/policies.csv", "as_of": "2026-11-18", "policy_number": "PA-1303" },
+      "expect": { "equals": { "result.policy.status": "replaced", "result.policy.replacement": "PA-1309" } } },
+    { "id": "renewed-term-not-listed", "tool": "lapses_check", "args": { "policies": "fixtures/policies.csv", "as_of": "2026-11-18" },
+      "expect": { "not_contains": ["CGL-1306", "HO-1307"] } },
+    { "id": "later-the-window-closes", "tool": "lapses_check", "args": { "policies": "fixtures/policies.csv", "as_of": "2026-12-10" },
+      "expect": { "equals": { "result.by_status.not_replaced": 3 } } },
+    { "id": "wider-lookback", "tool": "lapses_check", "args": { "policies": "fixtures/policies.csv", "as_of": "2026-11-18", "lookback_days": 365 },
+      "expect": { "contains": ["HO-1307"] } },
+    { "id": "report-written", "tool": "lapses_write_report", "args": { "policies": "fixtures/policies.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "contains": ["lapsed-policies.csv", "lapsed-policies.html"] } }
+  ]
+}
