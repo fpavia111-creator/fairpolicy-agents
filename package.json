@@ -26,7 +26,8 @@
     "samples": "node scripts/sample-reports.mjs",
     "readme:i18n": "node scripts/readme-i18n.mjs",
     "accuracy": "node scripts/accuracy.mjs --record",
-    "accuracy:write": "node scripts/accuracy.mjs --write"
+    "accuracy:write": "node scripts/accuracy.mjs --write",
+    "model-view": "node scripts/model-view.mjs"
   },
   "engines": {
     "node": ">=20"

@@ -1,0 +1,817 @@
+[
+  {
+    "agent": "fairpolicy-additional-insureds",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "covered_by",
+      "csr",
+      "holder",
+      "request_id",
+      "requirement"
+    ],
+    "free_text": [
+      "holder",
+      "requirement"
+    ],
+    "numbers_dates": [
+      "days_open",
+      "endorsement_requested_date",
+      "requested_date"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-book-valuation",
+    "masked": [],
+    "masked_strict": [],
+    "clear_text": [
+      "metric"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "value"
+    ],
+    "generated": [
+      "detail"
+    ]
+  },
+  {
+    "agent": "fairpolicy-carrier-appointments",
+    "masked": [],
+    "masked_strict": [
+      "policy_numbers"
+    ],
+    "clear_text": [
+      "appointment",
+      "carrier",
+      "producer",
+      "ref",
+      "state"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "appointment_effective",
+      "policies",
+      "terminated",
+      "written_last_year"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-carrier-payables",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "carrier",
+      "transaction_type"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "agency_net",
+      "carrier_net",
+      "difference",
+      "due_date",
+      "effective_date"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-certificate-limits",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number",
+      "ref"
+    ],
+    "clear_text": [
+      "certificate",
+      "holder",
+      "issued_by",
+      "issues"
+    ],
+    "free_text": [
+      "holder"
+    ],
+    "numbers_dates": [
+      "issued_date"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-commercial-renewals",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "carrier",
+      "csr",
+      "line",
+      "next_milestone",
+      "overdue",
+      "producer"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "days_left",
+      "done",
+      "expiration_date",
+      "next_due",
+      "of",
+      "premium"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-commission-chargebacks",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "carrier",
+      "line",
+      "producer"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "cancel_date",
+      "commission_rate",
+      "difference",
+      "effective_date",
+      "expected",
+      "expiration_date",
+      "flat_cancel",
+      "premium",
+      "producer_reversed",
+      "taken",
+      "unearned"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-commission-statements",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "carrier",
+      "line",
+      "producer",
+      "statement_id",
+      "transaction_type"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "difference",
+      "effective_date",
+      "expected",
+      "expected_rate",
+      "paid",
+      "paid_rate",
+      "premium"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-contingency-bonus",
+    "masked": [],
+    "masked_strict": [],
+    "clear_text": [
+      "carrier",
+      "next_tier",
+      "tier"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "bonus_pct",
+      "earned_premium",
+      "estimated_bonus",
+      "growth_pct",
+      "incurred",
+      "incurred_room",
+      "loss_ratio",
+      "premium_to_next",
+      "prior_premium",
+      "received",
+      "written_premium",
+      "year"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-cross-sell",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [],
+    "clear_text": [
+      "csr",
+      "lines",
+      "producer"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "next_renewal",
+      "policies",
+      "premium"
+    ],
+    "generated": [
+      "detail",
+      "gaps",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-data-quality",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "carrier",
+      "csr",
+      "issues",
+      "line",
+      "producer"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "effective_date",
+      "expiration_date",
+      "issue_count"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-direct-agency-bill",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "carrier",
+      "coded_bill_type",
+      "csr",
+      "line",
+      "producer"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "agency_invoiced",
+      "on_direct_statement",
+      "premium"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-download-errors",
+    "masked": [],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "carrier",
+      "message",
+      "ref",
+      "transaction_type"
+    ],
+    "free_text": [
+      "message"
+    ],
+    "numbers_dates": [
+      "date",
+      "days"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-duplicate-clients",
+    "masked": [
+      "client",
+      "client_id",
+      "other_client",
+      "other_client_id"
+    ],
+    "masked_strict": [],
+    "clear_text": [
+      "pair",
+      "shared"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "name_similarity"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-lapsed-policies",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number",
+      "replacement"
+    ],
+    "clear_text": [
+      "carrier",
+      "csr",
+      "line",
+      "policy_status",
+      "producer",
+      "reason"
+    ],
+    "free_text": [
+      "reason"
+    ],
+    "numbers_dates": [
+      "days_since",
+      "end_date",
+      "personal",
+      "premium"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-license-renewals",
+    "masked": [],
+    "masked_strict": [],
+    "clear_text": [
+      "license_number",
+      "license_type",
+      "person",
+      "role",
+      "state"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "ce_hours",
+      "ce_required",
+      "days_left",
+      "ethics_hours",
+      "ethics_required",
+      "expiration_date",
+      "resident"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-loss-runs",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [],
+    "clear_text": [
+      "by_year",
+      "years"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "claims",
+      "incurred",
+      "large_losses",
+      "largest_loss",
+      "loss_ratio",
+      "most_claims_in_a_year",
+      "open_claims",
+      "paid",
+      "premium",
+      "reserve"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-missing-commissions",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "carrier",
+      "line",
+      "producer"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "commission_rate",
+      "days_since_effective",
+      "effective_date",
+      "expected",
+      "premium",
+      "received"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-open-claims",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "claim_number",
+      "policy_number"
+    ],
+    "clear_text": [
+      "adjuster",
+      "carrier",
+      "claim_ref",
+      "csr",
+      "line"
+    ],
+    "free_text": [
+      "adjuster"
+    ],
+    "numbers_dates": [
+      "days_open",
+      "days_quiet",
+      "incurred",
+      "last_activity",
+      "loss_date",
+      "paid",
+      "policy_expiration",
+      "reported_date",
+      "reserve"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-pending-endorsements",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "bill_type",
+      "carrier",
+      "change",
+      "csr",
+      "request_id"
+    ],
+    "free_text": [
+      "change"
+    ],
+    "numbers_dates": [
+      "confirmed_date",
+      "invoiced",
+      "premium_change",
+      "requested_date",
+      "submitted_date"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-policy-checking",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "carrier",
+      "issues",
+      "line"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "bound_date",
+      "bound_premium",
+      "coverages",
+      "issued_premium"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-premium-finance",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "agreement",
+      "finance_company"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "amount_financed",
+      "balance",
+      "cancel_date",
+      "days_past_due",
+      "funded_amount",
+      "funded_date",
+      "installment",
+      "last_paid_date",
+      "next_due_date",
+      "notice_date",
+      "remitted_date",
+      "signed_date"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-producer-retention",
+    "masked": [],
+    "masked_strict": [
+      "lost_policies"
+    ],
+    "clear_text": [
+      "producer"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "due",
+      "lost",
+      "premium_due",
+      "premium_renewed",
+      "premium_retention_pct",
+      "renewed",
+      "retention_pct"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-producer-splits",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "carrier",
+      "kind",
+      "producer"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "commission",
+      "difference",
+      "expected",
+      "paid",
+      "share",
+      "split_pct"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-receivables-aging",
+    "masked": [
+      "client",
+      "client_id"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "carrier",
+      "csr",
+      "invoice",
+      "producer"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "balance",
+      "days_past_due",
+      "due_date",
+      "remitted"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-renewal-remarket",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "carrier",
+      "csr",
+      "line",
+      "producer"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "change_pct",
+      "days_left",
+      "expiration_date",
+      "last_activity",
+      "premium",
+      "renewal_premium"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-return-premiums",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "applied_to",
+      "bill_type",
+      "carrier",
+      "csr"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "check_number",
+      "cleared_date",
+      "credited_date",
+      "days_since_credit",
+      "refunded_date",
+      "return_amount"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-signed-declinations",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "carrier",
+      "csr",
+      "declined_coverages",
+      "line",
+      "producer",
+      "um_selection"
+    ],
+    "free_text": [
+      "declined_coverages",
+      "um_selection"
+    ],
+    "numbers_dates": [
+      "effective_date"
+    ],
+    "generated": [
+      "detail",
+      "missing",
+      "next_step",
+      "required",
+      "unsigned"
+    ]
+  },
+  {
+    "agent": "fairpolicy-trust-account",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "ref (policy numbers inside it)"
+    ],
+    "clear_text": [
+      "carrier",
+      "ref (the bank line description, as the bank printed it)"
+    ],
+    "free_text": [
+      "ref (the bank line description, as the bank printed it)"
+    ],
+    "numbers_dates": [
+      "amount",
+      "date"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  },
+  {
+    "agent": "fairpolicy-workers-comp-audits",
+    "masked": [
+      "client"
+    ],
+    "masked_strict": [
+      "policy_number"
+    ],
+    "clear_text": [
+      "audit_status",
+      "carrier",
+      "csr",
+      "line"
+    ],
+    "free_text": [],
+    "numbers_dates": [
+      "audit_premium",
+      "audited_payroll",
+      "completed_date",
+      "days_since_end",
+      "estimated_payroll",
+      "estimated_premium",
+      "expiration_date",
+      "payroll_change_pct"
+    ],
+    "generated": [
+      "detail",
+      "next_step"
+    ]
+  }
+]
