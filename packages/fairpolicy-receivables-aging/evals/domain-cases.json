@@ -1,0 +1,26 @@
+{
+  "suite": "fairpolicy-receivables-aging", "root": "..",
+  "data_note": "Fictional receivables in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "receivables_check", "args": { "receivables": "fixtures/receivables.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "equals": { "result.invoices": 7, "result.open_balance": 14550, "result.credit_balances": 220, "result.not_due": 1200, "result.days_1_30": 650, "result.days_31_60": 3000, "result.days_61_90": 6400, "result.days_over_90": 3300, "result.fronted": 2400 } } },
+    { "id": "every-status", "tool": "receivables_check", "args": { "receivables": "fixtures/receivables.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_status.fronted_premium": 1, "result.by_status.over_90": 1, "result.by_status.credit_balance": 1, "result.by_status.over_60": 1, "result.by_status.over_30": 1, "result.by_status.current": 1, "result.by_status.not_due": 1 } } },
+    { "id": "fronted-first", "tool": "receivables_check", "args": { "receivables": "fixtures/receivables.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.items.0.invoice": "INV-7001", "result.items.0.days_past_due": 109, "result.items.1.invoice": "INV-7002" } } },
+    { "id": "by-client", "tool": "receivables_check", "args": { "receivables": "fixtures/receivables.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_client.0.balance": 8800, "result.by_client.0.past_due_30": 8800, "result.by_client.0.oldest_days": 109 } } },
+    { "id": "by-producer", "tool": "receivables_check", "args": { "receivables": "fixtures/receivables.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_producer.0.producer": "Sam Ortiz", "result.by_producer.0.past_due_30": 11800 } } },
+    { "id": "explain-one-item", "tool": "receivables_explain", "args": { "receivables": "fixtures/receivables.csv", "as_of": "2026-11-18", "invoice": "INV-7003" },
+      "expect": { "equals": { "result.item.status": "over_60", "result.item.balance": 6400 } } },
+    { "id": "fronted-days-setting", "tool": "receivables_check", "args": { "receivables": "fixtures/receivables.csv", "as_of": "2026-11-18", "fronted_days": 120 },
+      "expect": { "equals": { "result.by_status.over_90": 2, "result.fronted": 0 } } },
+    { "id": "report-written", "tool": "receivables_write_report", "args": { "receivables": "fixtures/receivables.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "contains": ["receivables-aging.csv", "receivables-aging.html"] } },
+    { "id": "draft-reminder", "tool": "receivables_draft_reminder", "approve": "Casey Park", "args": { "receivables": "fixtures/receivables.csv", "as_of": "2026-11-18", "client": "Haverleigh Farms LLC" },
+      "expect": { "status": "executed", "equals": { "result.amount": 8800, "result.items": 2 } } },
+    { "id": "no-reminder-when-not-late", "tool": "receivables_draft_reminder", "mode": "auto", "auto_actions": ["receivables_draft_reminder"], "args": { "receivables": "fixtures/receivables.csv", "as_of": "2026-11-18", "client": "Teodor Vasquez-Lind" },
+      "expect": { "status": "error", "contains": ["no items over 30 days"] } }
+  ]
+}

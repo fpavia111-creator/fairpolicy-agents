@@ -1,0 +1,57 @@
+{
+  "name": "fairpolicy-receivables-aging",
+  "version": "0.1.0",
+  "description": "Ages agency-bill receivables by client and producer, flags premiums the agency already paid the carrier but has not collected, and credit balances owed back to clients. Drafts a reminder; never sends, charges or cancels.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kurt Francisco",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "fairpolicy-receivables-aging": "bin/fairpolicy-receivables-aging.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "fixtures",
+    "evals",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/run-tests.cjs",
+    "demo": "node bin/fairpolicy-receivables-aging.js demo",
+    "eval": "node bin/fairpolicy-receivables-aging.js eval"
+  },
+  "dependencies": {
+    "fairpolicy-core": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
+    "directory": "packages/fairpolicy-receivables-aging"
+  },
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-receivables-aging#readme",
+  "bugs": {
+    "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "insurance",
+    "insurance-agency",
+    "agency-management",
+    "fairpolicy",
+    "receivables",
+    "accounts-receivable",
+    "agency-bill",
+    "aging"
+  ]
+}
