@@ -21,7 +21,7 @@ jobs:
       - name: Evals (every agent)
         shell: bash
         run: |
-          for p in packages/*/; do n=$(basename "$p"); [ "$n" = fresnel-core ] && continue
+          for p in packages/*/; do n=$(basename "$p"); [ "$n" = fairpolicy-core ] && continue
             (cd "$p" && node "bin/$n.js" eval) || exit 1; done
       - name: Plugin files match the packages
         run: npm run plugin:check
@@ -32,7 +32,7 @@ jobs:
         run: |
           for p in packages/*/; do (cd "$p" && npm pack --dry-run --json > /tmp/pack.json && node -e "
             const f=require('/tmp/pack.json')[0].files.map(x=>x.path);
-            const bad=f.filter(x=>/(^|\/)(node_modules|\.fresnel|fresnel-out)\/|\.npmrc$|\.tgz$/.test(x));
+            const bad=f.filter(x=>/(^|\/)(node_modules|\.fairpolicy|fairpolicy-out)\/|\.npmrc$|\.tgz$/.test(x));
             if(bad.length){console.error('$p', bad);process.exit(1)}") || exit 1; done
       - name: Agent READMEs match the manifests
         run: npm run readme:check

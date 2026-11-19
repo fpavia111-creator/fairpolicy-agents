@@ -8,7 +8,7 @@ import { join } from 'node:path';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const check = process.argv.includes('--check');
-const pkgs = readdirSync(join(root, 'packages')).filter((n) => n !== 'fresnel-core' && existsSync(join(root, 'packages', n, 'package.json'))).sort();
+const pkgs = readdirSync(join(root, 'packages')).filter((n) => n !== 'fairpolicy-core' && existsSync(join(root, 'packages', n, 'package.json'))).sort();
 const want = new Map();
 const plugins = [];
 for (const n of pkgs) {
@@ -16,7 +16,7 @@ for (const n of pkgs) {
   const desc = ((s) => s[0].toUpperCase() + s.slice(1))(p.description.replace(/^[A-Z]\w+ of [A-Z]\w+:\s*/, ''));
   want.set(join('packages', n, '.claude-plugin', 'plugin.json'), { name: n, version: p.version, description: desc, author: { name: p.author }, license: p.license, homepage: p.homepage, keywords: p.keywords });
   want.set(join('packages', n, '.mcp.json'), { mcpServers: { [n]: { command: 'npx', args: ['-y', `${n}@${p.version}`, 'mcp'] } } });
-  plugins.push({ name: n, source: `./packages/${n}`, description: desc, version: p.version, category: 'insurance-agency', keywords: [...new Set(p.keywords.filter((k) => !['mcp', 'mcp-server', 'fresnel'].includes(k)))] });
+  plugins.push({ name: n, source: `./packages/${n}`, description: desc, version: p.version, category: 'insurance-agency', keywords: [...new Set(p.keywords.filter((k) => !['mcp', 'mcp-server', 'fairpolicy'].includes(k)))] });
 }
 want.set(join('.claude-plugin', 'marketplace.json'), { name: 'fairpolicy-insurance-agency', owner: { name: 'Mythos Machines' }, metadata: { description: 'Fairpolicy: thirty-one insurance agency back-office agents. Each reads files your agency system or carriers already export (policy lists, commission statements, receivables, licences), masks client identifiers before results reach the model, writes worklists locally and waits for a named person before anything is sent. None binds, cancels, endorses or advises on coverage.' }, plugins });
 let stale = 0;

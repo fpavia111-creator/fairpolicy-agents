@@ -10,7 +10,7 @@
 // are cycled; each copy gets its own ids, emails, references, party names and tax ids, amounts get
 // a small seeded change, dates are spread over four weeks), then the tool runs once in its own process with the
 // policy, validation and adapters on. Wall time includes reading and parsing the
-// files. Results: fresnel-out/bench/bench.md and bench.json. No network; the data
+// files. Results: fairpolicy-out/bench/bench.md and bench.json. No network; the data
 // stays fictional (the source rows are the agents' own fictional fixtures).
 
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, cpSync, mkdtempSync, rmSync, existsSync, statSync } from 'node:fs';
@@ -21,12 +21,12 @@ import { spawnSync } from 'node:child_process';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PK = join(ROOT, 'packages');
-const { parseCsv, toCsv } = await import(pathToFileURL(join(PK, 'fresnel-core', 'src', 'index.js')).href);
+const { parseCsv, toCsv } = await import(pathToFileURL(join(PK, 'fairpolicy-core', 'src', 'index.js')).href);
 const argv = process.argv.slice(2);
 const si = argv.indexOf('--sizes'); const SIZES = si >= 0 ? argv[si + 1].split(',').map(Number) : [1000, 10000];
 const TIMEOUT = 180000;
 const only = argv.filter((a, i) => !a.startsWith('--') && argv[i - 1] !== '--sizes');
-const agents = readdirSync(PK).filter((n) => /-of-/.test(n) && (!only.length || only.includes(n))).sort();
+const agents = readdirSync(PK).filter((n) => /^fairpolicy-(?!core$)/.test(n) && (!only.length || only.includes(n))).sort();
 
 // Seeded PRNG (mulberry32) so a run is repeatable.
 const rng = (seed) => () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
@@ -85,7 +85,7 @@ for (const n of agents) {
     seen.add(t.name);
     for (const size of SIZES) {
       const parent = mkdtempSync(join(tmpdir(), `bench-${n}-`)); const root = join(parent, 'root');
-      cpSync(base, root, { recursive: true, filter: (s) => !/node_modules|\.fresnel|fresnel-out|\/\.git(\/|$)/.test(s) });
+      cpSync(base, root, { recursive: true, filter: (s) => !/node_modules|\.fairpolicy|fairpolicy-out|\/\.git(\/|$)/.test(s) });
       let rowsIn = 0; let seed = 7;
       for (const [, rel] of tables) {
         // Published files that start with title lines before the header are kept as they are.
@@ -97,7 +97,7 @@ for (const n of agents) {
         const grown = grow(rows, size, seed++); rowsIn += grown.length;
         writeFileSync(f, (skip ? lines.slice(0, skip).join('\n') + '\n' : '') + toCsv(grown, Object.keys(rows[0]), { raw: true }));
       }
-      const args = { ...c.args }; if ('out_dir' in (t.inputSchema?.properties || {})) args.out_dir = 'fresnel-out/bench';
+      const args = { ...c.args }; if ('out_dir' in (t.inputSchema?.properties || {})) args.out_dir = 'fairpolicy-out/bench';
       const p = spawnSync(process.execPath, [join(ROOT, 'scripts', 'bench', 'one.mjs'), pkgDir, root, t.name, JSON.stringify(args)], { encoding: 'utf8', timeout: TIMEOUT, maxBuffer: 16 * 1024 * 1024 });
       let r; try { r = JSON.parse(p.stdout.trim().split('\n').pop()); } catch { r = { status: p.error && p.error.code === 'ETIMEDOUT' ? 'timeout' : 'crash', reason: (p.stderr || '').split('\n').find(Boolean)?.slice(0, 200) }; }
       results.push({ agent: n, tool: t.name, size, files: tables.length, rows_in: rowsIn, ...r });
@@ -118,7 +118,7 @@ const summary = Object.entries(rowsOf).map(([k, v]) => {
   const flag = !b ? 'not run' : b.status === 'timeout' ? `timeout (> ${TIMEOUT / 1000}s)` : b.status === 'error' && /\bfirst\b/i.test(b.reason || '') ? 'skipped (needs an earlier step)' : b.status !== 'executed' ? b.status : ratio !== null && ratio > (hi / lo) * 3 && b.ms > 1000 ? 'grows much faster than the input' : b.ms > 10000 ? 'slow' : 'ok';
   return { agent, tool, [`ms_${lo}`]: a?.ms ?? null, [`ms_${hi}`]: b?.ms ?? null, [`rss_mb_${hi}`]: b?.rss_mb ?? null, ratio: ratio === null ? null : Math.round(ratio * 10) / 10, flag, ...(b && b.reason ? { reason: b.reason } : {}) };
 });
-const out = join(ROOT, 'fresnel-out', 'bench'); mkdirSync(out, { recursive: true });
+const out = join(ROOT, 'fairpolicy-out', 'bench'); mkdirSync(out, { recursive: true });
 const env = { node: process.version, platform: process.platform, cpus: cpus().length, cpu: cpus()[0]?.model, mem_gb: Math.round(totalmem() / 1073741824) };
 writeFileSync(join(out, 'bench.json'), JSON.stringify({ created: new Date().toISOString(), env, sizes: SIZES, summary, runs: results }, null, 2) + '\n');
 const md = [`# Scale test`, '', `${new Date().toISOString()} · Node ${env.node} · ${env.platform} · ${env.cpus} CPU (${env.cpu}) · ${env.mem_gb} GB`, '',

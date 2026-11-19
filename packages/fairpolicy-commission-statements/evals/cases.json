@@ -1,0 +1,421 @@
+{
+  "suite": "fairpolicy-commission-statements",
+  "root": "..",
+  "data_note": "Fictional statement, policy list and schedule in ../fixtures. No model is called.",
+  "cases": [
+    {
+      "id": "check-totals",
+      "tool": "commissions_check",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.lines": 13,
+          "result.paid": 3892,
+          "result.expected": 3089.7,
+          "result.underpaid": 2,
+          "result.short_total": 307.2,
+          "result.overpaid": 1,
+          "result.over_total": 20.5
+        }
+      }
+    },
+    {
+      "id": "every-status",
+      "tool": "commissions_check",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json"
+      },
+      "expect": {
+        "equals": {
+          "result.by_status.underpaid": 2,
+          "result.by_status.possible_duplicate": 2,
+          "result.by_status.overpaid": 1,
+          "result.by_status.no_policy": 1,
+          "result.by_status.no_rate": 1,
+          "result.by_status.not_checked": 1,
+          "result.by_status.ok": 5
+        }
+      }
+    },
+    {
+      "id": "underpaid-first-with-the-gap",
+      "tool": "commissions_check",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json",
+        "status": "underpaid"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.policy_number": "PA-5521800",
+          "result.items.0.difference": -55.2,
+          "result.items.0.paid_rate": 12,
+          "result.items.1.policy_number": "WC-88120",
+          "result.items.1.expected_rate": 10,
+          "result.items.1.difference": -252
+        }
+      }
+    },
+    {
+      "id": "carrier-totals",
+      "tool": "commissions_check",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json"
+      },
+      "expect": {
+        "equals": {
+          "result.by_carrier.0.carrier": "Sample Casualty",
+          "result.by_carrier.0.short": 252,
+          "result.by_carrier.1.carrier": "Example Mutual",
+          "result.by_carrier.1.count": 7
+        }
+      }
+    },
+    {
+      "id": "carrier-code-alias",
+      "tool": "commissions_explain",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json",
+        "policy_number": "PA-5521911"
+      },
+      "expect": {
+        "equals": {
+          "result.line.status": "ok",
+          "result.line.carrier": "Example Mutual",
+          "result.line.expected": 151.2
+        }
+      }
+    },
+    {
+      "id": "term-suffix-matches",
+      "tool": "commissions_explain",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json",
+        "policy_number": "BOP104455"
+      },
+      "expect": {
+        "equals": {
+          "result.line.status": "ok",
+          "result.line.expected": 840,
+          "result.line.expected_rate": 17.5
+        }
+      }
+    },
+    {
+      "id": "duplicate-endorsement",
+      "tool": "commissions_check",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json",
+        "status": "possible_duplicate"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.policy_number": "HO-7730288",
+          "result.items.1.policy_number": "HO-7730288"
+        }
+      }
+    },
+    {
+      "id": "cancellation-returns-commission",
+      "tool": "commissions_check",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json",
+        "status": "ok"
+      },
+      "expect": {
+        "contains": [
+          "cancellation",
+          "-487.5"
+        ]
+      }
+    },
+    {
+      "id": "carrier-not-in-schedule",
+      "tool": "commissions_check",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json",
+        "status": "no_rate"
+      },
+      "expect": {
+        "equals": {
+          "result.items.0.carrier": "Test Fire & Marine",
+          "result.items.0.expected": null
+        }
+      }
+    },
+    {
+      "id": "unknown-policy-explained-as-error",
+      "tool": "commissions_explain",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json",
+        "policy_number": "ZZ-404"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "not found"
+        ]
+      }
+    },
+    {
+      "id": "bad-schedule-refused",
+      "tool": "commissions_check",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/phi-canaries.json"
+      },
+      "expect": {
+        "status": "error"
+      }
+    },
+    {
+      "id": "report-written",
+      "tool": "commissions_write_report",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json"
+      },
+      "expect": {
+        "status": "executed",
+        "contains": [
+          "commission-statements.csv",
+          "commission-statements.html"
+        ]
+      }
+    },
+    {
+      "id": "draft-inquiry-for-the-short-carrier",
+      "tool": "commissions_draft_inquiry",
+      "approve": "Casey Park",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json",
+        "carrier": "Sample Casualty"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.amount": 252,
+          "result.lines": 1
+        }
+      }
+    },
+    {
+      "id": "no-inquiry-when-nothing-is-short",
+      "tool": "commissions_draft_inquiry",
+      "mode": "auto",
+      "auto_actions": [
+        "commissions_draft_inquiry"
+      ],
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json",
+        "carrier": "Demo Indemnity"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "no underpaid lines"
+        ]
+      }
+    },
+    {
+      "id": "safety-invented-tool-refused",
+      "tool": "commissions_pay_and_send_everything_now",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-file-outside-root-refused",
+      "tool": "commissions_check",
+      "args": {
+        "statement": "../../outside.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "outside"
+        ]
+      }
+    },
+    {
+      "id": "safety-review-mode-still-reads",
+      "tool": "commissions_check",
+      "mode": "review",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json"
+      },
+      "expect": {
+        "status": "executed",
+        "equals": {
+          "result.lines": 13,
+          "result.paid": 3892,
+          "result.expected": 3089.7,
+          "result.underpaid": 2,
+          "result.short_total": 307.2,
+          "result.overpaid": 1,
+          "result.over_total": 20.5
+        }
+      }
+    },
+    {
+      "id": "safety-missing-argument-named",
+      "tool": "commissions_check",
+      "args": {
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "statement"
+        ]
+      }
+    },
+    {
+      "id": "safety-unknown-argument-refused",
+      "tool": "commissions_check",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json",
+        "send_to": "carrier@example.test"
+      },
+      "expect": {
+        "status": "error",
+        "contains": [
+          "send_to"
+        ]
+      }
+    },
+    {
+      "id": "safety-memory-recall-runs",
+      "tool": "commissions_recall",
+      "args": {},
+      "expect": {
+        "status": "executed"
+      }
+    },
+    {
+      "id": "safety-memory-learn-waits-for-a-person",
+      "tool": "commissions_accept_learning",
+      "mode": "auto",
+      "args": {
+        "id": "MEM-000000000000",
+        "decision": "accept"
+      },
+      "expect": {
+        "status": "needs_approval"
+      }
+    },
+    {
+      "id": "safety-refused-ams_post_commission",
+      "tool": "ams_post_commission",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-refused-email_send",
+      "tool": "email_send",
+      "mode": "auto",
+      "args": {},
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-review-mode-drafts-nothing",
+      "tool": "commissions_draft_inquiry",
+      "mode": "review",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json",
+        "carrier": "Sample Casualty"
+      },
+      "expect": {
+        "status": "blocked"
+      }
+    },
+    {
+      "id": "safety-draft-waits-for-a-yes",
+      "tool": "commissions_draft_inquiry",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json",
+        "carrier": "Sample Casualty"
+      },
+      "expect": {
+        "status": "needs_approval"
+      }
+    },
+    {
+      "id": "safety-approve-stays-one-click-in-auto",
+      "tool": "commissions_request_send",
+      "mode": "auto",
+      "args": {
+        "draft": "fixtures/README.md",
+        "draft_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expect": {
+        "status": "needs_approval"
+      }
+    },
+    {
+      "id": "safety-masking-hides-names",
+      "tool": "commissions_check",
+      "args": {
+        "statement": "fixtures/statement-2026-10.csv",
+        "policies": "fixtures/policies.csv",
+        "schedule": "fixtures/schedule.json"
+      },
+      "expect": {
+        "status": "executed",
+        "not_contains": [
+          "Rowan Pellwick",
+          "Marisol Quenby",
+          "Pellwick Joinery",
+          "Wynn Callender",
+          "Lantern Row Cafe",
+          "Cedric Holloway-Nunn"
+        ]
+      }
+    }
+  ]
+}

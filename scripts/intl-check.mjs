@@ -21,7 +21,7 @@ import { readdirSync, readFileSync, writeFileSync, cpSync, mkdtempSync, existsSy
 import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { runEvals, kindsByArg } from '../packages/fresnel-core/src/index.js';
+import { runEvals, kindsByArg } from '../packages/fairpolicy-core/src/index.js';
 import { MARKETS, localise, argFiles } from './lib/localise.mjs';
 import { encodeText } from './lib/encode.mjs';
 
@@ -30,7 +30,7 @@ const argv = process.argv.slice(2);
 const verbose = argv.includes('--verbose'); const showMissing = argv.includes('--missing'); const missing = new Map();
 const li = argv.indexOf('--lang'); const langArg = li >= 0 ? argv[li + 1] : null;
 const only = argv.filter((a, i) => !a.startsWith('--') && (li < 0 || i !== li + 1));
-const agents = readdirSync(PK).filter((n) => n !== 'fresnel-core' && existsSync(join(PK, n, 'src', 'manifest.js')) && (!only.length || only.includes(n))).sort();
+const agents = readdirSync(PK).filter((n) => n !== 'fairpolicy-core' && existsSync(join(PK, n, 'src', 'manifest.js')) && (!only.length || only.includes(n))).sort();
 
 const LANGS = langArg ? langArg.split(',') : Object.keys(MARKETS);
 
@@ -47,7 +47,7 @@ for (const n of agents) {
   const passedEn = new Set(base.results.filter((r) => r.pass).map((r) => r.id));
   const row = { agent: n, cases: csvCases.length, english: passedEn.size, columns: 0, translated: 0, langs: {} };
   for (const lang of LANGS) {
-    const parent = mkdtempSync(join(tmpdir(), `fresnel-intl-${lang}-`)); const root = join(parent, 'root');
+    const parent = mkdtempSync(join(tmpdir(), `fairpolicy-intl-${lang}-`)); const root = join(parent, 'root');
     cpSync(join(PK, n, 'fixtures'), join(root, 'fixtures'), { recursive: true });
     const done = new Map(); const dmyKinds = new Set(); const fileOv = {};
     for (const c of csvCases) {
@@ -65,7 +65,7 @@ for (const n of agents) {
         if (lang === 'de') { row.columns += out.columns; row.translated += out.translated; }
       }
     }
-    if (Object.keys(fileOv).length) writeFileSync(join(root, 'fresnel-sources.json'), JSON.stringify({ note: 'Day-first dates, as the buyer would set them once.', files: fileOv }, null, 2));
+    if (Object.keys(fileOv).length) writeFileSync(join(root, 'fairpolicy-sources.json'), JSON.stringify({ note: 'Day-first dates, as the buyer would set them once.', files: fileOv }, null, 2));
     const res = await runEvals(manifest, strip(csvCases), { root });
     const bad = res.results.filter((r) => passedEn.has(r.id) && !r.pass);
     row.langs[lang] = `${res.results.filter((r) => passedEn.has(r.id) && r.pass).length}/${passedEn.size}`;

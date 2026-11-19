@@ -1,6 +1,6 @@
 node_modules/
-.fresnel/
-fresnel-out/
+.fairpolicy/
+fairpolicy-out/
 *.tgz
 .npmrc
 mcp-conformance.json

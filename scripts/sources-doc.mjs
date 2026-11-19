@@ -5,13 +5,13 @@
 import { readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { describeSources, EXPORTS_BASIS_NOTE } from '../packages/fresnel-core/src/index.js';
+import { describeSources, EXPORTS_BASIS_NOTE } from '../packages/fairpolicy-core/src/index.js';
 
 const PK = join(dirname(fileURLToPath(import.meta.url)), '..', 'packages');
 const check = process.argv.includes('--check');
 const START = '<!-- sources:start -->', END = '<!-- sources:end -->';
 let stale = 0;
-for (const n of readdirSync(PK).filter((x) => /-of-/.test(x)).sort()) {
+for (const n of readdirSync(PK).filter((x) => /^fairpolicy-(?!core$)/.test(x)).sort()) {
   const { manifest } = await import(pathToFileURL(join(PK, n, 'src', 'index.js')).href);
   const list = describeSources(manifest); const f = join(PK, n, 'README.md');
   if (!list.length || !existsSync(f)) continue;
@@ -22,7 +22,7 @@ for (const n of readdirSync(PK).filter((x) => /-of-/.test(x)).sort()) {
     if (k.exports.length) { L.push('| System | Export | Layout checked against vendor docs |', '|---|---|---|'); for (const e of k.exports) L.push(`| ${e.system} | ${e.label || e.id} | ${e.layout_checked === 'no' ? 'no' : e.layout_checked.replace(/^against /, '')} |`); L.push(''); }
     else L.push('No named exports: other column names are matched by a list of common alternatives.', '');
   }
-  L.push(`Columns named differently? Run \`npx ${bin} inspect <file>\` to see how a file is read (column names and shapes only, never values), then name your columns in \`fresnel-sources.json\` in the root:`, '', '```json', '{ "files": { "exports/users.csv": { "columns": { "email": "Work E-mail" }, "date_order": "dmy" } } }', '```', '', `${EXPORTS_BASIS_NOTE} If a real export does not match, the result says which columns were missing; please report it.`, END);
+  L.push(`Columns named differently? Run \`npx ${bin} inspect <file>\` to see how a file is read (column names and shapes only, never values), then name your columns in \`fairpolicy-sources.json\` in the root:`, '', '```json', '{ "files": { "exports/users.csv": { "columns": { "email": "Work E-mail" }, "date_order": "dmy" } } }', '```', '', `${EXPORTS_BASIS_NOTE} If a real export does not match, the result says which columns were missing; please report it.`, END);
   const block = L.join('\n');
   const txt = readFileSync(f, 'utf8');
   const next = txt.includes(START) ? txt.replace(new RegExp(`${START}[\\s\\S]*?${END}`), block) : txt.replace(/\n## Install\b/, `\n${block}\n\n## Install`);

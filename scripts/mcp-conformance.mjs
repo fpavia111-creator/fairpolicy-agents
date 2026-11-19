@@ -29,7 +29,7 @@ try {
 const root = fileURLToPath(new URL('..', import.meta.url));
 const only = process.argv.slice(2);
 const pk = join(root, 'packages');
-const agents = readdirSync(pk).filter((d) => d !== 'fresnel-core' && (!only.length || only.includes(d)));
+const agents = readdirSync(pk).filter((d) => d !== 'fairpolicy-core' && (!only.length || only.includes(d)));
 const NAME_RE = /^[A-Za-z0-9_.-]{1,128}$/;
 const report = [];
 
@@ -67,8 +67,8 @@ for (const a of agents) {
     }
     r.with_output_schema = tools.filter((t) => t.outputSchema).length;
     if (caps.prompts) { const { prompts } = await client.listPrompts(); r.prompts = prompts.length; for (const p of prompts) { try { const args = Object.fromEntries((p.arguments || []).map((x) => [x.name, 'x'])); await client.getPrompt({ name: p.name, arguments: args }); } catch (e) { issues.push(`prompt ${p.name}: ${e.message}`); } } }
-    const info = await client.callTool({ name: 'fresnel_info', arguments: {} });
-    if (info.isError || !info.structuredContent) issues.push('fresnel_info: error or no structuredContent');
+    const info = await client.callTool({ name: 'fairpolicy_info', arguments: {} });
+    if (info.isError || !info.structuredContent) issues.push('fairpolicy_info: error or no structuredContent');
     // Every tool called with {}: must come back as a tool result (never a protocol crash).
     const sizes = [];
     for (const t of tools) {

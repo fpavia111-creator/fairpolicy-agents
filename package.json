@@ -1,10 +1,10 @@
 {
   "name": "fairpolicy-agents",
   "private": true,
-  "description": "Fairpolicy: insurance agency and brokerage back-office agents (fresnel-core plus 31 agents named after lighthouses).",
+  "description": "Fairpolicy: insurance agency and brokerage back-office agents (fairpolicy-core plus 31 agents named after lighthouses).",
   "license": "MIT",
   "workspaces": [
-    "packages/fresnel-core",
+    "packages/fairpolicy-core",
     "packages/*"
   ],
   "scripts": {
@@ -20,7 +20,9 @@
     "mcp:check": "node scripts/mcp-conformance.mjs",
     "intl": "node scripts/intl-check.mjs",
     "readme": "node scripts/readme-heads.mjs && node scripts/readme-sections.mjs",
-    "readme:check": "node scripts/readme-sections.mjs --check"
+    "readme:check": "node scripts/readme-sections.mjs --check",
+    "evals": "node scripts/run-all-evals.mjs",
+    "evals:safety": "node scripts/eval-safety.mjs"
   },
   "engines": {
     "node": ">=20"

@@ -1,7 +1,7 @@
 {
-  "name": "fresnel-medical-billing",
+  "name": "fairpolicy-medical-billing",
   "owner": {
-    "name": "Fresnel"
+    "name": "Fairpolicy"
   },
   "metadata": {
     "description": "Thirty medical billing agents. Each reads your exported files (835, 837, 999, 277CA, 271, 278 or spreadsheets), masks patient identifiers before results reach the model, writes worklists locally and waits for a named person before anything is sent, refunded or paid."

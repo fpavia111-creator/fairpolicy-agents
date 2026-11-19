@@ -14,7 +14,7 @@ import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { describeSources, EXPORTS_BASIS_NOTE, namesFor, conceptOf, ONE_CLICK_CATEGORIES, phiKindOf } from '../packages/fresnel-core/src/index.js';
+import { describeSources, EXPORTS_BASIS_NOTE, namesFor, conceptOf, ONE_CLICK_CATEGORIES, phiKindOf } from '../packages/fairpolicy-core/src/index.js';
 
 const PK = join(dirname(fileURLToPath(import.meta.url)), '..', 'packages');
 const check = process.argv.includes('--check');
@@ -66,15 +66,15 @@ function section(n, m, demo) {
         L.push('', EXPORTS_BASIS_NOTE, '');
       }
     }
-    L.push('### Files from other countries', '', `A German export in Windows-1252 with semicolons, \`1.234,56\` and \`03.11.2026\`, or a Japanese one in Shift_JIS with \`2026/11/03\`, is read the same way as the English file: \`npm run intl\` in the repository rewrites every eval fixture the way a German, French, Spanish, Brazilian, Italian, Japanese, Chinese and Korean export would write it and requires the same results. Columns named differently? Run \`npx ${n} inspect <file>\` (names and shapes only, never values) and name them in \`fresnel-sources.json\`:`, '', '```json', '{ "files": { "exports/claims.csv": { "columns": { "claim_id": "Fallnummer" }, "date_order": "dmy" } } }', '```', '');
+    L.push('### Files from other countries', '', `A German export in Windows-1252 with semicolons, \`1.234,56\` and \`03.11.2026\`, or a Japanese one in Shift_JIS with \`2026/11/03\`, is read the same way as the English file: \`npm run intl\` in the repository rewrites every eval fixture the way a German, French, Spanish, Brazilian, Italian, Japanese, Chinese and Korean export would write it and requires the same results. Columns named differently? Run \`npx ${n} inspect <file>\` (names and shapes only, never values) and name them in \`fairpolicy-sources.json\`:`, '', '```json', '{ "files": { "exports/claims.csv": { "columns": { "claim_id": "Fallnummer" }, "date_order": "dmy" } } }', '```', '');
   }
   if (m.memory) {
-    L.push('## Memory', '', `${m.name} can remember facts about your setup so the next run does not have to be told again. \`${prefix}_learn\` only proposes a fact; it changes nothing until a named person accepts it with \`${prefix}_accept_learning\`, which is one click even in Auto. Facts live in one hash-chained file per agent under \`.fresnel/memory/\`; if the chain does not verify, no fact is used. Credentials, personal identifiers and text that reads like instructions to an AI are refused. Run without memory with \`--no-memory\`.`, '', '| Kind | What an accepted fact changes |', '|---|---|');
+    L.push('## Memory', '', `${m.name} can remember facts about your setup so the next run does not have to be told again. \`${prefix}_learn\` only proposes a fact; it changes nothing until a named person accepts it with \`${prefix}_accept_learning\`, which is one click even in Auto. Facts live in one hash-chained file per agent under \`.fairpolicy/memory/\`; if the chain does not verify, no fact is used. Credentials, personal identifiers and text that reads like instructions to an AI are refused. Run without memory with \`--no-memory\`.`, '', '| Kind | What an accepted fact changes |', '|---|---|');
     for (const [k, v] of Object.entries(m.memory.kinds)) L.push(`| \`${k}\` | ${esc(v.effect)} |`);
     L.push('| `note` | nothing (shown by recall only) |', '', `\`\`\`bash\n${n} memory list\n${n} memory accept MEM-1a2b3c4d5e6f --as "Your Name"\n${n} memory retire MEM-1a2b3c4d5e6f --as "Your Name" --reason "carrier renamed"\n\`\`\``, '');
   }
   const read = m.tools.find((t) => t.kind === 'read');
-  L.push('## Install', '', 'Node 20 or newer. No other dependencies.', '', '```bash', `npx -y ${n} demo`, `npx -y ${n} mcp --root /path/to/your/files`, '```', '', 'Claude Desktop, Cursor and other MCP hosts:', '', '```json', JSON.stringify({ mcpServers: { [n]: { command: 'npx', args: ['-y', n, 'mcp', '--root', '/path/to/your/files'] } } }, null, 2), '```', '', `Claude Code: \`claude mcp add ${n} -- npx -y ${n} mcp --root .\`, or install the \`${n}\` plugin from this repository's marketplace (\`fresnel-medical-billing\`).`, '');
+  L.push('## Install', '', 'Node 20 or newer. No other dependencies.', '', '```bash', `npx -y ${n} demo`, `npx -y ${n} mcp --root /path/to/your/files`, '```', '', 'Claude Desktop, Cursor and other MCP hosts:', '', '```json', JSON.stringify({ mcpServers: { [n]: { command: 'npx', args: ['-y', n, 'mcp', '--root', '/path/to/your/files'] } } }, null, 2), '```', '', `Claude Code: \`claude mcp add ${n} -- npx -y ${n} mcp --root .\`, or install the \`${n}\` plugin from this repository's marketplace (\`fairpolicy-medical-billing\`).`, '');
   L.push('## Modes and approvals', '', '- **Review** (`--mode review`): reads and reports only.', '- **Assist** (default): the policy above. A tool that asks returns an `approval_id`; a person approves it once with `' + n + ' approve <id> --as "Your Name"` (or on the local approvals page, `' + n + ' approvals`), and the same call is repeated.', '- **Auto** (`--mode auto --auto <tool,...>`): opt-in per tool, with step caps and a kill switch (`' + n + ' kill`). Sending, moving money, going live and accepting a learned fact stay **one named click even in Auto**; an approval is tied to the sha256 of the reviewed draft, so a changed draft needs a new click.', '');
   L.push('## CLI', '', '```bash', `${n} tools                 # every tool, its policy and arguments`, `${n} sources               # the columns each input is read from`, `${n} inspect <file>        # how a file would be read (names and shapes, never values)`, read ? `${n} call ${read.name} '${JSON.stringify(Object.fromEntries((read.inputSchema.required || []).map((k) => [k, `<${k}>`])))}'` : '', `${n} eval                  # the private eval cases on the fictional fixtures`, `${n} demo`, '```', '');
   L.push('## Client data', '', `Results go to an AI model, so client identifiers are masked before they leave the agent (\`--phi mask\`, the default; the flag name comes from the shared core): client and insured names and client codes become stable pseudonyms such as \`CL-3f9a1c2e\`; birth dates become the birth year; driver licence numbers, addresses, phones, e-mails and SSNs are removed, also inside free text. \`--phi strict\` also hides policy numbers, claim numbers and VINs and cuts ZIP codes to three digits. Producers, account managers and carriers are not masked. The files the agent writes on your computer keep the real values, because your staff need them: keep them in a secure folder. Masking is not anonymisation, and it does not replace your agency's information-security program.`, '');
@@ -82,7 +82,7 @@ function section(n, m, demo) {
 }
 
 let stale = 0;
-for (const n of readdirSync(PK).filter((x) => /-of-/.test(x) && (!only.length || only.includes(x))).sort()) {
+for (const n of readdirSync(PK).filter((x) => /^fairpolicy-(?!core$)/.test(x) && (!only.length || only.includes(x))).sort()) {
   const { manifest } = await import(pathToFileURL(join(PK, n, 'src', 'index.js')).href);
   const f = join(PK, n, 'README.md'); if (!existsSync(f)) continue;
   const block = section(n, manifest, demoText(n));

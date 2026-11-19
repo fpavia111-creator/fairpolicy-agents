@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Pre-publish checklist for every package in this repo, run as a dry run.
 // It never publishes, never logs in, never reads or prints NPM_TOKEN, and changes
-// nothing outside fresnel-out/release-check/ (the report it writes).
+// nothing outside fairpolicy-out/release-check/ (the report it writes).
 //
 //   node scripts/release-check.mjs              all checks (tests, evals, hostile data pass, pack, scans, npm names)
 //   node scripts/release-check.mjs --offline    skip the npm registry lookups (reported as skipped, not passed)
@@ -34,7 +34,7 @@ const add = (area, status, message, detail = null) => { checks.push({ area, stat
 const rootPkg = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'));
 const dirs = [...new Set(rootPkg.workspaces.flatMap((w) => (w.endsWith('/*') ? readdirSync(join(ROOT, w.slice(0, -2))).filter((n) => existsSync(join(ROOT, w.slice(0, -2), n, 'package.json'))).map((n) => join(ROOT, w.slice(0, -2), n)) : [join(ROOT, w)])))];
 const pkgs = dirs.map((d) => ({ dir: d, rel: relative(ROOT, d).split('\\').join('/'), json: JSON.parse(readFileSync(join(d, 'package.json'), 'utf8')) }));
-const core = pkgs.find((p) => p.json.name === 'fresnel-core');
+const core = pkgs.find((p) => p.json.name === 'fairpolicy-core');
 const onDisk = readdirSync(PK).filter((n) => existsSync(join(PK, n, 'package.json')));
 const missingWs = onDisk.filter((n) => !pkgs.some((p) => p.rel === `packages/${n}`));
 missingWs.length ? add('workspaces', 'fail', `packages not listed in the root workspaces: ${missingWs.join(', ')}`) : add('workspaces', 'pass', `${pkgs.length} packages, all listed`);
@@ -45,14 +45,14 @@ for (const p of pkgs) {
   if (!/^\d+\.\d+\.\d+$/.test(j.version || '')) metaProblems.push(`${n}: version "${j.version}" is not x.y.z`);
   if (j.private) metaProblems.push(`${n}: marked private`);
   if (j.license !== 'MIT') metaProblems.push(`${n}: license is "${j.license}", expected MIT`);
-  for (const f of ['README.md', 'LICENSE', 'CHANGELOG.md']) if (!existsSync(join(p.dir, f)) && !(f === 'CHANGELOG.md' && n === 'fresnel-core' && existsSync(join(p.dir, 'CHANGELOG.md')))) if (!existsSync(join(p.dir, f))) metaProblems.push(`${n}: no ${f}`);
+  for (const f of ['README.md', 'LICENSE', 'CHANGELOG.md']) if (!existsSync(join(p.dir, f)) && !(f === 'CHANGELOG.md' && n === 'fairpolicy-core' && existsSync(join(p.dir, 'CHANGELOG.md')))) if (!existsSync(join(p.dir, f))) metaProblems.push(`${n}: no ${f}`);
   if (existsSync(join(p.dir, 'CHANGELOG.md')) && !readFileSync(join(p.dir, 'CHANGELOG.md'), 'utf8').includes(`## ${j.version}`)) metaProblems.push(`${n}: CHANGELOG.md has no "## ${j.version}" section`);
   if (!j.files || !j.files.length) metaProblems.push(`${n}: no "files" list (the whole folder would be published)`);
   if (!j.engines || !/>=\s*20/.test(j.engines.node || '')) metaProblems.push(`${n}: engines.node should be ">=20"`);
-  const dep = (j.dependencies || {})['fresnel-core'];
-  if (n !== 'fresnel-core') {
-    if (!dep) metaProblems.push(`${n}: does not depend on fresnel-core`);
-    else if (dep !== `^${core.json.version}`) metaProblems.push(`${n}: depends on fresnel-core ${dep}, core is ${core.json.version}`);
+  const dep = (j.dependencies || {})['fairpolicy-core'];
+  if (n !== 'fairpolicy-core') {
+    if (!dep) metaProblems.push(`${n}: does not depend on fairpolicy-core`);
+    else if (dep !== `^${core.json.version}`) metaProblems.push(`${n}: depends on fairpolicy-core ${dep}, core is ${core.json.version}`);
   }
   for (const [k, v] of Object.entries({ ...(j.dependencies || {}), ...(j.devDependencies || {}) })) if (/^(file:|link:|workspace:|git|https?:)/.test(String(v))) metaProblems.push(`${n}: dependency ${k} points at "${v}"`);
   for (const [b, f] of Object.entries(j.bin || {})) if (!existsSync(join(p.dir, f))) metaProblems.push(`${n}: bin ${b} -> ${f} does not exist`); else if (!readFileSync(join(p.dir, f), 'utf8').startsWith('#!/usr/bin/env node')) metaProblems.push(`${n}: bin ${f} has no "#!/usr/bin/env node" line`);
@@ -143,7 +143,7 @@ for (const p of pkgs) {
   const r = run(NPM, ['pack', '--dry-run', '--json', '--ignore-scripts'], { cwd: p.dir });
   let info; try { info = JSON.parse(r.out.slice(r.out.indexOf('['))); } catch { packProblems.push(`${p.json.name}: npm pack --dry-run failed: ${r.out.trim().split('\n').pop()}`); continue; }
   const files = info[0].files.map((f) => f.path);
-  const bad = files.filter((f) => /(^|\/)(node_modules|\.fresnel|fresnel-out|test|\.github)\/|\.npmrc$|\.tgz$|(^|\/)\.env/.test(f) || (/\.(pem|key)$/.test(f) && /PRIVATE KEY/.test(readFileSync(join(p.dir, f), 'utf8'))));
+  const bad = files.filter((f) => /(^|\/)(node_modules|\.fairpolicy|fairpolicy-out|test|\.github)\/|\.npmrc$|\.tgz$|(^|\/)\.env/.test(f) || (/\.(pem|key)$/.test(f) && /PRIVATE KEY/.test(readFileSync(join(p.dir, f), 'utf8'))));
   if (bad.length) packProblems.push(`${p.json.name}: would publish ${bad.slice(0, 5).join(', ')}`);
   for (const need of ['package.json', 'README.md', 'LICENSE']) if (!files.includes(need)) packProblems.push(`${p.json.name}: ${need} is not in the package`);
   for (const f of files) { const abs = join(p.dir, f); if (!existsSync(abs)) continue; const txt = readFileSync(abs).toString('utf8'); for (const [label, re] of SECRET) if (re.test(txt)) packProblems.push(`${p.json.name}: ${f} looks like it holds a ${label}`); }
@@ -194,7 +194,7 @@ const manual = [
   'Tag the release in git after publishing (git tag v' + core.json.version + ').',
 ];
 const report = { created: new Date().toISOString(), node: process.version, platform: process.platform, ok: !failed.length, failed: failed.length, warnings: warned.length, skipped: skipped.length, checks, packages: packs, registry, publish_order: order.map((p) => `${p.json.name}@${p.json.version}`), publish_commands: publish, manual_steps: manual, note: 'Dry run. Nothing was published.' };
-const outDir = join(ROOT, 'fresnel-out', 'release-check'); mkdirSync(outDir, { recursive: true });
+const outDir = join(ROOT, 'fairpolicy-out', 'release-check'); mkdirSync(outDir, { recursive: true });
 writeFileSync(join(outDir, 'release-check.json'), JSON.stringify(report, null, 2) + '\n');
 const md = [`# Release check`, '', `${report.created} · Node ${process.version} · ${process.platform}`, '', `**${report.ok ? 'Ready to publish (dry run passed)' : `Not ready: ${failed.length} check(s) failed`}**${warned.length ? `, ${warned.length} warning(s)` : ''}${skipped.length ? `, ${skipped.length} skipped` : ''}. Nothing was published.`, '', '| Check | Result | Detail |', '|---|---|---|',
   ...checks.map((c) => `| ${c.area} | ${c.status} | ${c.message.replace(/\|/g, '\\|')} |`), '',
