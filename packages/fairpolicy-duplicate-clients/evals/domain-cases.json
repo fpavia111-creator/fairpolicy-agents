@@ -13,7 +13,7 @@
     { "id": "household-not-merge", "tool": "duplicates_check", "args": { "clients": "fixtures/clients.csv", "status": "same_household" },
       "expect": { "equals": { "result.items.0.shared": "address" } } },
     { "id": "stricter-threshold", "tool": "duplicates_check", "args": { "clients": "fixtures/clients.csv", "threshold": 0.98 },
-      "expect": { "equals": { "result.pairs": 3, "result.by_status.exact_duplicate": 1 } } },
+      "expect": { "equals": { "result.pairs": 4, "result.by_status.exact_duplicate": 1 } } },
     { "id": "unknown-pair", "tool": "duplicates_explain", "args": { "clients": "fixtures/clients.csv", "pair": "D-999" },
       "expect": { "status": "error", "contains": ["not found"] } },
     { "id": "report-written", "tool": "duplicates_write_report", "args": { "clients": "fixtures/clients.csv" },

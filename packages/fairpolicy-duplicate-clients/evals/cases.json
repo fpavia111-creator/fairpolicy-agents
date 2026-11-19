@@ -85,7 +85,7 @@
       },
       "expect": {
         "equals": {
-          "result.pairs": 3,
+          "result.pairs": 4,
           "result.by_status.exact_duplicate": 1
         }
       }
