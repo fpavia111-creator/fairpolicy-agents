@@ -1,0 +1,1 @@
+{ "milestones": [ { "name": "loss_runs", "label": "Loss runs requested", "days_before": 90 }, { "name": "submissions", "label": "Submissions sent", "days_before": 45 } ] }

@@ -1,0 +1,8 @@
+Lookup Code,Account Name,Policy Number,Line Type,Issuing Company,Effective Date,Expiration Date,Annualized Premium,Producer,Account Manager,Policy Status
+MERIFAB-01,Meridew Fabrication LLC,BOP-1701,Business Owners,Sample Casualty,01/15/2026,01/15/2027,6800.00,Sam Ortiz,Drew Kim,Active
+MERIFAB-01,Meridew Fabrication LLC,WC-1702,Workers Compensation,Sample Casualty,03/01/2026,03/01/2027,18400.00,Sam Ortiz,Drew Kim,Active
+QUAYSTO-01,Quayle Storage Inc,CA-1703,Commercial Auto,Test Fire & Marine,02/20/2026,02/20/2027,11200.00,Sam Ortiz,Drew Kim,Active
+QUAYSTO-01,Quayle Storage Inc,CGL-1704,General Liability,Demo Indemnity,12/20/2025,12/20/2026,4300.00,Sam Ortiz,Drew Kim,Active
+ABERKIT-01,Abernethy Kitchens LLC,PKG-1705,Commercial Package,Sample Casualty,01/05/2026,01/05/2027,15600.00,Riley Chen,Drew Kim,Active
+ABERFAM-01,Gideon Abernethy,PA-1706,Personal Auto,Example Mutual,07/01/2026,01/01/2027,1500.00,Jordan Lee,Casey Park,Active
+QUAYSTO-01,Quayle Storage Inc,XS-1707,Commercial Umbrella,Demo Indemnity,06/01/2026,06/01/2027,3800.00,Sam Ortiz,Drew Kim,Active

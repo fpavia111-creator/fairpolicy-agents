@@ -1,0 +1,24 @@
+{
+  "suite": "fairpolicy-commercial-renewals", "root": "..",
+  "data_note": "Fictional policies, milestones and schedule in ../fixtures. No model is called.",
+  "cases": [
+    { "id": "check-totals", "tool": "timeline_check", "args": { "policies": "fixtures/policies.csv", "milestones": "fixtures/milestones.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "equals": { "result.renewals": 5, "result.overdue_milestones": 4 } } },
+    { "id": "every-status", "tool": "timeline_check", "args": { "policies": "fixtures/policies.csv", "milestones": "fixtures/milestones.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.by_status.overdue": 2, "result.by_status.due_this_week": 1, "result.by_status.on_track": 1, "result.by_status.complete": 1 } } },
+    { "id": "furthest-behind-first", "tool": "timeline_check", "args": { "policies": "fixtures/policies.csv", "milestones": "fixtures/milestones.csv", "as_of": "2026-11-18" },
+      "expect": { "equals": { "result.items.0.policy_number": "PKG-1705", "result.items.0.overdue": "loss_runs, exposures, submissions", "result.items.1.policy_number": "BOP-1701" } } },
+    { "id": "milestone-names-written-differently", "tool": "timeline_explain", "args": { "policies": "fixtures/policies.csv", "milestones": "fixtures/milestones.csv", "as_of": "2026-11-18", "policy_number": "BOP-1701" },
+      "expect": { "equals": { "result.renewal.done": 2, "result.renewal.overdue": "submissions", "result.renewal.next_milestone": "quotes" } } },
+    { "id": "due-this-week", "tool": "timeline_explain", "args": { "policies": "fixtures/policies.csv", "milestones": "fixtures/milestones.csv", "as_of": "2026-11-18", "policy_number": "CA-1703" },
+      "expect": { "equals": { "result.renewal.status": "due_this_week", "result.renewal.next_due": "2026-11-22" } } },
+    { "id": "personal-and-far-renewals-left-out", "tool": "timeline_check", "args": { "policies": "fixtures/policies.csv", "milestones": "fixtures/milestones.csv", "as_of": "2026-11-18" },
+      "expect": { "not_contains": ["PA-1706", "XS-1707"] } },
+    { "id": "agency-schedule", "tool": "timeline_check", "args": { "policies": "fixtures/policies.csv", "milestones": "fixtures/milestones.csv", "as_of": "2026-11-18", "schedule": "fixtures/schedule.json" },
+      "expect": { "equals": { "result.by_status.overdue": 1, "result.items.0.policy_number": "PKG-1705" } } },
+    { "id": "bad-schedule-refused", "tool": "timeline_check", "args": { "policies": "fixtures/policies.csv", "milestones": "fixtures/milestones.csv", "as_of": "2026-11-18", "schedule": "fixtures/phi-canaries.json" },
+      "expect": { "status": "error" } },
+    { "id": "report-written", "tool": "timeline_write_report", "args": { "policies": "fixtures/policies.csv", "milestones": "fixtures/milestones.csv", "as_of": "2026-11-18" },
+      "expect": { "status": "executed", "contains": ["commercial-renewals.csv", "commercial-renewals.html"] } }
+  ]
+}
