@@ -4,6 +4,7 @@
   "description": "Fairpolicy: insurance agency and brokerage back-office agents (fairpolicy-core plus 30 agents, one back-office job each).",
   "license": "MIT",
   "workspaces": [
+    "vendor/fair-agent-core",
     "packages/fairpolicy-core",
     "packages/*"
   ],
