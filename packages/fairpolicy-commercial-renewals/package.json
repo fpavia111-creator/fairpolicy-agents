@@ -40,7 +40,7 @@
     "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
     "directory": "packages/fairpolicy-commercial-renewals"
   },
-  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-commercial-renewals#readme",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/master/packages/fairpolicy-commercial-renewals#readme",
   "bugs": {
     "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
   },

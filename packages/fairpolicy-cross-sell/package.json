@@ -40,7 +40,7 @@
     "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
     "directory": "packages/fairpolicy-cross-sell"
   },
-  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-cross-sell#readme",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/master/packages/fairpolicy-cross-sell#readme",
   "bugs": {
     "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
   },

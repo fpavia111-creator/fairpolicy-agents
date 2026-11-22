@@ -40,7 +40,7 @@
     "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
     "directory": "packages/fairpolicy-premium-finance"
   },
-  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-premium-finance#readme",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/master/packages/fairpolicy-premium-finance#readme",
   "bugs": {
     "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
   },

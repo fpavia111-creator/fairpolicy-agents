@@ -40,7 +40,7 @@
     "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
     "directory": "packages/fairpolicy-book-valuation"
   },
-  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-book-valuation#readme",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/master/packages/fairpolicy-book-valuation#readme",
   "bugs": {
     "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
   },

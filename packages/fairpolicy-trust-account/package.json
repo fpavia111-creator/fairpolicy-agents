@@ -40,7 +40,7 @@
     "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
     "directory": "packages/fairpolicy-trust-account"
   },
-  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/main/packages/fairpolicy-trust-account#readme",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/master/packages/fairpolicy-trust-account#readme",
   "bugs": {
     "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
   },
