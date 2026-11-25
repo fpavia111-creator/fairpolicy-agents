@@ -12,7 +12,7 @@ The software is free (MIT). You pay a fixed price for the setup: we install the 
 | Renewals and retention | `fairpolicy-renewal-remarket`, `fairpolicy-commercial-renewals`, `fairpolicy-lapsed-policies`, `fairpolicy-cross-sell` | $2,500 |
 | Service desk | `fairpolicy-certificate-limits`, `fairpolicy-additional-insureds`, `fairpolicy-pending-endorsements`, `fairpolicy-policy-checking`, `fairpolicy-open-claims`, `fairpolicy-loss-runs` | $2,500 |
 | Licensing and E&O file | `fairpolicy-license-renewals`, `fairpolicy-carrier-appointments`, `fairpolicy-signed-declinations`, `fairpolicy-workers-comp-audits` | $2,000 |
-| Data clean-up | `fairpolicy-data-quality`, `fairpolicy-duplicate-clients`, `fairpolicy-download-errors` | $1,500 |
+| Data clean-up | `fairpolicy-data-quality`, `fairpolicy-duplicate-clients`, `fairpolicy-carrier-feed-errors` | $1,500 |
 | Book summary | `fairpolicy-book-valuation` | $1,000 |
 | Whole agency | All 30 agents, one training session for the team | $9,500 |
 

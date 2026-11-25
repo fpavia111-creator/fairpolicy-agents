@@ -1,5 +1,5 @@
 {
-  "suite": "fairpolicy-download-errors",
+  "suite": "fairpolicy-carrier-feed-errors",
   "root": "..",
   "data_note": "Fictional download log in ../fixtures. No model is called.",
   "cases": [

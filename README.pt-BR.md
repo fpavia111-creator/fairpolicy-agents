@@ -25,7 +25,7 @@ Cada agente tem uma `demo` com arquivos fictícios, um `eval` com casos de teste
 
 **Atendimento (6):** `fairpolicy-certificate-limits` (certificados contra apólices), `fairpolicy-additional-insureds` (segurados adicionais e renúncias), `fairpolicy-pending-endorsements` (endossos pendentes), `fairpolicy-policy-checking` (apólice contra a cobertura contratada), `fairpolicy-open-claims` (sinistros abertos), `fairpolicy-loss-runs` (histórico de sinistros por cliente).
 
-**Licenças, arquivos de E&O e dados (7):** `fairpolicy-license-renewals` (licenças e educação continuada), `fairpolicy-carrier-appointments` (nomeações de seguradoras), `fairpolicy-signed-declinations` (formulários assinados e recusas), `fairpolicy-workers-comp-audits` (auditorias de prêmio), `fairpolicy-data-quality` (qualidade dos dados), `fairpolicy-duplicate-clients` (clientes duplicados), `fairpolicy-download-errors` (erros de download).
+**Licenças, arquivos de E&O e dados (7):** `fairpolicy-license-renewals` (licenças e educação continuada), `fairpolicy-carrier-appointments` (nomeações de seguradoras), `fairpolicy-signed-declinations` (formulários assinados e recusas), `fairpolicy-workers-comp-audits` (auditorias de prêmio), `fairpolicy-data-quality` (qualidade dos dados), `fairpolicy-duplicate-clients` (clientes duplicados), `fairpolicy-carrier-feed-errors` (erros de download).
 
 ## Como se mantêm seguros
 

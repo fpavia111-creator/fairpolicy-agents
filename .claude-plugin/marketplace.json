@@ -55,6 +55,22 @@
       ]
     },
     {
+      "name": "fairpolicy-carrier-feed-errors",
+      "source": "./packages/fairpolicy-carrier-feed-errors",
+      "description": "Reads your carrier download log: failed transactions, transactions unmatched in suspense, and carriers with no successful download for a week. Never re-runs a download or edits a policy.",
+      "version": "0.1.0",
+      "category": "insurance-agency",
+      "keywords": [
+        "insurance",
+        "insurance-agency",
+        "agency-management",
+        "carrier-download",
+        "ivans",
+        "al3",
+        "suspense"
+      ]
+    },
+    {
       "name": "fairpolicy-carrier-payables",
       "source": "./packages/fairpolicy-carrier-payables",
       "description": "Reconciles a carrier's agency-bill account current with the payables in your agency system: amounts that differ, items on one side only, and items past due. Drafts a reconciliation note; never pays the carrier.",
@@ -196,22 +212,6 @@
         "agency-bill",
         "billing",
         "reconciliation"
-      ]
-    },
-    {
-      "name": "fairpolicy-download-errors",
-      "source": "./packages/fairpolicy-download-errors",
-      "description": "Reads your carrier download log: failed transactions, transactions unmatched in suspense, and carriers with no successful download for a week. Never re-runs a download or edits a policy.",
-      "version": "0.1.0",
-      "category": "insurance-agency",
-      "keywords": [
-        "insurance",
-        "insurance-agency",
-        "agency-management",
-        "carrier-download",
-        "ivans",
-        "al3",
-        "suspense"
       ]
     },
     {

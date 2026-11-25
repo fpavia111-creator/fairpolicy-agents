@@ -4,4 +4,4 @@ import { main } from 'fairpolicy-core';
 import { manifest } from '../src/manifest.js';
 import { demo } from '../src/demo.js';
 
-main(manifest, { bin: 'fairpolicy-download-errors', demo, evalFile: fileURLToPath(new URL('../evals/cases.json', import.meta.url)) });
+main(manifest, { bin: 'fairpolicy-carrier-feed-errors', demo, evalFile: fileURLToPath(new URL('../evals/cases.json', import.meta.url)) });

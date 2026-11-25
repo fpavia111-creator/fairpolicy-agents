@@ -1,12 +1,12 @@
 {
-  "name": "fairpolicy-download-errors",
+  "name": "fairpolicy-carrier-feed-errors",
   "version": "0.1.0",
   "description": "Reads your carrier download log: failed transactions, transactions unmatched in suspense, and carriers with no successful download for a week. Never re-runs a download or edits a policy.",
   "author": {
     "name": "Kurt Francisco"
   },
   "license": "MIT",
-  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/master/packages/fairpolicy-download-errors#readme",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/master/packages/fairpolicy-carrier-feed-errors#readme",
   "keywords": [
     "mcp",
     "mcp-server",

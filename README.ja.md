@@ -25,7 +25,7 @@ npx -y fairpolicy-trust-account demo
 
 **サービス (6):** `fairpolicy-certificate-limits` (証明書と契約の照合), `fairpolicy-additional-insureds` (追加被保険者と代位放棄), `fairpolicy-pending-endorsements` (未完了の異動), `fairpolicy-policy-checking` (証券と引受内容の照合), `fairpolicy-open-claims` (未決事故), `fairpolicy-loss-runs` (顧客別損害履歴).
 
-**資格・E&O書類・データ (7):** `fairpolicy-license-renewals` (資格と継続教育), `fairpolicy-carrier-appointments` (保険会社の委託), `fairpolicy-signed-declinations` (署名書類と辞退書), `fairpolicy-workers-comp-audits` (保険料精算監査), `fairpolicy-data-quality` (契約データ品質), `fairpolicy-duplicate-clients` (重複顧客), `fairpolicy-download-errors` (ダウンロードエラー).
+**資格・E&O書類・データ (7):** `fairpolicy-license-renewals` (資格と継続教育), `fairpolicy-carrier-appointments` (保険会社の委託), `fairpolicy-signed-declinations` (署名書類と辞退書), `fairpolicy-workers-comp-audits` (保険料精算監査), `fairpolicy-data-quality` (契約データ品質), `fairpolicy-duplicate-clients` (重複顧客), `fairpolicy-carrier-feed-errors` (ダウンロードエラー).
 
 ## 安全のしくみ
 

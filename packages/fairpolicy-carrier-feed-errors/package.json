@@ -1,7 +1,7 @@
 {
-  "name": "fairpolicy-download-errors",
+  "name": "fairpolicy-carrier-feed-errors",
   "version": "0.1.0",
-  "mcpName": "io.github.fpavia111-creator/fairpolicy-download-errors",
+  "mcpName": "io.github.fpavia111-creator/fairpolicy-carrier-feed-errors",
   "description": "Reads your carrier download log: failed transactions, transactions unmatched in suspense, and carriers with no successful download for a week. Never re-runs a download or edits a policy.",
   "type": "module",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "./package.json": "./package.json"
   },
   "bin": {
-    "fairpolicy-download-errors": "bin/fairpolicy-download-errors.js"
+    "fairpolicy-carrier-feed-errors": "bin/fairpolicy-carrier-feed-errors.js"
   },
   "files": [
     "src",
@@ -29,8 +29,8 @@
   ],
   "scripts": {
     "test": "node scripts/run-tests.cjs",
-    "demo": "node bin/fairpolicy-download-errors.js demo",
-    "eval": "node bin/fairpolicy-download-errors.js eval"
+    "demo": "node bin/fairpolicy-carrier-feed-errors.js demo",
+    "eval": "node bin/fairpolicy-carrier-feed-errors.js eval"
   },
   "dependencies": {
     "fairpolicy-core": "^0.1.0"
@@ -38,9 +38,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fpavia111-creator/fairpolicy-agents.git",
-    "directory": "packages/fairpolicy-download-errors"
+    "directory": "packages/fairpolicy-carrier-feed-errors"
   },
-  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/master/packages/fairpolicy-download-errors#readme",
+  "homepage": "https://github.com/fpavia111-creator/fairpolicy-agents/tree/master/packages/fairpolicy-carrier-feed-errors#readme",
   "bugs": {
     "url": "https://github.com/fpavia111-creator/fairpolicy-agents/issues"
   },

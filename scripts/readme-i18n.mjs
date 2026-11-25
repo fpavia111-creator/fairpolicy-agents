@@ -75,7 +75,7 @@ const GROUPS = [
     ['workers-comp-audits', T('Beitragsrevisionen', 'régularisations de prime', 'auditorías de prima', 'auditorias de prêmio', 'regolazioni premio', '保険料精算監査', '保费审计', '보험료 정산 감사')],
     ['data-quality', T('Datenqualität der Verträge', 'qualité des données', 'calidad de datos', 'qualidade dos dados', 'qualità dei dati', '契約データ品質', '保单数据质量', '계약 데이터 품질')],
     ['duplicate-clients', T('doppelte Kunden', 'clients en double', 'clientes duplicados', 'clientes duplicados', 'clienti duplicati', '重複顧客', '重复客户', '중복 고객')],
-    ['download-errors', T('Fehler beim Datenabruf', 'erreurs de téléchargement', 'errores de descarga', 'erros de download', 'errori di download', 'ダウンロードエラー', '下载错误', '다운로드 오류')]]],
+    ['carrier-feed-errors', T('Fehler beim Datenabruf', 'erreurs de téléchargement', 'errores de descarga', 'erros de download', 'errori di download', 'ダウンロードエラー', '下载错误', '다운로드 오류')]]],
 ];
 
 for (const l of LANGS) {

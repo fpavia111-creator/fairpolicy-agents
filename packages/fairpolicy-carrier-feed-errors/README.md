@@ -1,4 +1,4 @@
-# Fairpolicy Download Errors (`fairpolicy-download-errors`)
+# Fairpolicy Download Errors (`fairpolicy-carrier-feed-errors`)
 
 Reads your carrier download log: transactions that failed, transactions sitting unmatched in suspense for more than a few days, and carriers with no successful download for a week, so changes from carriers are not lost. It reads the log only; it never re-runs a download or edits a policy.
 
@@ -7,15 +7,15 @@ Reads your carrier download log: transactions that failed, transactions sitting 
 MIT · Node 20 or newer · local files only · client identifiers masked before results reach the model · built on [`fairpolicy-core`](../fairpolicy-core)
 
 ```bash
-npx -y fairpolicy-download-errors demo
-npx -y fairpolicy-download-errors mcp --root ./agency-exports
+npx -y fairpolicy-carrier-feed-errors demo
+npx -y fairpolicy-carrier-feed-errors mcp --root ./agency-exports
 ```
 
 <!-- generated:start -->
 
 ## A demo run
 
-`npx -y fairpolicy-download-errors demo` runs the agent on the fictional files in [`fixtures/`](fixtures) in a temporary folder. Captured output:
+`npx -y fairpolicy-carrier-feed-errors demo` runs the agent on the fictional files in [`fixtures/`](fixtures) in a temporary folder. Captured output:
 
 ```text
 Fairpolicy Download Errors demo (fictional agency, carriers and clients)
@@ -82,7 +82,7 @@ Every layout here was written from knowledge of the export ("recalled") and was 
 
 ### Files from other countries
 
-A German export in Windows-1252 with semicolons, `1.234,56` and `03.11.2026`, or a Japanese one in Shift_JIS with `2026/11/03`, is read the same way as the English file: `npm run intl` in the repository rewrites every eval fixture the way a German, French, Spanish, Brazilian, Italian, Japanese, Chinese and Korean export would write it and requires the same results. Columns named differently? Run `npx fairpolicy-download-errors inspect <file>` (names and shapes only, never values) and name them in `fairpolicy-sources.json`:
+A German export in Windows-1252 with semicolons, `1.234,56` and `03.11.2026`, or a Japanese one in Shift_JIS with `2026/11/03`, is read the same way as the English file: `npm run intl` in the repository rewrites every eval fixture the way a German, French, Spanish, Brazilian, Italian, Japanese, Chinese and Korean export would write it and requires the same results. Columns named differently? Run `npx fairpolicy-carrier-feed-errors inspect <file>` (names and shapes only, never values) and name them in `fairpolicy-sources.json`:
 
 ```json
 { "files": { "exports/claims.csv": { "columns": { "claim_id": "Fallnummer" }, "date_order": "dmy" } } }
@@ -93,8 +93,8 @@ A German export in Windows-1252 with semicolons, `1.234,56` and `03.11.2026`, or
 Node 20 or newer. No other dependencies.
 
 ```bash
-npx -y fairpolicy-download-errors demo
-npx -y fairpolicy-download-errors mcp --root /path/to/your/files
+npx -y fairpolicy-carrier-feed-errors demo
+npx -y fairpolicy-carrier-feed-errors mcp --root /path/to/your/files
 ```
 
 Claude Desktop, Cursor and other MCP hosts:
@@ -102,11 +102,11 @@ Claude Desktop, Cursor and other MCP hosts:
 ```json
 {
   "mcpServers": {
-    "fairpolicy-download-errors": {
+    "fairpolicy-carrier-feed-errors": {
       "command": "npx",
       "args": [
         "-y",
-        "fairpolicy-download-errors",
+        "fairpolicy-carrier-feed-errors",
         "mcp",
         "--root",
         "/path/to/your/files"
@@ -116,23 +116,23 @@ Claude Desktop, Cursor and other MCP hosts:
 }
 ```
 
-Claude Code: `claude mcp add fairpolicy-download-errors -- npx -y fairpolicy-download-errors mcp --root .`, or install the `fairpolicy-download-errors` plugin from this repository's marketplace (`fairpolicy-medical-billing`).
+Claude Code: `claude mcp add fairpolicy-carrier-feed-errors -- npx -y fairpolicy-carrier-feed-errors mcp --root .`, or install the `fairpolicy-carrier-feed-errors` plugin from this repository's marketplace (`fairpolicy-medical-billing`).
 
 ## Modes and approvals
 
 - **Review** (`--mode review`): reads and reports only.
-- **Assist** (default): the policy above. A tool that asks returns an `approval_id`; a person approves it once with `fairpolicy-download-errors approve <id> --as "Your Name"` (or on the local approvals page, `fairpolicy-download-errors approvals`), and the same call is repeated.
-- **Auto** (`--mode auto --auto <tool,...>`): opt-in per tool, with step caps and a kill switch (`fairpolicy-download-errors kill`). Sending, moving money, going live and accepting a learned fact stay **one named click even in Auto**; an approval is tied to the sha256 of the reviewed draft, so a changed draft needs a new click.
+- **Assist** (default): the policy above. A tool that asks returns an `approval_id`; a person approves it once with `fairpolicy-carrier-feed-errors approve <id> --as "Your Name"` (or on the local approvals page, `fairpolicy-carrier-feed-errors approvals`), and the same call is repeated.
+- **Auto** (`--mode auto --auto <tool,...>`): opt-in per tool, with step caps and a kill switch (`fairpolicy-carrier-feed-errors kill`). Sending, moving money, going live and accepting a learned fact stay **one named click even in Auto**; an approval is tied to the sha256 of the reviewed draft, so a changed draft needs a new click.
 
 ## CLI
 
 ```bash
-fairpolicy-download-errors tools                 # every tool, its policy and arguments
-fairpolicy-download-errors sources               # the columns each input is read from
-fairpolicy-download-errors inspect <file>        # how a file would be read (names and shapes, never values)
-fairpolicy-download-errors call downloads_check '{"log":"<log>"}'
-fairpolicy-download-errors eval                  # the private eval cases on the fictional fixtures
-fairpolicy-download-errors demo
+fairpolicy-carrier-feed-errors tools                 # every tool, its policy and arguments
+fairpolicy-carrier-feed-errors sources               # the columns each input is read from
+fairpolicy-carrier-feed-errors inspect <file>        # how a file would be read (names and shapes, never values)
+fairpolicy-carrier-feed-errors call downloads_check '{"log":"<log>"}'
+fairpolicy-carrier-feed-errors eval                  # the private eval cases on the fictional fixtures
+fairpolicy-carrier-feed-errors demo
 ```
 
 ## Client data

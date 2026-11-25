@@ -1,5 +1,5 @@
 {
-  "suite": "fairpolicy-download-errors", "root": "..",
+  "suite": "fairpolicy-carrier-feed-errors", "root": "..",
   "data_note": "Fictional download log in ../fixtures. No model is called.",
   "cases": [
     { "id": "check-totals", "tool": "downloads_check", "args": { "log": "fixtures/download-log.csv", "as_of": "2026-11-18" },

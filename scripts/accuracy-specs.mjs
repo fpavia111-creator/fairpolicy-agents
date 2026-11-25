@@ -235,7 +235,7 @@ export const SPECS = {
     ],
   },
 
-  'fairpolicy-download-errors': {
+  'fairpolicy-carrier-feed-errors': {
     args: { log: 'download-log.csv', as_of: AS_OF },
     ok: ['ok', 'unmatched_new'],
     planted: [['DL-4', 'download_error'], ['DL-2', 'unmatched_old'], ['carrier:Demo Indemnity', 'carrier_stale']],
