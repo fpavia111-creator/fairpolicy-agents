@@ -18,7 +18,7 @@ const args = { as_of: AS_OF_ARG, unmatched_days: { type: 'integer', minimum: 0, 
 const run = (a, ctx) => checkDownloads(ctx.records(a.log, 'log'), { asOf: asOf(a), unmatchedDays: a.unmatched_days ?? 3, staleDays: a.stale_days ?? 7 });
 
 export const manifest = fairpolicyAgent({
-  name: 'fairpolicy-download-errors', version: pkg.version, prefix: 'downloads', key: 'ref', keyKind: 'ref', noun: 'item',
+  name: 'fairpolicy-carrier-feed-errors', version: pkg.version, prefix: 'downloads', key: 'ref', keyKind: 'ref', noun: 'item',
   role: 'an agency operations or download administrator',
   description: 'Reads your carrier download log: transactions that failed, transactions sitting unmatched in suspense for more than a few days, and carriers with no successful download for a week, so changes from carriers are not lost. It reads the log only; it never re-runs a download or edits a policy.',
   files, args, required: ['log'], statuses: STATUSES,

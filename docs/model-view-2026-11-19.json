@@ -316,7 +316,7 @@
     ]
   },
   {
-    "agent": "fairpolicy-download-errors",
+    "agent": "fairpolicy-carrier-feed-errors",
     "masked": [],
     "masked_strict": [
       "policy_number"

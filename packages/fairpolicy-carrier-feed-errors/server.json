@@ -1,19 +1,19 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.fpavia111-creator/fairpolicy-download-errors",
+  "name": "io.github.fpavia111-creator/fairpolicy-carrier-feed-errors",
   "title": "Fairpolicy Download Errors",
   "description": "Reads your carrier download log",
   "version": "0.1.0",
   "repository": {
     "url": "https://github.com/fpavia111-creator/fairpolicy-agents",
     "source": "github",
-    "subfolder": "packages/fairpolicy-download-errors"
+    "subfolder": "packages/fairpolicy-carrier-feed-errors"
   },
   "websiteUrl": "https://fair-agents.com/fairpolicy.html",
   "packages": [
     {
       "registryType": "npm",
-      "identifier": "fairpolicy-download-errors",
+      "identifier": "fairpolicy-carrier-feed-errors",
       "version": "0.1.0",
       "transport": {
         "type": "stdio"

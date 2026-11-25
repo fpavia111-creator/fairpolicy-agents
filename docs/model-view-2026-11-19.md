@@ -23,7 +23,7 @@ Results go to whatever model the user's assistant uses. For client data, use a m
 | fairpolicy-cross-sell | client | - | csr, lines, producer | - |
 | fairpolicy-data-quality | client | policy_number | carrier, csr, issues, line, producer | - |
 | fairpolicy-direct-agency-bill | client | policy_number | carrier, coded_bill_type, csr, line, producer | - |
-| fairpolicy-download-errors | - | policy_number | carrier, message, ref, transaction_type | message |
+| fairpolicy-carrier-feed-errors | - | policy_number | carrier, message, ref, transaction_type | message |
 | fairpolicy-duplicate-clients | client, client_id, other_client, other_client_id | - | pair, shared | - |
 | fairpolicy-lapsed-policies | client | policy_number, replacement | carrier, csr, line, policy_status, producer, reason | reason |
 | fairpolicy-license-renewals | - | - | license_number, license_type, person, role, state | - |
